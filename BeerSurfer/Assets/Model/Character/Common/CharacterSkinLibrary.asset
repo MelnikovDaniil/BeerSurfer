@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: CharacterSkinLibrary
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: head
+    m_Hash: -1477183844
+    m_CategoryList:
+    - m_Name: EBoy_Head
+      m_Hash: -727635497
+      m_Sprite: {fileID: -4857558079772837517, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+    - m_Name: original_head
+      m_Hash: -1383686742
+      m_Sprite: {fileID: -1727720909174622181, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - m_Name: glasses
+    m_Hash: -157132074
+    m_CategoryList:
+    - m_Name: e-boy_glasses
+      m_Hash: 162174097
+      m_Sprite: {fileID: 8564980160741887735, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+    - m_Name: original_glasses
+      m_Hash: 1881338913
+      m_Sprite: {fileID: -3421241887624605641, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - m_Name: torso
+    m_Hash: 660585605
+    m_CategoryList:
+    - m_Name: e-boy_torso
+      m_Hash: -290685823
+      m_Sprite: {fileID: -6884487327946281990, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+    - m_Name: original_torso
+      m_Hash: -386966409
+      m_Sprite: {fileID: -6856839874746510869, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - m_Name: backHand
+    m_Hash: 482031355
+    m_CategoryList:
+    - m_Name: e-boy__backHand
+      m_Hash: -241190170
+      m_Sprite: {fileID: 1093799548928701229, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+    - m_Name: original_backHand
+      m_Hash: 1071960554
+      m_Sprite: {fileID: 7278703050264932213, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - m_Name: legs
+    m_Hash: -48741494
+    m_CategoryList:
+    - m_Name: e-boy_legs
+      m_Hash: 49857017
+      m_Sprite: {fileID: -7851974934738288565, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+    - m_Name: original_legs
+      m_Hash: -143841092
+      m_Sprite: {fileID: -3110563093439604129, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - m_Name: socks
+    m_Hash: 511798724
+    m_CategoryList:
+    - m_Name: e-boy_socks
+      m_Hash: -680350272
+      m_Sprite: {fileID: -220619257029649054, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+    - m_Name: original_socks
+      m_Hash: -785281738
+      m_Sprite: {fileID: -243855759140987258, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - m_Name: boots
+    m_Hash: -2025774068
+    m_CategoryList:
+    - m_Name: e-boy_boots
+      m_Hash: 1320346632
+      m_Sprite: {fileID: -4620988029919858958, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+    - m_Name: original_boots
+      m_Hash: 1223804158
+      m_Sprite: {fileID: -3248332477604383692, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
