@@ -22,6 +22,9 @@ MonoBehaviour:
     - m_Name: original_head
       m_Hash: -1383686742
       m_Sprite: {fileID: -1727720909174622181, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+    - m_Name: Zabivnoy_Head
+      m_Hash: 567378310
+      m_Sprite: {fileID: 5791938277626156784, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - m_Name: glasses
     m_Hash: -157132074
     m_CategoryList:
@@ -31,6 +34,9 @@ MonoBehaviour:
     - m_Name: original_glasses
       m_Hash: 1881338913
       m_Sprite: {fileID: -3421241887624605641, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+    - m_Name: Zabivnoy_Glasses
+      m_Hash: 1376637475
+      m_Sprite: {fileID: 4046310461878539251, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - m_Name: torso
     m_Hash: 660585605
     m_CategoryList:
@@ -40,6 +46,9 @@ MonoBehaviour:
     - m_Name: original_torso
       m_Hash: -386966409
       m_Sprite: {fileID: -6856839874746510869, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+    - m_Name: Zabivnoy_Torso
+      m_Hash: -625252472
+      m_Sprite: {fileID: -2016181058490347773, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - m_Name: backHand
     m_Hash: 482031355
     m_CategoryList:
@@ -49,6 +58,9 @@ MonoBehaviour:
     - m_Name: original_backHand
       m_Hash: 1071960554
       m_Sprite: {fileID: 7278703050264932213, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+    - m_Name: Zabivnoy_BackHand
+      m_Hash: -775381024
+      m_Sprite: {fileID: 5512669127726980703, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - m_Name: legs
     m_Hash: -48741494
     m_CategoryList:
@@ -58,6 +70,9 @@ MonoBehaviour:
     - m_Name: original_legs
       m_Hash: -143841092
       m_Sprite: {fileID: -3110563093439604129, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+    - m_Name: Zabivnoy_Legs
+      m_Hash: 2067412112
+      m_Sprite: {fileID: 1073332059938789926, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - m_Name: socks
     m_Hash: 511798724
     m_CategoryList:
@@ -67,6 +82,9 @@ MonoBehaviour:
     - m_Name: original_socks
       m_Hash: -785281738
       m_Sprite: {fileID: -243855759140987258, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+    - m_Name: Zabivnoy_Socks
+      m_Hash: -479873335
+      m_Sprite: {fileID: -7157426908188180665, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - m_Name: boots
     m_Hash: -2025774068
     m_CategoryList:
@@ -76,3 +94,6 @@ MonoBehaviour:
     - m_Name: original_boots
       m_Hash: 1223804158
       m_Sprite: {fileID: -3248332477604383692, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+    - m_Name: Zabivnoy_Boots
+      m_Hash: 2057699073
+      m_Sprite: {fileID: -4461359874863885579, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
