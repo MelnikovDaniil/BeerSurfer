@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -13,8 +14,12 @@ public class Character : MonoBehaviour
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
 
+    public Text beerCounterText;
+
     private bool isGrounded = true;
     private bool isFalling = false;
+
+    private int collectedBeer;
 
     private void Awake()
     {
@@ -88,5 +93,15 @@ public class Character : MonoBehaviour
     {
         _animator.SetBool("run", false);
         isGrounded = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Beer")
+        {
+            Destroy(collision.gameObject);
+            collectedBeer++;
+            beerCounterText.text = collectedBeer.ToString();
+        }
     }
 }

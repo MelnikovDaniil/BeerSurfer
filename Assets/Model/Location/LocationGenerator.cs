@@ -6,6 +6,9 @@ using static UnityEngine.ParticleSystem;
 
 public class LocationGenerator : MonoBehaviour
 {
+    public const int BgOrderingLayer1 = -11;
+    public const int BgOrderingLayer2 = -12;
+
     public float paralaxOffset = 645;
     public float paralaxCloudsSpeed = 4;
     public float paralaxAdditionalBgSpeed = 4;
@@ -16,8 +19,9 @@ public class LocationGenerator : MonoBehaviour
     public int locationLenght = 10;
 
     [Space(20)]
-    public List<Transform> paralaxAdditionalBg;
-    public List<Transform> paralaxGround;
+    public List<SpriteRenderer> paralaxFirstLayerBg;
+    public List<SpriteRenderer> paralaxSecondLayerBg;
+    public List<RoadPart> paralaxGround;
     public List<Transform> obstacles;
     public Transform obstacleContainer;
 
@@ -27,48 +31,72 @@ public class LocationGenerator : MonoBehaviour
     public List<RectTransform> obstaclesPrefabs;
     public RectTransform finishPrefab;
 
+    [Space(20)]
+    public BeerView beerPrefab;
+    public List<Sprite> beerSprites;
+    public float beerGap = 1;
+    public float beeerSpawnHeight = -3.3f;
+    public MinMaxCurve minMaxBeerOnScreen = new MinMaxCurve(0, 4);
+
     private Queue<Sprite> roadQueue;
-    private Queue<Sprite> backgroundQueue;
 
-    private const float StandartScreenCoefficient = 0.5625f;
-
-    private bool gameStoped;
+    private int currentBgOrdering;
 
     private void Start()
     {
+        currentBgOrdering = BgOrderingLayer1;
         roadQueue = new Queue<Sprite>();
-        backgroundQueue = new Queue<Sprite>();
     }
 
     private void Update()
     {
-        if (!gameStoped)
-        {
-            ParalaxMove(paralaxAdditionalBg, backgroundQueue, paralaxAdditionalBgSpeed);
-            ParalaxMove(paralaxGround, roadQueue, paralaxGroundSpeed);
-            obstacles.ForEach(x => x.position += Vector3.left * paralaxGroundSpeed * Time.deltaTime);
-        }
+        ParalaxMove(paralaxFirstLayerBg, paralaxAdditionalBgSpeed);
+        ParalaxMove(paralaxSecondLayerBg, paralaxAdditionalBgSpeed);
+        GroundMove(paralaxGround, paralaxGroundSpeed);
+        obstacles.ForEach(x => x.position += Vector3.left * paralaxGroundSpeed * Time.deltaTime);
     }
 
-    public void ParalaxMove(IEnumerable<Transform> paralaxItems, Queue<Sprite> queue, float speed)
+    public void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
     {
         var vectorSpeed = Vector3.left * speed * Time.deltaTime;
         var itemsCount = paralaxItems.Count();
         var itemMoveDistance = paralaxOffset * itemsCount / (itemsCount - 1);
         foreach (var item in paralaxItems)
         {
-            if (item.position.x < -itemMoveDistance)
+            if (item.transform.position.x < -itemMoveDistance)
             {
-                item.position += new Vector3(paralaxOffset * itemsCount, 0);
+                item.transform.position += new Vector3(paralaxOffset * itemsCount, 0);
+            }
+            item.transform.position += vectorSpeed;
+        }
+    }
 
-                if (!queue.Any())
+    public void GroundMove(IEnumerable<RoadPart> paralaxItems, float speed)
+    {
+        var vectorSpeed = Vector3.left * speed * Time.deltaTime;
+        var itemsCount = paralaxItems.Count();
+        var itemMoveDistance = paralaxOffset * itemsCount / (itemsCount - 1);
+        foreach (var road in paralaxItems)
+        {
+            if (road.transform.position.x < -itemMoveDistance)
+            {
+                road.Clear();
+
+                var roadType = roadQueue.Count == 1 ? RoadType.Finish : RoadType.Middle;
+                road.transform.position += new Vector3(paralaxOffset * itemsCount, 0);
+
+                if (!roadQueue.Any())
                 {
+                    roadType = RoadType.Start;
                     GenerateLocation();
                 }
 
-                item.GetComponent<SpriteRenderer>().sprite = queue.Dequeue();
+                road.ChangeSprite(roadQueue.Dequeue());
+                road.SetMaskOrder(currentBgOrdering);
+                road.roadType = roadType;
+                GenerateBeer(road);
             }
-            item.position += vectorSpeed;
+            road.transform.position += vectorSpeed;
         }
     }
 
@@ -109,9 +137,15 @@ public class LocationGenerator : MonoBehaviour
     private void GenerateLocation()
     {
         var location = locations.GetRandom();
-        for (var i = 0; i < (locationLenght + 2) / 2; i++)
+        if (currentBgOrdering == BgOrderingLayer1)
         {
-            backgroundQueue.Enqueue(location.Background);
+            currentBgOrdering = BgOrderingLayer2;
+            paralaxSecondLayerBg.ForEach(x => x.sprite = location.Background);
+        }
+        else
+        {
+            currentBgOrdering = BgOrderingLayer1;
+            paralaxFirstLayerBg.ForEach(x => x.sprite = location.Background);
         }
 
         roadQueue.Enqueue(location.startSprite);
@@ -121,5 +155,20 @@ public class LocationGenerator : MonoBehaviour
             roadQueue.Enqueue(location.middleSprites.GetRandom());
         }
         roadQueue.Enqueue(location.finishSprite);
+    }
+
+    private void GenerateBeer(RoadPart roadPart)
+    {
+        var beerSprite = beerSprites.GetRandom();
+        var beerCount = Random.Range(minMaxBeerOnScreen.constantMin, minMaxBeerOnScreen.constantMax);
+        var x = (beerCount - 1) / 2 * -beerGap;
+        for (var i = 0; i < beerCount; i++)
+        {
+            var spawnedBeer = Instantiate(beerPrefab, roadPart.transform);
+            spawnedBeer.transform.localPosition = new Vector3(x, beeerSpawnHeight);
+            spawnedBeer.ChangeSprite(beerSprite);
+            roadPart.beerList.Add(spawnedBeer);
+            x += beerGap;
+        }
     }
 }
