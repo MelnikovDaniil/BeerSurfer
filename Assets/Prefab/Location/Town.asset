@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4bc8875f1e037e4cb8ac889ffde2150, type: 3}
   m_Name: Town
   m_EditorClassIdentifier: 
-  startSprite: {fileID: 0}
-  middleSprites: []
-  finishSprite: {fileID: 0}
-  Background: {fileID: 0}
+  startSprite: {fileID: 21300000, guid: 4004b1441cc182640b47664744322d0e, type: 3}
+  middleSprites:
+  - {fileID: 21300000, guid: e301db6915735034f8423a2e73c2e3a8, type: 3}
+  - {fileID: 21300000, guid: 84fa743a756a4984aae6c45dbd762164, type: 3}
+  finishSprite: {fileID: 21300000, guid: c87a6ea913eea0144a4eea40d0bffab2, type: 3}
+  Background:
+  - {fileID: 21300000, guid: e1e3344e23526ac458959dc66559e14b, type: 3}
+  - {fileID: 21300000, guid: c0db1fcfb9e565447b12950bfd38ac19, type: 3}
+  - {fileID: 21300000, guid: eec319602051b8e4e94ad19d9a0c4c1a, type: 3}
+  - {fileID: 21300000, guid: ee76e010f7ab257469eaf3efa9b496ae, type: 3}
+  obstacles:
+  - {fileID: 2250628000756136788, guid: 89cdd6672ae71844bbad753e8e0a323e, type: 3}

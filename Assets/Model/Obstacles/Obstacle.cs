@@ -1,20 +1,20 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Obstacle : MonoBehaviour
 {
+    public ObstacleType obstacleType;
+
     [SerializeField]
     private List<BeerView> beerList;
 
     [SerializeField]
     [Range(0, 1)]
-    private float everySecondBeerChance;
+    private float everySecondBeerChance = 0.5f;
     [SerializeField]
     [Range(0, 1)]
-    private float allBeerChance;
+    private float allBeerChance = 0.15f;
 
     public void SetUpBeer()
     {

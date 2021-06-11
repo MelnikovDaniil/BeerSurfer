@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
+using Random = UnityEngine.Random;
 
 public class LocationGenerator : MonoBehaviour
 {
@@ -25,6 +27,12 @@ public class LocationGenerator : MonoBehaviour
     [Space(20)]
     [Range(0, 1)]
     public float obstacleChance = 0.5f;
+    public List<ObstacleHigh> obstacleHigh = new List<ObstacleHigh>
+    {
+        new ObstacleHigh{ type = ObstacleType.Bottom, high = -3.3f},
+        new ObstacleHigh{ type = ObstacleType.Middle, high = 0},
+        new ObstacleHigh{ type = ObstacleType.Top, high = 3.3f},
+    };
 
     [Space(20)]
     public BeerView beerPrefab;
@@ -144,7 +152,8 @@ public class LocationGenerator : MonoBehaviour
     {
         var obstacle = currentLocation.obstacles.GetRandom();
         var spawnedObstacle = Instantiate(obstacle, roadPart.transform);
-        spawnedObstacle.transform.localPosition = new Vector3(0, beeerSpawnHeight);
+        var high = obstacleHigh.First(x => x.type == obstacle.obstacleType).high;
+        spawnedObstacle.transform.localPosition = new Vector3(0, high);
         roadPart.obstacles.Add(spawnedObstacle);
     }
 }
