@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
@@ -10,13 +8,7 @@ public class Shop : MonoBehaviour
     public bool allOutfits;
 
     [Space(20)]
-    public List<Sprite> backHandSprites;
-    public List<Sprite> bootsSprites;
-    public List<Sprite> glassesSprites;
-    public List<Sprite> headSprites;
-    public List<Sprite> legsSprites;
-    public List<Sprite> socksSprites;
-    public List<Sprite> torsoSprites;
+    public OutfitLibrary outfitLibrary;
 
     [Space(20)]
     public SpriteRenderer characterBackHand;
@@ -30,6 +22,7 @@ public class Shop : MonoBehaviour
     [Space(20)]
     public Button previousButton;
     public Button nextButton;
+    public Button equipButton;
 
     public Image previousOutfitImage;
     public Image nextOutfitImage;
@@ -40,12 +33,12 @@ public class Shop : MonoBehaviour
     {
         shop = new List<OutfitModel>
         {
-            new OutfitModel { OutfitType = OutfitType.Head, Renderer = characterHead, Sprites = headSprites },
-            new OutfitModel { OutfitType = OutfitType.Glasses, Renderer = characterGlasses, Sprites = glassesSprites },
-            new OutfitModel { OutfitType = OutfitType.Torso, Renderer = characterTorso, Sprites = torsoSprites },
-            new OutfitModel { OutfitType = OutfitType.Legs, Renderer = characterLegs, Sprites = legsSprites },
-            new OutfitModel { OutfitType = OutfitType.Socks, Renderer = characterSocks, Sprites = socksSprites },
-            new OutfitModel { OutfitType = OutfitType.Boots, Renderer = characterBoots, Sprites = bootsSprites },
+            new OutfitModel { OutfitType = OutfitType.Head, Renderer = characterHead, Sprites = outfitLibrary.headSprites },
+            new OutfitModel { OutfitType = OutfitType.Glasses, Renderer = characterGlasses, Sprites = outfitLibrary.glassesSprites },
+            new OutfitModel { OutfitType = OutfitType.Torso, Renderer = characterTorso, Sprites = outfitLibrary.torsoSprites },
+            new OutfitModel { OutfitType = OutfitType.Legs, Renderer = characterLegs, Sprites = outfitLibrary.legsSprites },
+            new OutfitModel { OutfitType = OutfitType.Socks, Renderer = characterSocks, Sprites = outfitLibrary.socksSprites },
+            new OutfitModel { OutfitType = OutfitType.Boots, Renderer = characterBoots, Sprites = outfitLibrary.bootsSprites },
         };
 
 
@@ -64,7 +57,24 @@ public class Shop : MonoBehaviour
     public void ShowOutfitCategory(OutfitTypeComponent typeComponent)
     {
         ShowOutfitCategory(typeComponent.outfitType);
+    }
 
+    private void SetUpEquipButton(OutfitType type, Sprite sprite)
+    {
+        var outfitName = OutfitMapper.GetOutfit(type);
+
+        equipButton.onClick.RemoveAllListeners();
+        equipButton.interactable = false;
+
+        if (outfitName != sprite.name)
+        {
+            equipButton.interactable = true;
+            equipButton.onClick.AddListener(() =>
+            {
+                OutfitMapper.SetOutfit(type, sprite);
+                ShowOutfit(type, sprite);
+            });
+        }
     }
 
     private void ShowOutfitCategory(OutfitType type)
@@ -72,6 +82,9 @@ public class Shop : MonoBehaviour
         var spriteName = OutfitMapper.GetOutfit(type);
         var typeOutfits = availableOutfits.First(x => x.OutfitType == type).Sprites;
         var outfitSprite = !string.IsNullOrEmpty(spriteName) ? typeOutfits.First(x => x.name == spriteName) : typeOutfits.First(x => x.name.Contains("Default"));
+
+        OutfitMapper.SetOutfit(type, outfitSprite);
+
         ShowOutfit(type, outfitSprite);
     }
 
@@ -85,6 +98,7 @@ public class Shop : MonoBehaviour
         var previousOutfit = typeOutfit.Sprites.ElementAtOrDefault(index - 1);
         var nextOutfit = typeOutfit.Sprites.ElementAtOrDefault(index + 1);
 
+        SetUpEquipButton(type, sprite);
         ShowAdditionalOutfit(nextOutfit, nextButton, nextOutfitImage, type);
         ShowAdditionalOutfit(previousOutfit, previousButton, previousOutfitImage, type);
     }
