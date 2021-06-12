@@ -17,4 +17,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 96716394b807b864c858cea1c2f78ee6, type: 3}
   - {fileID: 21300000, guid: b2673a50d7f9a6943bb1a6811e508000, type: 3}
   finishSprite: {fileID: 21300000, guid: 77d200cbd6337fc42951817900910900, type: 3}
-  Background: {fileID: 21300000, guid: 7392730ff2ae9bc42a20717880539374, type: 3}
+  Background:
+  - {fileID: 21300000, guid: 7392730ff2ae9bc42a20717880539374, type: 3}
+  obstacles:
+  - {fileID: 5203046699767720257, guid: 4c13d8d2783cee243ad8d1468005cde5, type: 3}

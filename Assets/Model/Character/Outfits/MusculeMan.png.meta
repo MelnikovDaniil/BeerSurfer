@@ -4,25 +4,25 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -6670031197683684003
-    second: MusculeMan_head
+    second: MusculeMan_Head
   - first:
       213: 5270997118220091760
-    second: MusculeMan_glasses
+    second: MusculeMan_Glasses
   - first:
       213: -2553740885311705187
-    second: MusculeMan_torso
+    second: MusculeMan_Torso
   - first:
       213: 3867084540829901236
-    second: MusculeMan_backArm
+    second: MusculeMan_BackArm
   - first:
       213: 4551814303446553698
-    second: MusculeMan_legs
+    second: MusculeMan_Legs
   - first:
       213: 3117251132556424168
-    second: MusculeMan_socks
+    second: MusculeMan_Socks
   - first:
       213: 1783041878541647930
-    second: MusculeMan_boots
+    second: MusculeMan_Boots
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MusculeMan_head
+      name: MusculeMan_Head
       rect:
         serializedVersion: 2
         x: 77
@@ -367,7 +367,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: MusculeMan_glasses
+      name: MusculeMan_Glasses
       rect:
         serializedVersion: 2
         x: 86
@@ -744,7 +744,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: MusculeMan_torso
+      name: MusculeMan_Torso
       rect:
         serializedVersion: 2
         x: 464
@@ -1644,7 +1644,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: MusculeMan_backArm
+      name: MusculeMan_BackArm
       rect:
         serializedVersion: 2
         x: 988
@@ -2526,7 +2526,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: MusculeMan_legs
+      name: MusculeMan_Legs
       rect:
         serializedVersion: 2
         x: 1300
@@ -4029,7 +4029,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: MusculeMan_socks
+      name: MusculeMan_Socks
       rect:
         serializedVersion: 2
         x: 1761
@@ -4410,11 +4410,11 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: MusculeMan_boots
+      name: MusculeMan_Boots
       rect:
         serializedVersion: 2
         x: 1771
-        y: 110
+        y: 108
         width: 411
         height: 196
       alignment: 0

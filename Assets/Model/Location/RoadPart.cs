@@ -10,6 +10,8 @@ public class RoadPart : MonoBehaviour
     public RoadType roadType;
     [NonSerialized]
     public List<BeerView> beerList;
+    [NonSerialized]
+    public List<Obstacle> obstacles;
 
     private SpriteMask _spriteMask;
     private SpriteRenderer _spriteRenderer;
@@ -17,6 +19,7 @@ public class RoadPart : MonoBehaviour
     private void Awake()
     {
         beerList = new List<BeerView>();
+        obstacles = new List<Obstacle>();
         _spriteMask = GetComponent<SpriteMask>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -40,6 +43,16 @@ public class RoadPart : MonoBehaviour
                 Destroy(beer.gameObject);
             }
         }
+
+        foreach (var obstacle in obstacles)
+        {
+            if (obstacle != null)
+            {
+                Destroy(obstacle.gameObject);
+            }
+        }
+        obstacles.Clear();
         beerList.Clear();
+        
     }
 }

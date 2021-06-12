@@ -4,25 +4,25 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -7278647021941943084
-    second: Pinkie_head
+    second: Pinkie_Head
   - first:
       213: -6297558246103560547
-    second: Pinkie_glasses
+    second: Pinkie_Glasses
   - first:
       213: 6289155089168972792
-    second: Pinkie_torso
+    second: Pinkie_Torso
   - first:
       213: -1195413893331891850
-    second: Pinkie_backArm
+    second: Pinkie_BackArm
   - first:
       213: 8323813688682459211
-    second: Pinkie_legs
+    second: Pinkie_Legs
   - first:
       213: 5565794466804221889
-    second: Pinkie_socks
+    second: Pinkie_Socks
   - first:
       213: 6769233725924090665
-    second: Pinkie_boots
+    second: Pinkie_Boots
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pinkie_head
+      name: Pinkie_Head
       rect:
         serializedVersion: 2
         x: 62
@@ -375,7 +375,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Pinkie_glasses
+      name: Pinkie_Glasses
       rect:
         serializedVersion: 2
         x: 96
@@ -665,7 +665,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Pinkie_torso
+      name: Pinkie_Torso
       rect:
         serializedVersion: 2
         x: 459
@@ -1893,7 +1893,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Pinkie_backArm
+      name: Pinkie_BackArm
       rect:
         serializedVersion: 2
         x: 963
@@ -2779,7 +2779,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Pinkie_legs
+      name: Pinkie_Legs
       rect:
         serializedVersion: 2
         x: 1303
@@ -4686,7 +4686,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Pinkie_socks
+      name: Pinkie_Socks
       rect:
         serializedVersion: 2
         x: 1738
@@ -4971,7 +4971,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Pinkie_boots
+      name: Pinkie_Boots
       rect:
         serializedVersion: 2
         x: 1731

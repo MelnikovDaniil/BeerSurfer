@@ -7,5 +7,6 @@ public class ScriptableLocation : ScriptableObject
     public Sprite startSprite;
     public List<Sprite> middleSprites;
     public Sprite finishSprite;
-    public Sprite Background;
+    public List<Sprite> Background;
+    public List<Obstacle> obstacles;
 }

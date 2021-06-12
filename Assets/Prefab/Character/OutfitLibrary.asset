@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620e5f17199f699429888503824d23a7, type: 3}
+  m_Name: OutfitLibrary
+  m_EditorClassIdentifier: 
+  backHandSprites:
+  - {fileID: 7278703050264932213, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - {fileID: 1093799548928701229, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+  - {fileID: 5512669127726980703, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
+  bootsSprites:
+  - {fileID: -3248332477604383692, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - {fileID: -4620988029919858958, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+  - {fileID: -4461359874863885579, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
+  glassesSprites:
+  - {fileID: -3421241887624605641, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - {fileID: 8564980160741887735, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+  - {fileID: 4046310461878539251, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
+  headSprites:
+  - {fileID: -1727720909174622181, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - {fileID: -4857558079772837517, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+  - {fileID: 5791938277626156784, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
+  legsSprites:
+  - {fileID: -3110563093439604129, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - {fileID: -7851974934738288565, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+  - {fileID: 1073332059938789926, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
+  socksSprites:
+  - {fileID: -243855759140987258, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - {fileID: -220619257029649054, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+  - {fileID: -7157426908188180665, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
+  torsoSprites:
+  - {fileID: -6856839874746510869, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+  - {fileID: -6884487327946281990, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
+  - {fileID: -2016181058490347773, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
