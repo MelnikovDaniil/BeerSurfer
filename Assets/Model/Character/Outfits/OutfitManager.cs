@@ -37,6 +37,19 @@ public class OutfitManager : MonoBehaviour
 
             OutfitMapper.SetOutfit(typeOutfit.OutfitType, outfitSprite);
             typeOutfit.Renderer.sprite = outfitSprite;
+
+            if (typeOutfit.OutfitType == OutfitType.Torso)
+            {
+                var outfitName = outfitSprite.name.Split('_').FirstOrDefault();
+                if (outfitName != null)
+                {
+                    characterBackHand.sprite = outfitLibrary.backHandSprites.FirstOrDefault(x => x.name.Contains(outfitName));
+                }
+                else
+                {
+                    Debug.LogError($"Back hand for {outfitSprite.name} not found");
+                }
+            }
         }
     }
 }

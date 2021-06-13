@@ -101,6 +101,19 @@ public class Shop : MonoBehaviour
         SetUpEquipButton(type, sprite);
         ShowAdditionalOutfit(nextOutfit, nextButton, nextOutfitImage, type);
         ShowAdditionalOutfit(previousOutfit, previousButton, previousOutfitImage, type);
+
+        if (type == OutfitType.Torso)
+        {
+            var outfitName = sprite.name.Split('_').FirstOrDefault();
+            if (outfitName != null)
+            {
+                characterBackHand.sprite = outfitLibrary.backHandSprites.FirstOrDefault(x => x.name.Contains(outfitName));
+            }
+            else
+            {
+                Debug.LogError($"Back hand for {sprite.name} not found");
+            }
+        }
     }
 
     private void ShowAdditionalOutfit(Sprite outfit, Button button, Image image, OutfitType type)
