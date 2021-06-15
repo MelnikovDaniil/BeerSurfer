@@ -3557,7 +3557,7 @@ MonoBehaviour:
   - {fileID: 8255906}
   - {fileID: 1865567185}
   - {fileID: 1742809480}
-  obstacleChance: 0.5
+  obstacleChance: 0.75
   obstacleHigh:
   - type: 0
     high: -3.5
