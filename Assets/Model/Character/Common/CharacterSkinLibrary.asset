@@ -31,6 +31,12 @@ MonoBehaviour:
     - m_Name: Pinkie_head
       m_Hash: 1560822764
       m_Sprite: {fileID: -7278647021941943084, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+    - m_Name: BlueLagoon_Hed
+      m_Hash: 1880330059
+      m_Sprite: {fileID: -7071992476249659603, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+    - m_Name: MettalHead_Head
+      m_Hash: 838545716
+      m_Sprite: {fileID: -6685385192787018201, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   - m_Name: glasses
     m_Hash: -157132074
     m_CategoryList:
@@ -49,6 +55,12 @@ MonoBehaviour:
     - m_Name: Pinkie_glasses
       m_Hash: 294535957
       m_Sprite: {fileID: -6297558246103560547, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+    - m_Name: BlueLagoon_Glasses
+      m_Hash: 1372497021
+      m_Sprite: {fileID: -1661550774340963738, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+    - m_Name: MettalHead_Glasses
+      m_Hash: -1414947037
+      m_Sprite: {fileID: -6023703006799272529, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   - m_Name: torso
     m_Hash: 660585605
     m_CategoryList:
@@ -67,6 +79,12 @@ MonoBehaviour:
     - m_Name: Pinkie_torso
       m_Hash: 2006988300
       m_Sprite: {fileID: 6289155089168972792, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+    - m_Name: BlueLagoon_Torso
+      m_Hash: 608860490
+      m_Sprite: {fileID: 4762171997900836797, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+    - m_Name: MettalHead_Torso
+      m_Hash: -20668520
+      m_Sprite: {fileID: 8257878341018044222, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   - m_Name: backHand
     m_Hash: 482031355
     m_CategoryList:
@@ -85,6 +103,12 @@ MonoBehaviour:
     - m_Name: Pinkie_backHand
       m_Hash: 506563048
       m_Sprite: {fileID: -1195413893331891850, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+    - m_Name: BlueLagoon_BackArm
+      m_Hash: -2006565857
+      m_Sprite: {fileID: 5863423814302338829, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+    - m_Name: MettalHead_BackArm
+      m_Hash: 1912670017
+      m_Sprite: {fileID: -5603496324529850710, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   - m_Name: legs
     m_Hash: -48741494
     m_CategoryList:
@@ -103,6 +127,12 @@ MonoBehaviour:
     - m_Name: Pinkie_legs
       m_Hash: 132380410
       m_Sprite: {fileID: 8323813688682459211, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+    - m_Name: BlueLagoon_Legs
+      m_Hash: 1581219848
+      m_Sprite: {fileID: -8817705225905175986, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+    - m_Name: MettalHead_Legs
+      m_Hash: 1796244514
+      m_Sprite: {fileID: 231832226112609993, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   - m_Name: socks
     m_Hash: 511798724
     m_CategoryList:
@@ -121,6 +151,12 @@ MonoBehaviour:
     - m_Name: Pinkie_socks
       m_Hash: 1316939597
       m_Sprite: {fileID: 5565794466804221889, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+    - m_Name: BlueLagoon_Socks
+      m_Hash: 496281611
+      m_Sprite: {fileID: -7807271378370233052, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+    - m_Name: MettalHead_Socks
+      m_Hash: -971354407
+      m_Sprite: {fileID: -289395743936795905, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   - m_Name: boots
     m_Hash: -2025774068
     m_CategoryList:
@@ -139,3 +175,9 @@ MonoBehaviour:
     - m_Name: Pinkie_boots
       m_Hash: -675369339
       m_Sprite: {fileID: 6769233725924090665, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+    - m_Name: BlueLagoon_Boots
+      m_Hash: -2074811965
+      m_Sprite: {fileID: -5443771093773136894, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+    - m_Name: MettalHead_Boots
+      m_Hash: 1608124177
+      m_Sprite: {fileID: 7981867340824004337, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
