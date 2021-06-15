@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,21 +6,21 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
+    public event Action OnDeathEvent;
     public float jumpForce;
+    public float sensitive = 0.3f;
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
 
-    private Vector2 firstPressPos;
+    private Vector2? firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
 
-    public Text beerCounterText;
 
+    private bool isDead = false;
     private bool isGrounded = true;
     private bool isFalling = false;
-
-    private int collectedBeer;
 
     private void Awake()
     {
@@ -29,40 +30,49 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!isDead)
         {
-            //save began touch 2d point
-            firstPressPos = Input.mousePosition;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            //save ended touch 2d point
-            secondPressPos = Input.mousePosition;
 
-            //create vector from the two points
-            currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-
-            //normalize the 2d vector
-            currentSwipe.Normalize();
-
-            //swipe left
-            if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+            if (Input.GetMouseButtonDown(0))
             {
-                Jump();
+                //save began touch 2d point
+                firstPressPos = Input.mousePosition;
             }
-            //swipe right
-            if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+            if (firstPressPos != null && Input.GetMouseButton(0))
             {
-                Slip();
+                //save ended touch 2d point
+                secondPressPos = Input.mousePosition;
+
+                //create vector from the two points
+                currentSwipe = new Vector2(secondPressPos.x - firstPressPos.Value.x, secondPressPos.y - firstPressPos.Value.y);
+
+                //normalize the 2d vector
+                currentSwipe.Normalize();
+
+                //swipe left
+                if (currentSwipe.y > 0 && currentSwipe.x > -sensitive && currentSwipe.x < sensitive)
+                {
+                    firstPressPos = null;
+                    Jump();
+                }
+                //swipe right
+                if (currentSwipe.y < 0 && currentSwipe.x > -sensitive && currentSwipe.x < sensitive)
+                {
+                    firstPressPos = null;
+                    Slip();
+                }
+            }
+
+            if (!isFalling && _rigidbody.velocity.y < 0)
+            {
+                isFalling = true;
+                _animator.SetTrigger("fall");
             }
         }
-
-        if (!isFalling && _rigidbody.velocity.y < 0)
+        else
         {
-            isFalling = true;
-            _animator.SetTrigger("fall");
+            transform.position += Vector3.left * 10 * Time.deltaTime;
         }
-
     }
 
     private void Jump()
@@ -83,6 +93,13 @@ public class Character : MonoBehaviour
         _rigidbody.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
     }
 
+    private void Death()
+    {
+        _animator.Play("death");
+        isDead = true;
+        OnDeathEvent?.Invoke();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _animator.SetBool("run", true);
@@ -97,11 +114,17 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        var obstacle = collision.GetComponent<Obstacle>();
+        if (obstacle != null)
+        {
+            Death();
+        }
+
         if (collision.tag == "Beer")
         {
             Destroy(collision.gameObject);
-            collectedBeer++;
-            beerCounterText.text = collectedBeer.ToString();
+            GameManager.beer++;
         }
+
     }
 }
