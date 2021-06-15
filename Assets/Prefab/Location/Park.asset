@@ -21,3 +21,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 180e8866a3a31304995eca57008f4974, type: 3}
   obstacles:
   - {fileID: 2250628000756136788, guid: 89cdd6672ae71844bbad753e8e0a323e, type: 3}
+  - {fileID: 430664384556599946, guid: 51c71b7e217025440828acebf39c70b1, type: 3}
+  - {fileID: 1800428230462774274, guid: 47736b45fdfe1144cb3be28a800ab3eb, type: 3}
+  - {fileID: 7055427687963597653, guid: b0d11bac6d5f6e34e88c2c27aa929213, type: 3}
+  - {fileID: 1709839936458005191, guid: 8f2c4b8385654bf4891e4ae48fc499a0, type: 3}
+  - {fileID: 3122257923399644359, guid: ea89fc70e15880d46905891ea81bfc16, type: 3}
