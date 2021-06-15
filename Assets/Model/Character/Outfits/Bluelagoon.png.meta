@@ -4,25 +4,25 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -7071992476249659603
-    second: Bluelagoon_Head
+    second: BlueLagoon_Head
   - first:
       213: -1661550774340963738
-    second: Bluelagoon_Glasses
+    second: BlueLagoon_Glasses
   - first:
       213: 4762171997900836797
-    second: Bluelagoon_Torso
+    second: BlueLagoon_Torso
   - first:
       213: 5863423814302338829
-    second: Bluelagoon_BackArm
+    second: BlueLagoon_BackArm
   - first:
       213: -8817705225905175986
-    second: Bluelagoon_Legs
+    second: BlueLagoon_Legs
   - first:
       213: -7807271378370233052
-    second: Bluelagoon_Socks
+    second: BlueLagoon_Socks
   - first:
       213: -5443771093773136894
-    second: Bluelagoon_Boots
+    second: BlueLagoon_Boots
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bluelagoon_Head
+      name: BlueLagoon_Head
       rect:
         serializedVersion: 2
         x: 44
@@ -407,7 +407,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Bluelagoon_Glasses
+      name: BlueLagoon_Glasses
       rect:
         serializedVersion: 2
         x: 81
@@ -758,7 +758,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Bluelagoon_Torso
+      name: BlueLagoon_Torso
       rect:
         serializedVersion: 2
         x: 474
@@ -2098,7 +2098,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Bluelagoon_BackArm
+      name: BlueLagoon_BackArm
       rect:
         serializedVersion: 2
         x: 968
@@ -3194,7 +3194,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Bluelagoon_Legs
+      name: BlueLagoon_Legs
       rect:
         serializedVersion: 2
         x: 1268
@@ -5925,7 +5925,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Bluelagoon_Socks
+      name: BlueLagoon_Socks
       rect:
         serializedVersion: 2
         x: 1739
@@ -6221,7 +6221,7 @@ TextureImporter:
         boneIndex[2]: 0
         boneIndex[3]: 0
     - serializedVersion: 2
-      name: Bluelagoon_Boots
+      name: BlueLagoon_Boots
       rect:
         serializedVersion: 2
         x: 1751

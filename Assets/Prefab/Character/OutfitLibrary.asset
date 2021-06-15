@@ -18,39 +18,53 @@ MonoBehaviour:
   - {fileID: 5512669127726980703, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - {fileID: 3867084540829901236, guid: e7532e1edfcc5fb47a970ebf8dca00ae, type: 3}
   - {fileID: -1195413893331891850, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+  - {fileID: 5863423814302338829, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+  - {fileID: -5603496324529850710, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   bootsSprites:
   - {fileID: -3248332477604383692, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -4620988029919858958, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
   - {fileID: -4461359874863885579, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - {fileID: 1783041878541647930, guid: e7532e1edfcc5fb47a970ebf8dca00ae, type: 3}
   - {fileID: 6769233725924090665, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+  - {fileID: -5443771093773136894, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+  - {fileID: 7981867340824004337, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   glassesSprites:
   - {fileID: -3421241887624605641, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: 8564980160741887735, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
   - {fileID: 4046310461878539251, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - {fileID: 5270997118220091760, guid: e7532e1edfcc5fb47a970ebf8dca00ae, type: 3}
   - {fileID: -6297558246103560547, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+  - {fileID: -1661550774340963738, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+  - {fileID: -6023703006799272529, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   headSprites:
   - {fileID: -1727720909174622181, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -4857558079772837517, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
   - {fileID: 5791938277626156784, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - {fileID: -6670031197683684003, guid: e7532e1edfcc5fb47a970ebf8dca00ae, type: 3}
   - {fileID: -7278647021941943084, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+  - {fileID: -7071992476249659603, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+  - {fileID: -6685385192787018201, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   legsSprites:
   - {fileID: -3110563093439604129, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -7851974934738288565, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
   - {fileID: 1073332059938789926, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - {fileID: 4551814303446553698, guid: e7532e1edfcc5fb47a970ebf8dca00ae, type: 3}
   - {fileID: 8323813688682459211, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+  - {fileID: -8817705225905175986, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+  - {fileID: 231832226112609993, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   socksSprites:
   - {fileID: -243855759140987258, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -220619257029649054, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
   - {fileID: -7157426908188180665, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - {fileID: 3117251132556424168, guid: e7532e1edfcc5fb47a970ebf8dca00ae, type: 3}
   - {fileID: 5565794466804221889, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+  - {fileID: -7807271378370233052, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+  - {fileID: -289395743936795905, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
   torsoSprites:
   - {fileID: -6856839874746510869, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -6884487327946281990, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
   - {fileID: -2016181058490347773, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
   - {fileID: -2553740885311705187, guid: e7532e1edfcc5fb47a970ebf8dca00ae, type: 3}
   - {fileID: 6289155089168972792, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
+  - {fileID: 4762171997900836797, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
+  - {fileID: 8257878341018044222, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
