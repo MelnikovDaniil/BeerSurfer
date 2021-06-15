@@ -98,7 +98,9 @@ public class Shop : MonoBehaviour
         var previousOutfit = typeOutfit.Sprites.ElementAtOrDefault(index - 1);
         var nextOutfit = typeOutfit.Sprites.ElementAtOrDefault(index + 1);
 
-        SetUpEquipButton(type, sprite);
+        //SetUpEquipButton(type, sprite);
+        OutfitMapper.SetOutfit(type, sprite);
+
         ShowAdditionalOutfit(nextOutfit, nextButton, nextOutfitImage, type);
         ShowAdditionalOutfit(previousOutfit, previousButton, previousOutfitImage, type);
 
