@@ -35,6 +35,13 @@ public class LocationGenerator : MonoBehaviour
     };
 
     [Space(20)]
+    public int lootboxStartScore;
+    [Range(0f, 1f)]
+    public float lootBoxStawnChange = 0.05f;
+    public int maxLootBoxByGame = 1;
+    public LootBoxItemView lootBoxPrefab;
+
+    [Space(20)]
     public BeerView beerPrefab;
     public List<Sprite> beerSprites;
     public float beerGap = 1;
@@ -97,7 +104,13 @@ public class LocationGenerator : MonoBehaviour
                 road.ChangeSprite(roadQueue.Dequeue());
                 road.SetMaskOrder(currentBgOrdering);
                 road.roadType = roadType;
-                if (Random.value < obstacleChance)
+                var randomChanse = Random.value;
+                if (GameManager.score > lootboxStartScore && maxLootBoxByGame > 0 && randomChanse < lootBoxStawnChange)
+                {
+                    maxLootBoxByGame--;
+                    GenerateLootBox(road);
+                }
+                else if (randomChanse < obstacleChance)
                 {
                     GenerateObstacle(road);
                 }
@@ -146,6 +159,13 @@ public class LocationGenerator : MonoBehaviour
             roadPart.beerList.Add(spawnedBeer);
             x += beerGap;
         }
+    }
+
+    private void GenerateLootBox(RoadPart roadPart)
+    {
+        var spawnedLootBox = Instantiate(lootBoxPrefab, roadPart.transform);
+        spawnedLootBox.transform.localPosition = new Vector3(0, beeerSpawnHeight);
+        roadPart.lootBox = spawnedLootBox;
     }
 
     private void GenerateObstacle(RoadPart roadPart)

@@ -12,6 +12,8 @@ public class RoadPart : MonoBehaviour
     public List<BeerView> beerList;
     [NonSerialized]
     public List<Obstacle> obstacles;
+    [NonSerialized]
+    public LootBoxItemView lootBox;
 
     private SpriteMask _spriteMask;
     private SpriteRenderer _spriteRenderer;
@@ -51,6 +53,13 @@ public class RoadPart : MonoBehaviour
                 Destroy(obstacle.gameObject);
             }
         }
+
+        if (lootBox != null)
+        {
+            Destroy(lootBox.gameObject);
+            lootBox = null;
+        }
+
         obstacles.Clear();
         beerList.Clear();
         

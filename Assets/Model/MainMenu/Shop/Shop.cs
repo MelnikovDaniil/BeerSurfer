@@ -27,10 +27,12 @@ public class Shop : MonoBehaviour
     public Image previousOutfitImage;
     public Image nextOutfitImage;
 
+    private Animator _animator;
     private List<OutfitModel> shop;
     private List<OutfitModel> availableOutfits;
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         shop = new List<OutfitModel>
         {
             new OutfitModel { OutfitType = OutfitType.Head, Renderer = characterHead, Sprites = outfitLibrary.headSprites },
@@ -43,7 +45,9 @@ public class Shop : MonoBehaviour
 
 
         if (allOutfits)
+        {
             SetAllAvailable();
+        }
 
         availableOutfits = GetAvailableOutfits();
         availableOutfits.Reverse();
@@ -52,6 +56,17 @@ public class Shop : MonoBehaviour
         {
             ShowOutfitCategory(outfit.OutfitType);
         }
+    }
+
+    public void OpenMenu()
+    {
+        _animator.SetTrigger("show");
+        availableOutfits = GetAvailableOutfits();
+    }
+
+    public void HideMenu()
+    {
+        _animator.SetTrigger("hide");
     }
 
     public void ShowOutfitCategory(OutfitTypeComponent typeComponent)
@@ -139,7 +154,13 @@ public class Shop : MonoBehaviour
 
     private List<OutfitModel> GetAvailableOutfits()
     {
-        var outfits = new List<OutfitModel>(shop);
+        var outfits = new List<OutfitModel>(shop.Count);
+
+        shop.ForEach((item) =>
+        {
+            outfits.Add((OutfitModel)item.Clone());
+        });
+
         foreach (var outfit in outfits)
         {
             outfit.Sprites = outfit.Sprites.Where(x => OutfitMapper.IsOutfitAvailable(x.name)).ToList();
@@ -147,7 +168,7 @@ public class Shop : MonoBehaviour
         return outfits;
     }
 
-    internal void SetAllAvailable()
+    private void SetAllAvailable()
     {
         shop.ForEach(x => x.Sprites.ForEach(sp => OutfitMapper.SetAvailableOutfit(sp.name)));
     }

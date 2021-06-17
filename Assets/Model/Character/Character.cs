@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -114,10 +111,14 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var obstacle = collision.GetComponent<Obstacle>();
-        if (obstacle != null)
+        if (collision.GetComponent<Obstacle>())
         {
             Death();
+        }
+        else if (collision.GetComponent<LootBoxItemView>())
+        {
+            Destroy(collision.gameObject);
+            LootBoxMapper.AddOne();
         }
 
         if (collision.tag == "Beer")
@@ -125,6 +126,5 @@ public class Character : MonoBehaviour
             Destroy(collision.gameObject);
             GameManager.beer++;
         }
-
     }
 }

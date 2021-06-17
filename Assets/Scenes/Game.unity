@@ -196,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 184c22bd9f340ba46920ce670eb4334b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6ff01efb203e0e4b9e82a806d39b50f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3288,7 +3288,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 184c22bd9f340ba46920ce670eb4334b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a36c93a240d0ff46917ed45d2b69157, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3434,7 +3434,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 184c22bd9f340ba46920ce670eb4334b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6ff01efb203e0e4b9e82a806d39b50f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3565,6 +3565,10 @@ MonoBehaviour:
     high: 0
   - type: 2
     high: 3.5
+  lootboxStartScore: 2000
+  lootBoxStawnChange: 0.08
+  maxLootBoxByGame: 1
+  lootBoxPrefab: {fileID: 1050437811656342860, guid: 414997a99cdd1324488bb28067f44d4c, type: 3}
   beerPrefab: {fileID: 2708121801915106583, guid: c49a2430486fa2a4e86d9e42cdf91b5f, type: 3}
   beerSprites:
   - {fileID: 7795085465242543974, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}

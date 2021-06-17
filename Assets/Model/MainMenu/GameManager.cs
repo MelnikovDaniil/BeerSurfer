@@ -21,16 +21,15 @@ public class GameManager : MonoBehaviour
         character.OnDeathEvent += StopPoits;
     }
 
+    public void FixedUpdate()
+    {
+        score += 1;
+        scoreCounterText.text = $"score: {score}";
+        beerCounterText.text = beer.ToString();
+    }
     public void Update()
     {
-        if (!gameEnded)
-        {
-
-            score += (int)(Time.deltaTime * 100f);
-            scoreCounterText.text = $"score: {score}";
-            beerCounterText.text = beer.ToString();
-        }
-        else
+        if (gameEnded)
         {
             if ((Time.timeScale - Time.fixedDeltaTime) > 0)
             {
