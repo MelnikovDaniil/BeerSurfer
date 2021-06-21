@@ -7,10 +7,13 @@ using UnityEngine.UI;
 public class LootBoxManger : MonoBehaviour
 {
     public OutfitLibrary outfitLibrary;
+    public MainMenu mainMenu;
     public Image boxOutfit;
     public GameObject notification;
     public Text notificationText;
     public GameObject returnShopButton;
+    public Button byeLootboxButton;
+    public int lootboxCost = 300;
 
     private Animator _animator;
 
@@ -35,9 +38,14 @@ public class LootBoxManger : MonoBehaviour
         var lootBoxCount = LootBoxMapper.Get();
         notificationText.text = lootBoxCount.ToString();
         returnShopButton.SetActive(true);
+        byeLootboxButton.gameObject.SetActive(false);
         if (lootBoxCount > 0)
         {
             _animator.SetTrigger("drop");
+        }
+        else if (BeerMapper.Get() >= lootboxCost)
+        {
+            byeLootboxButton.gameObject.SetActive(true);
         }
     }
 
@@ -45,6 +53,7 @@ public class LootBoxManger : MonoBehaviour
     {
         _animator.SetTrigger("hide");
         returnShopButton.SetActive(false);
+        byeLootboxButton.gameObject.SetActive(false);
     }
 
     public void Refresh()
@@ -53,11 +62,26 @@ public class LootBoxManger : MonoBehaviour
         var lootBoxCount = LootBoxMapper.Get();
         notificationText.text = lootBoxCount.ToString();
         returnShopButton.SetActive(true);
+        byeLootboxButton.gameObject.SetActive(false);
         if (lootBoxCount > 0)
         {
             _animator.SetTrigger("drop");
         }
+        else if (BeerMapper.Get() >= lootboxCost)
+        {
+            byeLootboxButton.gameObject.SetActive(true);
+        }
         UpdateNotification();
+    }
+
+    public void ByeLootBox()
+    {
+        BeerMapper.Add(-lootboxCost);
+        LootBoxMapper.AddOne();
+        mainMenu.UpdateInfo();
+        _animator.SetTrigger("drop");
+        UpdateNotification();
+        byeLootboxButton.gameObject.SetActive(false);
     }
 
     public void OpenLootBox()

@@ -105,6 +105,7 @@ public class Shop : MonoBehaviour
 
     private void ShowOutfit(OutfitType type, Sprite sprite)
     {
+        SoundManager.PlaySound("button");
         var typeOutfit = availableOutfits.First(x => x.OutfitType == type);
         var index = typeOutfit.Sprites.IndexOf(sprite);
 

@@ -9,5 +9,16 @@ public static class CollectionExtension
         var randomElementNumber = Random.Range(0, collection.Count());
         return collection.ElementAt(randomElementNumber);
     }
+
+    public static T GetRandomOrDefault<T>(this IEnumerable<T> collection)
+    {
+        if (!collection.Any())
+        {
+            return default(T);
+        }
+
+        var randomElementNumber = Random.Range(0, collection.Count());
+        return collection.ElementAt(randomElementNumber);
+    }
 }
 

@@ -11,7 +11,12 @@ public class GameManager : MonoBehaviour
     public Text beerCounterText;
     public Text scoreCounterText;
 
+    public GameObject pausePanel;
+    public DeathManager deathPanel;
+
     private bool gameEnded;
+    private bool isPaused;
+    private float timeScale;
 
     private void Awake()
     {
@@ -19,6 +24,19 @@ public class GameManager : MonoBehaviour
         beer = 0;
         gameEnded = false;
         character.OnDeathEvent += StopPoits;
+        character.OnDeathEvent += deathPanel.ShowDeathPanel;
+    }
+
+    private void Start()
+    {
+        if (Random.value <= 0.10f)
+        {
+            SoundManager.PlayMusic("dejavu");
+        }
+        else
+        {
+            SoundManager.PlayMusic("naruto");
+        }
     }
 
     public void FixedUpdate()
@@ -58,5 +76,46 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Game");
+    }
+
+
+
+    public void PauseOrResume()
+    {
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            pausePanel.SetActive(true);
+            if (Time.timeScale != 0)
+            {
+                timeScale = Time.timeScale;
+            }
+            Time.timeScale = 0f;
+
+        }
+        else
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = timeScale;
+        }
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+
+        if (pause)
+        {
+            isPaused = false;
+            PauseOrResume();
+        }
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus)
+        {
+            isPaused = false;
+            PauseOrResume();
+        }
     }
 }

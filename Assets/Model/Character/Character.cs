@@ -60,6 +60,11 @@ public class Character : MonoBehaviour
                 }
             }
 
+            if (firstPressPos != null && Input.GetMouseButtonUp(0))
+            {
+                firstPressPos = null;
+            }
+
             if (!isFalling && _rigidbody.velocity.y < 0)
             {
                 isFalling = true;
@@ -78,21 +83,21 @@ public class Character : MonoBehaviour
         {
             isGrounded = false;
             isFalling = false;
-            _animator.SetTrigger("jump");
+            _animator.Play("Jump");
             _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
     
     private void Slip()
     {
-        _animator.SetTrigger("slip");
+        _animator.Play("Slip");
         _rigidbody.velocity = Vector2.zero;
         _rigidbody.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
     }
 
     private void Death()
     {
-        _animator.Play("death");
+        _animator.SetTrigger("death");
         isDead = true;
         OnDeathEvent?.Invoke();
     }
@@ -123,6 +128,7 @@ public class Character : MonoBehaviour
 
         if (collision.tag == "Beer")
         {
+            SoundManager.PlaySound("beer");
             Destroy(collision.gameObject);
             GameManager.beer++;
         }

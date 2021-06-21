@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,6 +13,15 @@ public class MainMenu : MonoBehaviour
     public LootBoxManger lootBoxManger;
     public GameObject lootboxMenuGameObject;
 
+    public Text beerText;
+    public Text scoreText;
+
+    private void Start()
+    {
+        SoundManager.PlayMusic("lift");
+        UpdateInfo();
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Game");
@@ -20,11 +30,13 @@ public class MainMenu : MonoBehaviour
     public void ShowLootBoxMenu()
     {
         StartCoroutine(DelayShowLootBoxMenu());
+        UpdateInfo();
     }
 
     public void ShowShopMenu()
     {
         StartCoroutine(DelayShowShopMenu());
+        UpdateInfo();
     }
 
     private IEnumerator DelayShowLootBoxMenu()
@@ -43,5 +55,11 @@ public class MainMenu : MonoBehaviour
         cameraManager.SetCameraBasePosition();
         yield return new WaitForSeconds(switchDelay / 2);
         shop.OpenMenu();
+    }
+
+    public void UpdateInfo()
+    {
+        scoreText.text = "record: " + RecordMapper.Get();
+        beerText.text = BeerMapper.Get().ToString();
     }
 }

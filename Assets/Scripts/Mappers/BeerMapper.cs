@@ -7,6 +7,11 @@ public static class BeerMapper
     public static void Add(int beerCount)
     {
         var count = PlayerPrefs.GetInt(MapperName, 0) + beerCount;
-        PlayerPrefs.SetFloat(MapperName, count);
+        PlayerPrefs.SetInt(MapperName, count);
+    }
+
+    public static int Get()
+    {
+        return PlayerPrefs.GetInt(MapperName, 0);
     }
 }
