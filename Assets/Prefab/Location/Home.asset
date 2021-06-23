@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Home
   m_EditorClassIdentifier: 
   locationType: 1
-  startSprite: {fileID: 21300000, guid: a7f10b7f918b73e40a5f5b31435c9649, type: 3}
+  startSprite: {fileID: 21300000, guid: 2fdee8a46ca804a41b7751e12c562260, type: 3}
   middleSprites:
   - {fileID: 21300000, guid: 6f55f83c5a8e23e4f8c9a6f0c7ac0023, type: 3}
   - {fileID: 21300000, guid: e934817690d690743ab1c361f70fca57, type: 3}
-  finishSprite: {fileID: 21300000, guid: 37f1770acaad57149b462aec5b1de043, type: 3}
-  startFrontSprite: {fileID: 21300000, guid: 03eb9e8a206dbe347930da1dff72b2ea, type: 3}
+  finishSprite: {fileID: 21300000, guid: aaa89cc522d555943a8a60256a10bd38, type: 3}
+  startFrontSprite: {fileID: 21300000, guid: c3d014fad3f34ab45b159f98dac497e6, type: 3}
   middleFrontSprites: []
-  finishFrontSprite: {fileID: 21300000, guid: c23db9058c02f0545b6bcd283047fcfb, type: 3}
+  finishFrontSprite: {fileID: 21300000, guid: ece74da1a5541e043ae88b1a8f40f1aa, type: 3}
   Background:
   - {fileID: 21300000, guid: b470257053273ce42896cb2c190595a3, type: 3}
   obstacles:
-  - {fileID: 2250628000756136788, guid: 89cdd6672ae71844bbad753e8e0a323e, type: 3}
+  - {fileID: 934929739328717394, guid: be9c8343182a3c84a81429ec258c3ded, type: 3}
+  - {fileID: 4464380890191498860, guid: 7dac0d5b8f6bdbc4cb893b27a0b4c5bb, type: 3}
+  - {fileID: 8341250692927447904, guid: 4a028a4dae434384d84d6f3fced6a441, type: 3}
