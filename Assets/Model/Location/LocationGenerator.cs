@@ -8,8 +8,11 @@ using Random = UnityEngine.Random;
 
 public class LocationGenerator : MonoBehaviour
 {
-    public const int BgOrderingLayer1 = -11;
-    public const int BgOrderingLayer2 = -12;
+    public const int BgOrderingLayer1 = -12;
+    public const int BgOrderingLayer2 = -13;
+
+    public const int InnerRoadOrderingLayer = -10;
+    public const int OpenRoadOrderingLayer = -11;
 
     public float paralaxOffset = 645;
     public float paralaxAdditionalBgSpeed = 4;
@@ -60,6 +63,8 @@ public class LocationGenerator : MonoBehaviour
         currentBgOrdering = BgOrderingLayer1;
         roadQueue = new Queue<Sprite>();
         frontQueue = new Queue<Sprite>();
+        paralaxFirstLayerBg.ForEach(x => x.sortingOrder = BgOrderingLayer1);
+        paralaxSecondLayerBg.ForEach(x => x.sortingOrder = BgOrderingLayer2);
     }
 
     private void Update()
@@ -122,6 +127,7 @@ public class LocationGenerator : MonoBehaviour
                 }
 
                 road.ChangeSprite(roadQueue.Dequeue());
+                road.SetOrder(LocationType.Open == currentLocation.locationType ? OpenRoadOrderingLayer : InnerRoadOrderingLayer);
                 road.SetMaskOrder(currentBgOrdering);
                 road.roadType = roadType;
                 var randomChanse = Random.value;

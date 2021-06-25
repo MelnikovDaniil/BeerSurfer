@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 8255906}
   m_Layer: 0
   m_Name: Road
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,7 +254,7 @@ SpriteMask:
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
   m_FrontSortingOrder: -11
-  m_BackSortingOrder: -13
+  m_BackSortingOrder: -20
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!114 &8255906
@@ -4455,7 +4455,7 @@ GameObject:
   - component: {fileID: 1742809480}
   m_Layer: 0
   m_Name: Road3
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4572,7 +4572,7 @@ SpriteMask:
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
   m_FrontSortingOrder: -11
-  m_BackSortingOrder: -13
+  m_BackSortingOrder: -20
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!114 &1742809480
@@ -4733,7 +4733,7 @@ GameObject:
   - component: {fileID: 1865567185}
   m_Layer: 0
   m_Name: Road2
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4850,7 +4850,7 @@ SpriteMask:
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
   m_FrontSortingOrder: -11
-  m_BackSortingOrder: -13
+  m_BackSortingOrder: -20
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!114 &1865567185
@@ -4877,6 +4877,7 @@ GameObject:
   - component: {fileID: 1929615237}
   - component: {fileID: 1929615239}
   - component: {fileID: 1929615240}
+  - component: {fileID: 1929615241}
   m_Layer: 0
   m_Name: Location
   m_TagString: Untagged
@@ -5013,8 +5014,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationGenerator: {fileID: 1929615237}
-  speedChangingScore: 7500
+  speedChangingScore: 8500
   speedDifference: 2
+  difficltUpdateTime: 2
+--- !u!114 &1929615241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929615236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50223236fa3f1334382e1ef19f0fe287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 1257176692}
+  beerParticlePrefab: {fileID: 2607562895930445524, guid: 7022c55497bb1d741893e82cfe6daca1, type: 3}
+  poolParticlesCount: 5
 --- !u!1 &1963805793
 GameObject:
   m_ObjectHideFlags: 0
