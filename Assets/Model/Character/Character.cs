@@ -4,6 +4,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public event Action OnDeathEvent;
+    public event Action<BeerView> OnBeerPickUpEvent;
     public float jumpForce;
     public float sensitive = 0.3f;
 
@@ -125,12 +126,9 @@ public class Character : MonoBehaviour
             Destroy(collision.gameObject);
             LootBoxMapper.AddOne();
         }
-
-        if (collision.tag == "Beer")
+        else if (collision.TryGetComponent<BeerView>(out var beer))
         {
-            SoundManager.PlaySound("beer");
-            Destroy(collision.gameObject);
-            GameManager.beer++;
+            OnBeerPickUpEvent?.Invoke(beer);
         }
     }
 }
