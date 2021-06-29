@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -1195413893331891850, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
   - {fileID: 5863423814302338829, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
   - {fileID: -5603496324529850710, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+  - {fileID: -531893913333104574, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   bootsSprites:
   - {fileID: -3248332477604383692, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -4620988029919858958, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
@@ -28,6 +29,7 @@ MonoBehaviour:
   - {fileID: 6769233725924090665, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
   - {fileID: -5443771093773136894, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
   - {fileID: 7981867340824004337, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+  - {fileID: -886886909540049578, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   glassesSprites:
   - {fileID: -3421241887624605641, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: 8564980160741887735, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
@@ -36,6 +38,7 @@ MonoBehaviour:
   - {fileID: -6297558246103560547, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
   - {fileID: -1661550774340963738, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
   - {fileID: -6023703006799272529, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+  - {fileID: 8348706084385416226, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   headSprites:
   - {fileID: -1727720909174622181, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -4857558079772837517, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
@@ -44,6 +47,7 @@ MonoBehaviour:
   - {fileID: -7278647021941943084, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
   - {fileID: -7071992476249659603, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
   - {fileID: -6685385192787018201, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+  - {fileID: -2027303839011934020, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   legsSprites:
   - {fileID: -3110563093439604129, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -7851974934738288565, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
@@ -52,6 +56,7 @@ MonoBehaviour:
   - {fileID: 8323813688682459211, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
   - {fileID: -8817705225905175986, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
   - {fileID: 231832226112609993, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+  - {fileID: -3313842260260868012, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   socksSprites:
   - {fileID: -243855759140987258, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -220619257029649054, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
@@ -60,6 +65,7 @@ MonoBehaviour:
   - {fileID: 5565794466804221889, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
   - {fileID: -7807271378370233052, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
   - {fileID: -289395743936795905, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+  - {fileID: -1878784219463129667, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   torsoSprites:
   - {fileID: -6856839874746510869, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
   - {fileID: -6884487327946281990, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
@@ -68,3 +74,4 @@ MonoBehaviour:
   - {fileID: 6289155089168972792, guid: 99ed57b3ace0b524cb8319e81848df3a, type: 3}
   - {fileID: 4762171997900836797, guid: 8ac098e5d8f94a64b92115bb7b4a8087, type: 3}
   - {fileID: 8257878341018044222, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+  - {fileID: -5626179905170051961, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}

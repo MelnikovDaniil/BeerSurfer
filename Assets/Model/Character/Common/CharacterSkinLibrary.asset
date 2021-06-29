@@ -37,6 +37,9 @@ MonoBehaviour:
     - m_Name: MettalHead_Head
       m_Hash: 838545716
       m_Sprite: {fileID: -6685385192787018201, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+    - m_Name: Burito_Head
+      m_Hash: -1720608562
+      m_Sprite: {fileID: -2027303839011934020, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   - m_Name: glasses
     m_Hash: -157132074
     m_CategoryList:
@@ -61,6 +64,9 @@ MonoBehaviour:
     - m_Name: MettalHead_Glasses
       m_Hash: -1414947037
       m_Sprite: {fileID: -6023703006799272529, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+    - m_Name: Burito_Glasses
+      m_Hash: 1632764947
+      m_Sprite: {fileID: 8348706084385416226, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   - m_Name: torso
     m_Hash: 660585605
     m_CategoryList:
@@ -85,6 +91,9 @@ MonoBehaviour:
     - m_Name: MettalHead_Torso
       m_Hash: -20668520
       m_Sprite: {fileID: 8257878341018044222, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+    - m_Name: Burito_Torso
+      m_Hash: -1576792525
+      m_Sprite: {fileID: -5626179905170051961, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   - m_Name: backHand
     m_Hash: 482031355
     m_CategoryList:
@@ -109,6 +118,9 @@ MonoBehaviour:
     - m_Name: MettalHead_BackArm
       m_Hash: 1912670017
       m_Sprite: {fileID: -5603496324529850710, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+    - m_Name: Burito_BackArm
+      m_Hash: -1191535503
+      m_Sprite: {fileID: -531893913333104574, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   - m_Name: legs
     m_Hash: -48741494
     m_CategoryList:
@@ -133,6 +145,9 @@ MonoBehaviour:
     - m_Name: MettalHead_Legs
       m_Hash: 1796244514
       m_Sprite: {fileID: 231832226112609993, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+    - m_Name: Burito_Legs
+      m_Hash: -1013305896
+      m_Sprite: {fileID: -3313842260260868012, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   - m_Name: socks
     m_Hash: 511798724
     m_CategoryList:
@@ -157,6 +172,9 @@ MonoBehaviour:
     - m_Name: MettalHead_Socks
       m_Hash: -971354407
       m_Sprite: {fileID: -289395743936795905, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+    - m_Name: Burito_Socks
+      m_Hash: -1680154766
+      m_Sprite: {fileID: -1878784219463129667, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
   - m_Name: boots
     m_Hash: -2025774068
     m_CategoryList:
@@ -181,3 +199,6 @@ MonoBehaviour:
     - m_Name: MettalHead_Boots
       m_Hash: 1608124177
       m_Sprite: {fileID: 7981867340824004337, guid: c9901a55c0800d2478264c429c8a7580, type: 3}
+    - m_Name: Burito_Boots
+      m_Hash: 35296954
+      m_Sprite: {fileID: -886886909540049578, guid: e790f98815e23ec4fb62fc17da3745ac, type: 3}
