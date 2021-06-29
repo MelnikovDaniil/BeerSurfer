@@ -31,6 +31,11 @@ public class RoadPart : MonoBehaviour
         _spriteRenderer.sprite = sprite;
     }
 
+    public void SetOrder(int order)
+    {
+        _spriteRenderer.sortingOrder = order;
+    }
+
     public void SetMaskOrder(int orderingLayer)
     {
         _spriteMask.frontSortingOrder = orderingLayer;

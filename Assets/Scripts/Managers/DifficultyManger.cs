@@ -7,6 +7,7 @@ public class DifficultyManger : MonoBehaviour
     public LocationGenerator locationGenerator;
     public int speedChangingScore = 15000;
     public float speedDifference = 3f;
+    public float difficltUpdateTime = 2f;
 
     private float additionalBgSpeed;
     private float groundSpeed;
@@ -17,7 +18,7 @@ public class DifficultyManger : MonoBehaviour
     {
         additionalBgSpeed = locationGenerator.paralaxAdditionalBgSpeed;
         groundSpeed = locationGenerator.paralaxGroundSpeed;
-        InvokeRepeating(nameof(ChangeDifference), 0, 10f);
+        InvokeRepeating(nameof(ChangeDifference), 0, difficltUpdateTime);
     }
 
     public void ChangeDifference()

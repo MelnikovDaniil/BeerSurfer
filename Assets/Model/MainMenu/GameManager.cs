@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject pausePanel;
     public DeathManager deathPanel;
+    public Slider volumeSlider;
 
     private bool gameEnded;
     private bool isPaused;
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
         gameEnded = false;
         character.OnDeathEvent += StopPoits;
         character.OnDeathEvent += deathPanel.ShowDeathPanel;
+        volumeSlider.onValueChanged.AddListener(SetVolume);
+        volumeSlider.value = GetVolume();
     }
 
     private void Start()
@@ -118,4 +121,16 @@ public class GameManager : MonoBehaviour
             PauseOrResume();
         }
     }
+
+    private void SetVolume(float volume)
+    {
+        SoundManager.SetMusicVolume(volume);
+        SoundManager.SetSoundVolume(volume);
+    }
+
+    private float GetVolume()
+    {
+        return SoundManager.GetSoundVolume();
+    }
+
 }

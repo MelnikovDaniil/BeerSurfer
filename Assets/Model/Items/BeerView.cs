@@ -17,4 +17,9 @@ public class BeerView : MonoBehaviour
     {
         _spriteRenderer.sprite = sprite;
     }
+
+    public void Disable()
+    {
+        gameObject.SetActive(false);
+    }
 }
