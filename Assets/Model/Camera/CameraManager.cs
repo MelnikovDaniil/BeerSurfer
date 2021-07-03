@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    public event Action OnReachesTargetEvnet;
     GameObject _target;
     public Camera camera;
     private float secondsForMoving;
@@ -34,6 +36,8 @@ public class CameraManager : MonoBehaviour
             {
                 transform.position = _target.transform.position;
                 _target = null;
+                OnReachesTargetEvnet?.Invoke();
+                OnReachesTargetEvnet = null;
             }
         }
 

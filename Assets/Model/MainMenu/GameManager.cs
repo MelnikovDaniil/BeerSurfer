@@ -12,9 +12,13 @@ public class GameManager : MonoBehaviour
     public Text scoreCounterText;
 
     public GameObject pausePanel;
+    public LocationGenerator locationGenerator;
+    public MainMenu mainMenu;
     public DeathManager deathPanel;
     public Slider volumeSlider;
+    public CanvasGroup uiCanvasGroup;
 
+    private bool gameStarted;
     private bool gameEnded;
     private bool isPaused;
     private float timeScale;
@@ -26,30 +30,49 @@ public class GameManager : MonoBehaviour
         gameEnded = false;
         character.OnDeathEvent += StopPoits;
         character.OnDeathEvent += deathPanel.ShowDeathPanel;
+        character.OnJumpEvent += StartGame;
         volumeSlider.onValueChanged.AddListener(SetVolume);
         volumeSlider.value = GetVolume();
+        uiCanvasGroup.alpha = 0;
+        uiCanvasGroup.interactable = false;
     }
 
-    private void Start()
+    private void StartGame()
     {
-        if (Random.value <= 0.10f)
+        if (!mainMenu.shopIsOpen)
         {
-            SoundManager.PlayMusic("dejavu");
-        }
-        else
-        {
-            SoundManager.PlayMusic("naruto");
+            gameStarted = true;
+            uiCanvasGroup.interactable = true;
+            character.OnJumpEvent -= StartGame;
+            character.isStartedRun = true;
+            locationGenerator.StartGame();
+            if (Random.value <= 0.10f)
+            {
+                SoundManager.PlayMusic("dejavu");
+            }
+            else
+            {
+                SoundManager.PlayMusic("naruto");
+            }
         }
     }
 
     public void FixedUpdate()
     {
-        score += 1;
-        scoreCounterText.text = $"score: {score}";
-        beerCounterText.text = beer.ToString();
+        if (gameStarted)
+        {
+            score += 1;
+            scoreCounterText.text = $"score: {score}";
+            beerCounterText.text = beer.ToString();
+        }
     }
     public void Update()
     {
+        if (gameStarted && uiCanvasGroup.alpha < 1)
+        {
+            uiCanvasGroup.alpha += Time.deltaTime * 2;
+        }
+
         if (gameEnded)
         {
             if ((Time.timeScale - Time.fixedDeltaTime) > 0)
@@ -106,7 +129,7 @@ public class GameManager : MonoBehaviour
     private void OnApplicationPause(bool pause)
     {
 
-        if (pause)
+        if (gameStarted && pause)
         {
             isPaused = false;
             PauseOrResume();
@@ -115,7 +138,7 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        if (!focus)
+        if (gameStarted && !focus)
         {
             isPaused = false;
             PauseOrResume();

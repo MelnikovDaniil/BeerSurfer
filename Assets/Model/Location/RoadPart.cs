@@ -1,27 +1,20 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class RoadPart : MonoBehaviour
 {
     [NonSerialized]
     public RoadType roadType;
-    [NonSerialized]
-    public List<BeerView> beerList;
-    [NonSerialized]
-    public List<Obstacle> obstacles;
-    [NonSerialized]
-    public LootBoxItemView lootBox;
+
+    public List<GameObject> objectToRemove;
+    public Obstacle obstacle;
 
     private SpriteMask _spriteMask;
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        beerList = new List<BeerView>();
-        obstacles = new List<Obstacle>();
         _spriteMask = GetComponent<SpriteMask>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -43,30 +36,21 @@ public class RoadPart : MonoBehaviour
 
     public void Clear()
     {
-        foreach (var beer in beerList)
+        foreach (var obj in objectToRemove)
         {
-            if (beer != null)
+            if (obj != null)
             {
-                Destroy(beer.gameObject);
+                if (obj.TryGetComponent<BeerView>(out var beer))
+                {
+                    beer.Disable();
+                }
+                else
+                {
+                    Destroy(obj.gameObject);
+                }
             }
         }
-
-        foreach (var obstacle in obstacles)
-        {
-            if (obstacle != null)
-            {
-                Destroy(obstacle.gameObject);
-            }
-        }
-
-        if (lootBox != null)
-        {
-            Destroy(lootBox.gameObject);
-            lootBox = null;
-        }
-
-        obstacles.Clear();
-        beerList.Clear();
-        
+        obstacle = null;
+        objectToRemove.Clear();
     }
 }

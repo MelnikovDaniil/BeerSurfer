@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,20 +12,46 @@ public class MainMenu : MonoBehaviour
 
     public Shop shop;
     public LootBoxManger lootBoxManger;
+    public GameObject shopMenuGameObject;
     public GameObject lootboxMenuGameObject;
+    public float switchMenuDelay = 0.3f;
 
     public Text beerText;
     public Text scoreText;
 
+    public HangerView hanger;
+    public OutfitManager outfitManager;
+
+    [NonSerialized]
+    public bool shopIsOpen;
+
+
     private void Start()
     {
-        SoundManager.PlayMusic("lift");
-        UpdateInfo();
+        shop.gameObject.SetActive(false);
+        hanger.OnHangerClickEvent += OpenShop;
     }
 
-    public void StartGame()
+    public void OpenGame()
     {
-        SceneManager.LoadScene("Game");
+        shopIsOpen = false;
+        shop.HideMenu();
+        outfitManager.UpdateOutfits();
+        cameraManager.SetCameraBasePosition(switchMenuDelay);
+        //cameraManager.OnReachesTargetEvnet += () => shop.gameObject.SetActive(false);
+    }
+
+    private void OpenShop()
+    {
+        shopIsOpen = true;
+        cameraManager.SetTarget(shopMenuGameObject, cameraManager.camera.orthographicSize, switchMenuDelay, Vector3.zero);
+        cameraManager.OnReachesTargetEvnet += () =>
+        {
+            shop.gameObject.SetActive(true);
+            shop.OpenMenu();
+            UpdateInfo();
+            SoundManager.PlayMusic("lift");
+        };
     }
 
     public void ShowLootBoxMenu()
@@ -42,19 +69,17 @@ public class MainMenu : MonoBehaviour
     private IEnumerator DelayShowLootBoxMenu()
     {
         shop.HideMenu();
-        yield return new WaitForSeconds(switchDelay / 2f);
-        cameraManager.SetTarget(lootboxMenuGameObject, 5, 1, Vector3.zero);
-        yield return new WaitForSeconds(switchDelay / 2);
-        lootBoxManger.OpenMenu();
+        yield return new WaitForSeconds(switchDelay);
+        cameraManager.SetTarget(lootboxMenuGameObject, 5, switchMenuDelay, Vector3.zero);
+        cameraManager.OnReachesTargetEvnet += lootBoxManger.OpenMenu;
     }
 
     private IEnumerator DelayShowShopMenu()
     {
         lootBoxManger.HideMenu();
-        yield return new WaitForSeconds(switchDelay / 2);
-        cameraManager.SetCameraBasePosition();
-        yield return new WaitForSeconds(switchDelay / 2);
-        shop.OpenMenu();
+        yield return new WaitForSeconds(switchDelay);
+        cameraManager.SetTarget(shopMenuGameObject, 5, switchMenuDelay, Vector3.zero);
+        cameraManager.OnReachesTargetEvnet +=  shop.OpenMenu;
     }
 
     public void UpdateInfo()

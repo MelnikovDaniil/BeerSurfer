@@ -18,6 +18,8 @@ public class LocationGenerator : MonoBehaviour
     public float paralaxAdditionalBgSpeed = 4;
     public float paralaxGroundSpeed = 10;
 
+    public float speedDifferenceFactor = 2f;
+
     [Space(20)]
     public List<ScriptableLocation> locations;
     public int locationLenght = 10;
@@ -45,34 +47,44 @@ public class LocationGenerator : MonoBehaviour
     public int maxLootBoxByGame = 1;
     public LootBoxItemView lootBoxPrefab;
 
-    [Space(20)]
-    public BeerView beerPrefab;
-    public List<Sprite> beerSprites;
-    public float beerGap = 1;
-    public float beeerSpawnHeight = -3.3f;
-    public MinMaxCurve minMaxBeerOnScreen = new MinMaxCurve(0, 4);
-
     private ScriptableLocation currentLocation;
     private Queue<Sprite> roadQueue;
     private Queue<Sprite> frontQueue;
 
     private int currentBgOrdering;
 
+    private bool gameStarted;
+
+    private float additionalBgSpeed;
+    private float groundSpeed;
+    
     private void Start()
     {
+        DifficultyManger.OnDifficultyChange += OnDifficultyChange;
+
         currentBgOrdering = BgOrderingLayer1;
         roadQueue = new Queue<Sprite>();
         frontQueue = new Queue<Sprite>();
+        groundSpeed = paralaxGroundSpeed;
+        additionalBgSpeed = paralaxAdditionalBgSpeed;
         paralaxFirstLayerBg.ForEach(x => x.sortingOrder = BgOrderingLayer1);
         paralaxSecondLayerBg.ForEach(x => x.sortingOrder = BgOrderingLayer2);
     }
 
     private void Update()
     {
-        ParalaxMove(paralaxFirstLayerBg, paralaxAdditionalBgSpeed);
-        ParalaxMove(paralaxSecondLayerBg, paralaxAdditionalBgSpeed);
-        GroundMove(paralaxGround, paralaxGroundSpeed);
-        FrontMove(paralaxFront, paralaxGroundSpeed);
+        if (gameStarted)
+        {
+            ParalaxMove(paralaxFirstLayerBg, additionalBgSpeed);
+            ParalaxMove(paralaxSecondLayerBg, additionalBgSpeed);
+            GroundMove(paralaxGround, groundSpeed);
+            FrontMove(paralaxFront, groundSpeed);
+        }
+    }
+
+    public void StartGame()
+    {
+        gameStarted = true;
     }
 
     public void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
@@ -140,10 +152,7 @@ public class LocationGenerator : MonoBehaviour
                 {
                     GenerateObstacle(road);
                 }
-                else
-                {
-                    GenerateBeer(road);
-                }
+                BeerManager.Instance.GenerateBeer(road);
             }
             road.transform.position += vectorSpeed;
         }
@@ -153,7 +162,7 @@ public class LocationGenerator : MonoBehaviour
     {
         if (currentLocation == null)
         {
-            currentLocation = locations.Where(x => x.locationType == LocationType.Inner).GetRandom();
+            currentLocation = locations.Where(x => x.locationType != LocationType.Inner).GetRandom();
         }
         else
         {
@@ -183,26 +192,11 @@ public class LocationGenerator : MonoBehaviour
         frontQueue.Enqueue(currentLocation.finishFrontSprite);
     }
 
-    private void GenerateBeer(RoadPart roadPart)
-    {
-        var beerSprite = beerSprites.GetRandom();
-        var beerCount = Random.Range(minMaxBeerOnScreen.constantMin, minMaxBeerOnScreen.constantMax);
-        var x = (beerCount - 1) / 2 * -beerGap;
-        for (var i = 0; i < beerCount; i++)
-        {
-            var spawnedBeer = Instantiate(beerPrefab, roadPart.transform);
-            spawnedBeer.transform.localPosition = new Vector3(x, beeerSpawnHeight);
-            spawnedBeer.ChangeSprite(beerSprite);
-            roadPart.beerList.Add(spawnedBeer);
-            x += beerGap;
-        }
-    }
-
     private void GenerateLootBox(RoadPart roadPart)
     {
         var spawnedLootBox = Instantiate(lootBoxPrefab, roadPart.transform);
-        spawnedLootBox.transform.localPosition = new Vector3(0, beeerSpawnHeight);
-        roadPart.lootBox = spawnedLootBox;
+        spawnedLootBox.transform.localPosition = new Vector3(0, 1);
+        roadPart.objectToRemove.Add(spawnedLootBox.gameObject);
     }
 
     private void GenerateObstacle(RoadPart roadPart)
@@ -211,6 +205,14 @@ public class LocationGenerator : MonoBehaviour
         var spawnedObstacle = Instantiate(obstacle, roadPart.transform);
         var high = obstacleHigh.First(x => x.type == obstacle.obstacleType).high;
         spawnedObstacle.transform.localPosition = new Vector3(0, high);
-        roadPart.obstacles.Add(spawnedObstacle);
+
+        roadPart.obstacle = spawnedObstacle;
+        roadPart.objectToRemove.Add(spawnedObstacle.gameObject);
+    }
+
+    private void OnDifficultyChange(float difficultyCoof)
+    {
+        groundSpeed = paralaxGroundSpeed * difficultyCoof * speedDifferenceFactor + paralaxGroundSpeed;
+        additionalBgSpeed = paralaxAdditionalBgSpeed * difficultyCoof * speedDifferenceFactor + paralaxAdditionalBgSpeed;
     }
 }

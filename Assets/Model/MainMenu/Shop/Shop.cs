@@ -27,12 +27,15 @@ public class Shop : MonoBehaviour
     public Image previousOutfitImage;
     public Image nextOutfitImage;
 
+    public Animator shopCharacterAnimator;
+
     private Animator _animator;
     private List<OutfitModel> shop;
     private List<OutfitModel> availableOutfits;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        shopCharacterAnimator.SetTrigger("shop");
         shop = new List<OutfitModel>
         {
             new OutfitModel { OutfitType = OutfitType.Head, Renderer = characterHead, Sprites = outfitLibrary.headSprites },

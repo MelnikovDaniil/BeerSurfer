@@ -16,7 +16,12 @@ public class OutfitManager : MonoBehaviour
     public SpriteRenderer characterSocks;
     public SpriteRenderer characterTorso;
 
-    public void Start()
+    private void Start()
+    {
+        UpdateOutfits();
+    }
+
+    public void UpdateOutfits()
     {
         var allOutfits = new List<OutfitModel>
         {
