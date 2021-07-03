@@ -1,46 +1,31 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Obstacle : MonoBehaviour
 {
     public ObstacleType obstacleType;
 
-    [SerializeField]
-    private List<BeerView> beerList;
-
-    [SerializeField]
-    [Range(0, 1)]
-    private float everySecondBeerChance = 0.5f;
-    [SerializeField]
-    [Range(0, 1)]
-    private float allBeerChance = 0.15f;
-
-    public void SetUpBeer()
+    public List<BeerPatternType> beerPatterns = new List<BeerPatternType> 
     {
-        beerList.ForEach(x => x.gameObject.SetActive(false));
-        var chanse = Random.value;
-        if (chanse < everySecondBeerChance)
-        {
-            EnableEverySecondBeer();
-        }
-        else if (chanse < allBeerChance)
-        {
-            EnableAllBeer();
-        }
+        BeerPatternType.Parabola,
+    };
 
-    }
-
-    private void EnableAllBeer()
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
     {
-        beerList.ForEach(x => x.gameObject.SetActive(true));
-    }
-
-    private void EnableEverySecondBeer()
-    {
-        for (int i = 0; i < beerList.Count-1; i += 2)
+        var assetLibrary = AssetDatabase.LoadAssetAtPath<BeerPatternLibrary>("Assets/Model/Obstacles/BeerPatternLibrary.asset");
+        Gizmos.color = Color.green;
+        foreach (var beerPattern in beerPatterns)
         {
-            beerList[i].gameObject.SetActive(true);
+            var beerPosition = assetLibrary.beerPatterns.First(x => x.type == beerPattern).beerPositions;
+            foreach (var position in beerPosition)
+            {
+                Gizmos.DrawWireSphere(position, 0.5f);
+            }
+            Gizmos.color = Gizmos.color.Next();
         }
     }
+#endif
 }

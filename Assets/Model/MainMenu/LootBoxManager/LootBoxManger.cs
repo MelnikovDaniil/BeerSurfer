@@ -12,7 +12,10 @@ public class LootBoxManger : MonoBehaviour
     public GameObject notification;
     public Text notificationText;
     public GameObject returnShopButton;
+
     public Button byeLootboxButton;
+    public Button openLootBoxButton;
+
     public int lootboxCost = 300;
 
     private Animator _animator;
@@ -35,12 +38,14 @@ public class LootBoxManger : MonoBehaviour
 
     public void OpenMenu()
     {
+        openLootBoxButton.enabled = false;
         var lootBoxCount = LootBoxMapper.Get();
         notificationText.text = lootBoxCount.ToString();
         returnShopButton.SetActive(true);
         byeLootboxButton.gameObject.SetActive(false);
         if (lootBoxCount > 0)
         {
+            openLootBoxButton.enabled = true;
             _animator.SetTrigger("drop");
         }
         else if (BeerMapper.Get() >= lootboxCost)
@@ -51,13 +56,19 @@ public class LootBoxManger : MonoBehaviour
 
     public void HideMenu()
     {
-        _animator.SetTrigger("hide");
+        openLootBoxButton.enabled = false;
+        var lootBoxCount = LootBoxMapper.Get();
+        if (lootBoxCount > 0)
+        {
+            _animator.SetTrigger("hide");
+        }
         returnShopButton.SetActive(false);
         byeLootboxButton.gameObject.SetActive(false);
     }
 
     public void Refresh()
     {
+        openLootBoxButton.enabled = false;
         _animator.SetTrigger("hide");
         var lootBoxCount = LootBoxMapper.Get();
         notificationText.text = lootBoxCount.ToString();
@@ -65,6 +76,7 @@ public class LootBoxManger : MonoBehaviour
         byeLootboxButton.gameObject.SetActive(false);
         if (lootBoxCount > 0)
         {
+            openLootBoxButton.enabled = true;
             _animator.SetTrigger("drop");
         }
         else if (BeerMapper.Get() >= lootboxCost)
@@ -79,6 +91,7 @@ public class LootBoxManger : MonoBehaviour
         BeerMapper.Add(-lootboxCost);
         LootBoxMapper.AddOne();
         mainMenu.UpdateInfo();
+        openLootBoxButton.enabled = true;
         _animator.SetTrigger("drop");
         UpdateNotification();
         byeLootboxButton.gameObject.SetActive(false);
@@ -86,6 +99,7 @@ public class LootBoxManger : MonoBehaviour
 
     public void OpenLootBox()
     {
+        openLootBoxButton.enabled = false;
         returnShopButton.SetActive(false);
         _animator.SetTrigger("show");
         var outfit = GenerateRandomOutfit();

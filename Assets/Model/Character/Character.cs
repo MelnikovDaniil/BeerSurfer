@@ -4,7 +4,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public event Action OnDeathEvent;
+    public event Action OnJumpEvent;
     public event Action<BeerView> OnBeerPickUpEvent;
+    
     public float jumpForce;
     public float sensitive = 0.3f;
 
@@ -15,6 +17,8 @@ public class Character : MonoBehaviour
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
 
+    [NonSerialized]
+    public bool isStartedRun = false;
 
     private bool isDead = false;
     private bool isGrounded = true;
@@ -54,7 +58,7 @@ public class Character : MonoBehaviour
                     Jump();
                 }
                 //swipe right
-                if (currentSwipe.y < 0 && currentSwipe.x > -sensitive && currentSwipe.x < sensitive)
+                if (isStartedRun && currentSwipe.y < 0 && currentSwipe.x > -sensitive && currentSwipe.x < sensitive)
                 {
                     firstPressPos = null;
                     Slip();
@@ -82,10 +86,14 @@ public class Character : MonoBehaviour
     {
         if (isGrounded)
         {
+            OnJumpEvent?.Invoke();
             isGrounded = false;
             isFalling = false;
-            _animator.Play("Jump");
-            _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (isStartedRun)
+            {
+                _animator.Play("Jump");
+                _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
     }
     

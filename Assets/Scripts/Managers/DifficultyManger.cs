@@ -1,30 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DifficultyManger : MonoBehaviour
 {
+    public static event Action<float> OnDifficultyChange;
+    public static float differenceCoof;
+
     public LocationGenerator locationGenerator;
-    public int speedChangingScore = 15000;
-    public float speedDifference = 3f;
+    public int maxScoreDifficulty = 8500;
     public float difficltUpdateTime = 2f;
 
-    private float additionalBgSpeed;
-    private float groundSpeed;
-
-    private float differenceCoof;
 
     private void Start()
     {
-        additionalBgSpeed = locationGenerator.paralaxAdditionalBgSpeed;
-        groundSpeed = locationGenerator.paralaxGroundSpeed;
         InvokeRepeating(nameof(ChangeDifference), 0, difficltUpdateTime);
     }
 
     public void ChangeDifference()
     {
-        differenceCoof = (float)GameManager.score / speedChangingScore * (speedDifference - 1);
-        locationGenerator.paralaxAdditionalBgSpeed = additionalBgSpeed * (differenceCoof + 1);
-        locationGenerator.paralaxGroundSpeed = groundSpeed * (differenceCoof + 1);
+        differenceCoof = (float)GameManager.score / maxScoreDifficulty;
+        OnDifficultyChange?.Invoke(differenceCoof);
     }
 }
