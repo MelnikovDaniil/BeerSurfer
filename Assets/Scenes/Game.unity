@@ -4905,6 +4905,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca218e8207589e844892dcdb7aa6b321, type: 2}
   - {fileID: 11400000, guid: 4e1ecaacd7ac225418060a4684db322b, type: 2}
   - {fileID: 11400000, guid: 417780a89ccafad488bc1a512dc2db3c, type: 2}
+  - {fileID: 11400000, guid: 597b4c8f7d2979c479dac36c83626ca0, type: 2}
   locationLenght: 3
   paralaxFirstLayerBg:
   - {fileID: 616453513}
