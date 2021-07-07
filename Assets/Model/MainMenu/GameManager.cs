@@ -59,10 +59,10 @@ public class GameManager : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (gameStarted)
+        if (gameStarted && !gameEnded)
         {
             score += 1;
-            scoreCounterText.text = $"score: {score}";
+            scoreCounterText.text = score.ToString();
             beerCounterText.text = beer.ToString();
         }
     }
