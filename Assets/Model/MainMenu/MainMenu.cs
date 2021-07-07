@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour
         shopIsOpen = false;
         shop.HideMenu();
         outfitManager.UpdateOutfits();
-        cameraManager.SetCameraBasePosition(switchMenuDelay);
+        StartCoroutine(DelayShowGame());
         //cameraManager.OnReachesTargetEvnet += () => shop.gameObject.SetActive(false);
     }
 
@@ -64,6 +64,12 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(DelayShowShopMenu());
         UpdateInfo();
+    }
+
+    private IEnumerator DelayShowGame()
+    {
+        yield return new WaitForSeconds(switchDelay);
+        cameraManager.SetCameraBasePosition(switchMenuDelay);
     }
 
     private IEnumerator DelayShowLootBoxMenu()
