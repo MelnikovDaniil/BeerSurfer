@@ -77,7 +77,7 @@ public class BeerManager : MonoBehaviour
     {
         if (roadPart.obstacle == null)
         {
-            //GenerateWithoutObstacles(roadPart);
+            GenerateWithoutObstacles(roadPart);
         }
         else
         {
@@ -114,7 +114,7 @@ public class BeerManager : MonoBehaviour
         var chanse = Random.value;
         if (chanse < everySecondBeerChance)
         {
-            for (var i = 1; i < positions.Count - 1; i += 2)
+            for (var i = 0; i < positions.Count; i += 2)
             {
                 var beer = GetPooledBeer();
                 beer.Enable();

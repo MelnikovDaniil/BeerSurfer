@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     
     public float jumpForce;
     public float sensitive = 0.3f;
+    public float drinkRepeatTime = 10f;
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
@@ -28,6 +29,11 @@ public class Character : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        InvokeRepeating(nameof(DrinkBeer), drinkRepeatTime, drinkRepeatTime);
     }
 
     private void Update()
@@ -87,10 +93,10 @@ public class Character : MonoBehaviour
         if (isGrounded)
         {
             OnJumpEvent?.Invoke();
-            isGrounded = false;
-            isFalling = false;
             if (isStartedRun)
             {
+                isGrounded = false;
+                isFalling = false;
                 _animator.Play("Jump");
                 _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
@@ -109,6 +115,18 @@ public class Character : MonoBehaviour
         _animator.SetTrigger("death");
         isDead = true;
         OnDeathEvent?.Invoke();
+    }
+
+    private void DrinkBeer()
+    {
+        if (!isStartedRun)
+        {
+            _animator.SetTrigger("beer");
+        }
+        else
+        {
+            CancelInvoke(nameof(DrinkBeer));
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
