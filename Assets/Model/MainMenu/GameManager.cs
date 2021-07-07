@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseOrResume()
     {
+        volumeSlider.value = GetVolume();
         isPaused = !isPaused;
         if (isPaused)
         {

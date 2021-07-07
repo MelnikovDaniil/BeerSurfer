@@ -10286,6 +10286,9 @@ GameObject:
   - component: {fileID: 1875927524}
   - component: {fileID: 1875927526}
   - component: {fileID: 1875927525}
+  - component: {fileID: 1875927529}
+  - component: {fileID: 1875927528}
+  - component: {fileID: 1875927527}
   m_Layer: 0
   m_Name: StartMenuItems_RecordPlayer
   m_TagString: Untagged
@@ -10365,7 +10368,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -7064882738592306928, guid: 7d94875daddb1a240a1e36e41020b0c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10377,6 +10380,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1875927527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875927523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b2134b238e01948b930d0ab891d93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1875927528
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875927523}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &1875927529
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875927523}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.02, y: -0.03}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.7, y: 2.41}
+    newSize: {x: 4.7, y: 2.41}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.04, y: 2.71}
+  m_EdgeRadius: 0
 --- !u!1 &1929615236
 GameObject:
   m_ObjectHideFlags: 0
@@ -10412,7 +10474,7 @@ MonoBehaviour:
   paralaxOffset: 19.2
   paralaxAdditionalBgSpeed: 4
   paralaxGroundSpeed: 10
-  speedDifferenceFactor: 2
+  speedDifferenceFactor: 1
   locations:
   - {fileID: 11400000, guid: 529af6224d91bee4d83b079639d9b1a9, type: 2}
   - {fileID: 11400000, guid: f8857efea62b38745b694757ed110b70, type: 2}
@@ -10521,7 +10583,7 @@ MonoBehaviour:
   beerPatternLibrary: {fileID: 11400000, guid: ba108209b9c715840977dea1f3c1dbaa, type: 2}
   beerPrefab: {fileID: 2708121801915106583, guid: c49a2430486fa2a4e86d9e42cdf91b5f, type: 3}
   beerGroupLength: 10
-  maxBeerGroupLength: 22
+  maxBeerGroupLength: 20
   beeerSpawnHeight: -2
   minMaxBeerOnScreen:
     m_Mode: 3
@@ -10545,8 +10607,8 @@ MonoBehaviour:
   - {fileID: -8972578769846966058, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
   - {fileID: -6483331860278906394, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
   - {fileID: 576098571373760339, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
-  everySecondBeerChance: 0
-  allBeerChance: 1
+  everySecondBeerChance: 0.2
+  allBeerChance: 0.75
   amountOfPool: 20
   uiBeerIcon: {fileID: 2006858823}
 --- !u!1 &1936663634
