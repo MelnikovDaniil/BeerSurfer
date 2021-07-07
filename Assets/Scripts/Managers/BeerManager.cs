@@ -13,6 +13,12 @@ public class BeerManager : MonoBehaviour
     public BeerPatternLibrary beerPatternLibrary;
 
     [Space(20)]
+    public Color greenColor;
+    public Color greenOutlineColor;
+    public Color brownColor;
+    public Color brownOutlineColor;
+
+    [Space(20)]
     public BeerView beerPrefab;
     public float beerGroupLength = 10;
     public float maxBeerGroupLength = 20;
@@ -33,6 +39,8 @@ public class BeerManager : MonoBehaviour
 
     [Space(20)]
     public Image uiBeerIcon;
+    public Text beerCounterText;
+    public Outline beerCounterOutline;
 
     private List<BeerView> pooledBeer;
     private float currentBeerGroupLenght;
@@ -69,7 +77,19 @@ public class BeerManager : MonoBehaviour
         GameManager.beer++;
         SoundManager.PlaySound("beer");
         beer.Collect();
-        uiBeerIcon.sprite = beer.GetSprite();
+        var sprite = beer.GetSprite();
+        uiBeerIcon.sprite = sprite;
+
+        if (sprite.name.Contains("Green"))
+        {
+            beerCounterText.color = greenColor;
+            beerCounterOutline.effectColor = greenOutlineColor;
+        }
+        else
+        {
+            beerCounterText.color = brownColor;
+            beerCounterOutline.effectColor = brownOutlineColor;
+        }
     }
 
 
