@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Character : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Character : MonoBehaviour
     public float jumpForce;
     public float sensitive = 0.3f;
     public float drinkRepeatTime = 10f;
+    public SpriteRenderer phoneRenderer;
+    public Sprite phoneSprite;
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
@@ -33,7 +36,14 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(DrinkBeer), drinkRepeatTime, drinkRepeatTime);
+        if (Random.value > 0.5f)
+        {
+            phoneRenderer.sprite = phoneSprite;
+        }
+        else
+        {
+            InvokeRepeating(nameof(DrinkBeer), drinkRepeatTime, drinkRepeatTime);
+        }
     }
 
     private void Update()
