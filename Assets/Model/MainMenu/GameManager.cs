@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public DeathManager deathPanel;
     public Slider volumeSlider;
     public CanvasGroup uiCanvasGroup;
+    public HangerView hangerView;
 
     private bool gameStarted;
     private bool gameEnded;
@@ -36,6 +37,19 @@ public class GameManager : MonoBehaviour
         uiCanvasGroup.alpha = 0;
         uiCanvasGroup.interactable = false;
         uiCanvasGroup.blocksRaycasts = false;
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("ShopAvailable", 0) != 0 || LootBoxMapper.Get() > 0 || BeerMapper.Get() >= 300)
+        {
+            hangerView.gameObject.SetActive(true);
+            PlayerPrefs.SetInt("ShopAvailable", 1);
+        }
+        else
+        {
+            hangerView.gameObject.SetActive(false);
+        }
     }
 
     private void StartGame()

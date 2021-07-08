@@ -8745,6 +8745,7 @@ MonoBehaviour:
   deathPanel: {fileID: 99853425}
   volumeSlider: {fileID: 1706480215}
   uiCanvasGroup: {fileID: 1510278093}
+  hangerView: {fileID: 831198192}
 --- !u!225 &1510278093
 CanvasGroup:
   m_ObjectHideFlags: 0
