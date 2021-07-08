@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         volumeSlider.value = GetVolume();
         uiCanvasGroup.alpha = 0;
         uiCanvasGroup.interactable = false;
+        uiCanvasGroup.blocksRaycasts = false;
     }
 
     private void StartGame()
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             gameStarted = true;
             uiCanvasGroup.interactable = true;
+            uiCanvasGroup.blocksRaycasts = true;
             character.OnJumpEvent -= StartGame;
             character.isStartedRun = true;
             locationGenerator.StartGame();
