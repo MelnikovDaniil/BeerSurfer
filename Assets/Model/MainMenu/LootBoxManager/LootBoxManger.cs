@@ -8,7 +8,7 @@ public class LootBoxManger : MonoBehaviour
 {
     public OutfitLibrary outfitLibrary;
     public MainMenu mainMenu;
-    public Image boxOutfit;
+    public DummyView dummy;
     public GameObject notification;
     public Text notificationText;
     public GameObject returnShopButton;
@@ -102,23 +102,38 @@ public class LootBoxManger : MonoBehaviour
         openLootBoxButton.enabled = false;
         returnShopButton.SetActive(false);
         _animator.SetTrigger("show");
-        var outfit = GenerateRandomOutfit();
-        boxOutfit.sprite = outfit;
-        OutfitMapper.SetAvailableOutfit(outfit.name);
+        var typeOutfit = GenerateRandomOutfit();
+        if (typeOutfit.type == OutfitType.Torso)
+        {
+            var backHand = outfitLibrary.GetBackHand(typeOutfit.outfit);
+            dummy.ShowOutfit(typeOutfit.type, typeOutfit.outfit, backHand);
+        }
+        else
+        {
+            dummy.ShowOutfit(typeOutfit.type, typeOutfit.outfit);
+        }
+        OutfitMapper.SetAvailableOutfit(typeOutfit.outfit.name);
         LootBoxMapper.RemoveOne();
     }
 
-    private Sprite GenerateRandomOutfit()
+    private (Sprite outfit, OutfitType type) GenerateRandomOutfit()
     {
-        var sprites = outfitLibrary.headSprites
-            .Concat(outfitLibrary.glassesSprites)
-            .Concat(outfitLibrary.torsoSprites)
-            .Concat(outfitLibrary.legsSprites)
-            .Concat(outfitLibrary.socksSprites)
-            .Concat(outfitLibrary.bootsSprites);
+        var typeOutfits = new List<(List<Sprite> sprites, OutfitType type)>
+        {
+            (outfitLibrary.headSprites, OutfitType.Head),
+            (outfitLibrary.glassesSprites, OutfitType.Glasses),
+            (outfitLibrary.torsoSprites, OutfitType.Torso),
+            (outfitLibrary.legsSprites, OutfitType.Legs),
+            (outfitLibrary.socksSprites, OutfitType.Socks),
+            (outfitLibrary.bootsSprites, OutfitType.Boots),
+        };
+
+        var sprites = typeOutfits.SelectMany(x => x.sprites);
 
         sprites = sprites.Where(x => !OutfitMapper.IsOutfitAvailable(x.name));
-        return sprites.GetRandom();
+        var outfit = sprites.GetRandom();
+        var type = typeOutfits.First(x => x.sprites.Contains(outfit)).type;
+        return (outfit, type);
     }
 
 }

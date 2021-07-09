@@ -24,8 +24,8 @@ public class Shop : MonoBehaviour
     public Button nextButton;
     public Button equipButton;
 
-    public Image previousOutfitImage;
-    public Image nextOutfitImage;
+    public DummyView previousDummy;
+    public DummyView nextDummy;
 
     public Animator shopCharacterAnimator;
 
@@ -45,8 +45,10 @@ public class Shop : MonoBehaviour
             new OutfitModel { OutfitType = OutfitType.Socks, Renderer = characterSocks, Sprites = outfitLibrary.socksSprites },
             new OutfitModel { OutfitType = OutfitType.Boots, Renderer = characterBoots, Sprites = outfitLibrary.bootsSprites },
         };
+    }
 
-
+    private void Start()
+    {
         if (allOutfits)
         {
             SetAllAvailable();
@@ -117,42 +119,49 @@ public class Shop : MonoBehaviour
         var previousOutfit = typeOutfit.Sprites.ElementAtOrDefault(index - 1);
         var nextOutfit = typeOutfit.Sprites.ElementAtOrDefault(index + 1);
 
-        //SetUpEquipButton(type, sprite);
         OutfitMapper.SetOutfit(type, sprite);
 
-        ShowAdditionalOutfit(nextOutfit, nextButton, nextOutfitImage, type);
-        ShowAdditionalOutfit(previousOutfit, previousButton, previousOutfitImage, type);
+        ShowAdditionalOutfit(nextOutfit, nextButton, nextDummy, type);
+        ShowAdditionalOutfit(previousOutfit, previousButton, previousDummy, type);
 
         if (type == OutfitType.Torso)
         {
-            var outfitName = sprite.name.Split('_').FirstOrDefault();
-            if (outfitName != null)
-            {
-                characterBackHand.sprite = outfitLibrary.backHandSprites.FirstOrDefault(x => x.name.Contains(outfitName));
-            }
-            else
-            {
-                Debug.LogError($"Back hand for {sprite.name} not found");
-            }
+            characterBackHand.sprite = outfitLibrary.GetBackHand(sprite);
         }
+
     }
 
-    private void ShowAdditionalOutfit(Sprite outfit, Button button, Image image, OutfitType type)
+    private void ShowAdditionalOutfit(Sprite outfit, Button button, DummyView dummyView, OutfitType type)
     {
-
         if (outfit != null)
         {
             button.gameObject.SetActive(true);
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => ShowOutfit(type, outfit));
 
-            image.gameObject.SetActive(true);
-            image.sprite = outfit;
+            dummyView.gameObject.SetActive(true);
+            dummyView.characterBackHand.sprite = characterBackHand.sprite;
+            dummyView.characterBoots.sprite = characterBoots.sprite;
+            dummyView.characterGlasses.sprite = characterGlasses.sprite;
+            dummyView.characterHead.sprite = characterHead.sprite;
+            dummyView.characterLegs.sprite = characterLegs.sprite;
+            dummyView.characterSocks.sprite = characterSocks.sprite;
+            dummyView.characterTorso.sprite = characterTorso.sprite;
+
+            if (type == OutfitType.Torso)
+            {
+                var backhandSprite = outfitLibrary.GetBackHand(outfit);
+                dummyView.ShowOutfit(type, outfit, backhandSprite);
+            }
+            else
+            {
+                dummyView.ShowOutfit(type, outfit);
+            }
         }
         else
         {
             button.gameObject.SetActive(false);
-            image.gameObject.SetActive(false);
+            dummyView.gameObject.SetActive(false);
         }
     }
 
