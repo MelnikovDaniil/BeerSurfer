@@ -139,9 +139,19 @@ public class LocationGenerator : MonoBehaviour
                 }
 
                 road.ChangeSprite(roadQueue.Dequeue());
-                road.SetOrder(LocationType.Open == currentLocation.locationType ? OpenRoadOrderingLayer : InnerRoadOrderingLayer);
                 road.SetMaskOrder(currentBgOrdering);
                 road.roadType = roadType;
+
+                if (currentLocation.locationType == LocationType.Open)
+                {
+                    road.SetOrder(OpenRoadOrderingLayer);
+                }
+                else
+                {
+                    road.SetOrder(InnerRoadOrderingLayer);
+                    road.EnableWalls();
+                }
+
                 var randomChanse = Random.value;
                 if (GameManager.score > lootboxStartScore && maxLootBoxByGame > 0 && randomChanse < lootBoxStawnChange)
                 {
