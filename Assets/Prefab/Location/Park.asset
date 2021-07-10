@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4bc8875f1e037e4cb8ac889ffde2150, type: 3}
   m_Name: Park
   m_EditorClassIdentifier: 
+  locationType: 0
   startSprite: {fileID: 21300000, guid: a34ab20a4fe4b2a41b4127abf8bb0422, type: 3}
   middleSprites:
   - {fileID: 21300000, guid: c6ff01efb203e0e4b9e82a806d39b50f, type: 3}
   - {fileID: 21300000, guid: 3a36c93a240d0ff46917ed45d2b69157, type: 3}
   finishSprite: {fileID: 21300000, guid: d3f0ab7d9e884bf4c9133a442b868a85, type: 3}
+  startFrontSprite: {fileID: 0}
+  middleFrontSprites: []
+  finishFrontSprite: {fileID: 0}
   Background:
   - {fileID: 21300000, guid: 180e8866a3a31304995eca57008f4974, type: 3}
   obstacles:
@@ -26,3 +30,4 @@ MonoBehaviour:
   - {fileID: 7055427687963597653, guid: b0d11bac6d5f6e34e88c2c27aa929213, type: 3}
   - {fileID: 1709839936458005191, guid: 8f2c4b8385654bf4891e4ae48fc499a0, type: 3}
   - {fileID: 3122257923399644359, guid: ea89fc70e15880d46905891ea81bfc16, type: 3}
+  - {fileID: 8179829870197550203, guid: 072eacd2ad433a94ba1fa992888a4c5b, type: 3}
