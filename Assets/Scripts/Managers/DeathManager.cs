@@ -9,12 +9,6 @@ public class DeathManager : MonoBehaviour
     public void ShowDeathPanel()
     {
         gameObject.SetActive(true);
-        var previousRecord = RecordMapper.Get();
-        if (previousRecord < GameManager.score)
-        {
-            RecordMapper.Set(GameManager.score);
-        }
-        BeerMapper.Add(GameManager.beer);
         deathPanel.ShowDeathPanel(GameManager.beer, GameManager.score);
     }
 }
