@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,12 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static int score;
     public static int beer;
+    public static bool isPaused;
     public Character character;
 
     public Text beerCounterText;
     public Text scoreCounterText;
 
-    public GameObject pausePanel;
+    public Animator pausePanelAnimtor;
+    public float continueDelay = 3f;
     public LocationGenerator locationGenerator;
     public MainMenu mainMenu;
     public DeathManager deathPanel;
@@ -21,8 +24,9 @@ public class GameManager : MonoBehaviour
 
     private bool gameStarted;
     private bool gameEnded;
-    private bool isPaused;
     private float timeScale;
+
+    private Coroutine continueCoroutine;
 
     private void Awake()
     {
@@ -37,6 +41,14 @@ public class GameManager : MonoBehaviour
         uiCanvasGroup.alpha = 0;
         uiCanvasGroup.interactable = false;
         uiCanvasGroup.blocksRaycasts = false;
+        SceneManager.sceneLoaded += SceenLoaded;
+
+    }
+
+    private void SceenLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        Time.timeScale = 1;
+        isPaused = false;
     }
 
     private void Start()
@@ -110,13 +122,11 @@ public class GameManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void Restart()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene("Game");
     }
 
@@ -125,22 +135,35 @@ public class GameManager : MonoBehaviour
     public void PauseOrResume()
     {
         volumeSlider.value = GetVolume();
-        isPaused = !isPaused;
-        if (isPaused)
+        var paused = !isPaused;
+        if (paused)
         {
-            pausePanel.SetActive(true);
+            if (continueCoroutine != null)
+            {
+                StopCoroutine(continueCoroutine);
+            }
+
+            pausePanelAnimtor.gameObject.SetActive(true);
             if (Time.timeScale != 0)
             {
                 timeScale = Time.timeScale;
             }
             Time.timeScale = 0f;
-
+            isPaused = paused;
         }
         else
         {
-            pausePanel.SetActive(false);
-            Time.timeScale = timeScale;
+            continueCoroutine = StartCoroutine(GameContinue());
         }
+        pausePanelAnimtor.SetBool("pause", paused);
+    }
+
+    public IEnumerator GameContinue()
+    {
+        yield return new WaitForSecondsRealtime(continueDelay);
+        pausePanelAnimtor.gameObject.SetActive(false);
+        isPaused = false;
+        Time.timeScale = timeScale;
     }
 
     private void OnApplicationPause(bool pause)

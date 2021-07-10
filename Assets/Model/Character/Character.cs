@@ -51,7 +51,7 @@ public class Character : MonoBehaviour
         if (!isDead)
         {
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !GameManager.isPaused)
             {
                 //save began touch 2d point
                 firstPressPos = Input.mousePosition;
