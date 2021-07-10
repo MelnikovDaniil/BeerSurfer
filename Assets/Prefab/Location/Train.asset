@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bc8875f1e037e4cb8ac889ffde2150, type: 3}
+  m_Name: Train
+  m_EditorClassIdentifier: 
+  locationType: 1
+  startSprite: {fileID: 21300000, guid: add9211298b8b114e99356871f49af8b, type: 3}
+  middleSprites:
+  - {fileID: 21300000, guid: 3c94d1f061e395b4193ea74f8a9420da, type: 3}
+  - {fileID: 21300000, guid: 22d39dd3e93baf947a2fdacd92306646, type: 3}
+  - {fileID: 21300000, guid: 6a474471b3c79ea40bcfa8b5bb0b0fd1, type: 3}
+  finishSprite: {fileID: 21300000, guid: ab168b8a2e77ccd49b45fc69f0cb23ec, type: 3}
+  startFrontSprite: {fileID: 21300000, guid: 2352ddd08ae2c3c449a4e64e444fd92c, type: 3}
+  middleFrontSprites: []
+  finishFrontSprite: {fileID: 21300000, guid: da82b307621f4a44189c61c98a047ecd, type: 3}
+  Background:
+  - {fileID: 21300000, guid: 1847c7a110e19ce4eab25a4efd14e7a4, type: 3}
+  obstacles:
+  - {fileID: 934929739328717394, guid: be9c8343182a3c84a81429ec258c3ded, type: 3}
+  - {fileID: 4464380890191498860, guid: 7dac0d5b8f6bdbc4cb893b27a0b4c5bb, type: 3}
+  - {fileID: 8341250692927447904, guid: 4a028a4dae434384d84d6f3fced6a441, type: 3}
