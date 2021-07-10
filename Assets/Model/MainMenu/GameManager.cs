@@ -41,12 +41,17 @@ public class GameManager : MonoBehaviour
         uiCanvasGroup.alpha = 0;
         uiCanvasGroup.interactable = false;
         uiCanvasGroup.blocksRaycasts = false;
-        SceneManager.sceneLoaded += SceenLoaded;
-
+        SceneManager.sceneUnloaded += SceenLoaded;
     }
 
-    private void SceenLoaded(Scene arg0, LoadSceneMode arg1)
+    private void SceenLoaded(Scene arg0)
     {
+        var previousRecord = RecordMapper.Get();
+        if (previousRecord < score)
+        {
+            RecordMapper.Set(score);
+        }
+        BeerMapper.Add(beer);
         Time.timeScale = 1;
         isPaused = false;
     }
