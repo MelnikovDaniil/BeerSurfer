@@ -12,11 +12,16 @@ public class RoadPart : MonoBehaviour
 
     private SpriteMask _spriteMask;
     private SpriteRenderer _spriteRenderer;
+    private Collider2D _startWallColliders;
+    private Collider2D _finishWallColliders;
 
     private void Awake()
     {
         _spriteMask = GetComponent<SpriteMask>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        var colliders = GetComponents<BoxCollider2D>();
+        _startWallColliders = colliders[0];
+        _finishWallColliders = colliders[1];
     }
 
     public void ChangeSprite(Sprite sprite)
@@ -51,6 +56,21 @@ public class RoadPart : MonoBehaviour
             }
         }
         obstacle = null;
+        _startWallColliders.enabled = false;
+        _finishWallColliders.enabled = false;
         objectToRemove.Clear();
+    }
+
+    public void EnableWalls()
+    {
+        switch (roadType)
+        {
+            case RoadType.Start:
+                _startWallColliders.enabled = true;
+                break;
+            case RoadType.Finish:
+                _finishWallColliders.enabled = true;
+                break;
+        }
     }
 }

@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 8255904}
   - component: {fileID: 8255905}
   - component: {fileID: 8255906}
+  - component: {fileID: 8255908}
+  - component: {fileID: 8255907}
   m_Layer: 0
   m_Name: Road
   m_TagString: Road
@@ -271,6 +273,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToRemove: []
   obstacle: {fileID: 0}
+--- !u!61 &8255907
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255902}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 9.154161, y: 3.3041065}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 22.802475, y: 10.799999}
+    newSize: {x: 22.810001, y: 10.803564}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_EdgeRadius: 0
+--- !u!61 &8255908
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255902}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -9.38, y: 3.3041065}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 22.802475, y: 10.799999}
+    newSize: {x: 22.810001, y: 10.803564}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_EdgeRadius: 0
 --- !u!1 &11742743
 GameObject:
   m_ObjectHideFlags: 0
@@ -5990,7 +6044,6 @@ GameObject:
   m_Component:
   - component: {fileID: 682781304}
   - component: {fileID: 682781302}
-  - component: {fileID: 682781303}
   m_Layer: 0
   m_Name: Front3
   m_TagString: Untagged
@@ -6049,20 +6102,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &682781303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682781301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34d4a5da09d95fd42947fb8c9d179596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToRemove: []
-  obstacle: {fileID: 0}
 --- !u!4 &682781304
 Transform:
   m_ObjectHideFlags: 0
@@ -8348,7 +8387,6 @@ GameObject:
   m_Component:
   - component: {fileID: 981856981}
   - component: {fileID: 981856983}
-  - component: {fileID: 981856982}
   m_Layer: 0
   m_Name: Front2
   m_TagString: Untagged
@@ -8370,20 +8408,6 @@ Transform:
   m_Father: {fileID: 1581939967}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &981856982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981856980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34d4a5da09d95fd42947fb8c9d179596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToRemove: []
-  obstacle: {fileID: 0}
 --- !u!212 &981856983
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11282,7 +11306,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1361939974}
   - component: {fileID: 1361939976}
-  - component: {fileID: 1361939975}
   m_Layer: 0
   m_Name: Front1
   m_TagString: Untagged
@@ -11304,20 +11327,6 @@ Transform:
   m_Father: {fileID: 1581939967}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1361939975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361939973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34d4a5da09d95fd42947fb8c9d179596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToRemove: []
-  obstacle: {fileID: 0}
 --- !u!212 &1361939976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13949,6 +13958,8 @@ GameObject:
   - component: {fileID: 1742809478}
   - component: {fileID: 1742809479}
   - component: {fileID: 1742809480}
+  - component: {fileID: 1742809482}
+  - component: {fileID: 1742809481}
   m_Layer: 0
   m_Name: Road3
   m_TagString: Road
@@ -14085,6 +14096,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToRemove: []
   obstacle: {fileID: 0}
+--- !u!61 &1742809481
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742809476}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 9.154161, y: 3.3041065}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 22.802475, y: 10.799999}
+    newSize: {x: 22.810001, y: 10.803564}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_EdgeRadius: 0
+--- !u!61 &1742809482
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742809476}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -9.38, y: 3.3041065}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 22.802475, y: 10.799999}
+    newSize: {x: 22.810001, y: 10.803564}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_EdgeRadius: 0
 --- !u!1 &1762937337
 GameObject:
   m_ObjectHideFlags: 0
@@ -14898,6 +14961,8 @@ GameObject:
   - component: {fileID: 1865567183}
   - component: {fileID: 1865567184}
   - component: {fileID: 1865567185}
+  - component: {fileID: 1865567187}
+  - component: {fileID: 1865567186}
   m_Layer: 0
   m_Name: Road2
   m_TagString: Road
@@ -15056,6 +15121,58 @@ MonoBehaviour:
   - {fileID: 194781672}
   - {fileID: 1457516450}
   obstacle: {fileID: 0}
+--- !u!61 &1865567186
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865567181}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 9.154161, y: 3.3041065}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 22.849586, y: 10.8}
+    newSize: {x: 22.849586, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_EdgeRadius: 0
+--- !u!61 &1865567187
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865567181}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -9.38, y: 3.3041065}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 22.849586, y: 10.8}
+    newSize: {x: 22.849586, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_EdgeRadius: 0
 --- !u!1 &1875589948
 GameObject:
   m_ObjectHideFlags: 0
@@ -17807,8 +17924,8 @@ MonoBehaviour:
   - {fileID: 4595371705300709105}
   - {fileID: 4595371704900212585}
   m_Bounds:
-    m_Center: {x: -0.14225483, y: 1.1569691, z: 0.0000076293945}
-    m_Extent: {x: 0.61712027, y: 1.0181222, z: 2.2737368e-13}
+    m_Center: {x: -0.14225477, y: 1.1569697, z: 0}
+    m_Extent: {x: 0.61712015, y: 1.0181222, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &4595371703974581379
@@ -17962,8 +18079,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4595371703851421310}
   m_Bounds:
-    m_Center: {x: -0.10024488, y: -0.050753474, z: 0.0000076293945}
-    m_Extent: {x: 0.9280857, y: 1.0763934, z: 0}
+    m_Center: {x: -0.10024679, y: -0.050753117, z: 0}
+    m_Extent: {x: 0.92808557, y: 1.0763931, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!4 &4595371704026659668
@@ -18718,7 +18835,7 @@ MonoBehaviour:
   - {fileID: 4595371704754372698}
   - {fileID: 4595371704905389451}
   m_Bounds:
-    m_Center: {x: -0.12461531, y: 1.9700966, z: 0.0000076293945}
+    m_Center: {x: -0.12461531, y: 1.9700973, z: 0}
     m_Extent: {x: 0.4433323, y: 0.3060305, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
