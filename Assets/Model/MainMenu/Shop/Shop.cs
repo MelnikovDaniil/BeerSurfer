@@ -28,6 +28,8 @@ public class Shop : MonoBehaviour
     public DummyView nextDummy;
 
     public Animator shopCharacterAnimator;
+    [Range(0f, 1f)]
+    public float inspectationChanse = 0.7f;
 
     private Animator _animator;
     private List<OutfitModel> shop;
@@ -110,6 +112,10 @@ public class Shop : MonoBehaviour
 
     private void ShowOutfit(OutfitType type, Sprite sprite)
     {
+        if (Random.value <= inspectationChanse)
+        {
+            shopCharacterAnimator.SetTrigger("inspect");
+        }
         SoundManager.PlaySound("button");
         var typeOutfit = availableOutfits.First(x => x.OutfitType == type);
         var index = typeOutfit.Sprites.IndexOf(sprite);
