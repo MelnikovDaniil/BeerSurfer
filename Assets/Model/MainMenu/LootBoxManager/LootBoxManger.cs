@@ -6,15 +6,20 @@ using UnityEngine.UI;
 
 public class LootBoxManger : MonoBehaviour
 {
+    [Range(0, 1f)]
+    public float outfitChanse = 0.6f;
     public OutfitLibrary outfitLibrary;
     public MainMenu mainMenu;
     public DummyView dummy;
+    public Image bonusImage;
     public GameObject notification;
     public Text notificationText;
     public GameObject returnShopButton;
 
     public Button byeLootboxButton;
     public Button openLootBoxButton;
+
+    public Sprite doubleBeerBonusSprite;
 
     public int lootboxCost = 300;
 
@@ -101,18 +106,33 @@ public class LootBoxManger : MonoBehaviour
     {
         openLootBoxButton.enabled = false;
         returnShopButton.SetActive(false);
+        bonusImage.enabled = false;
+        dummy.gameObject.SetActive(false);
+
         _animator.SetTrigger("show");
         var typeOutfit = GenerateRandomOutfit();
-        if (typeOutfit.type == OutfitType.Torso)
+        if (Random.value < outfitChanse && typeOutfit.outfit != null)
         {
-            var backHand = outfitLibrary.GetBackHand(typeOutfit.outfit);
-            dummy.ShowOutfit(typeOutfit.type, typeOutfit.outfit, backHand);
+            dummy.gameObject.SetActive(true);
+            if (typeOutfit.type == OutfitType.Torso)
+            {
+                var backHand = outfitLibrary.GetBackHand(typeOutfit.outfit);
+                dummy.ShowOutfit(typeOutfit.type, typeOutfit.outfit, backHand);
+            }
+            else
+            {
+                dummy.ShowOutfit(typeOutfit.type, typeOutfit.outfit);
+            }
+
+            OutfitMapper.SetAvailableOutfit(typeOutfit.outfit.name);
         }
         else
         {
-            dummy.ShowOutfit(typeOutfit.type, typeOutfit.outfit);
+            bonusImage.enabled = true;
+            bonusImage.sprite = doubleBeerBonusSprite;
+            DobleBeerBonusMapper.AddOne();
         }
-        OutfitMapper.SetAvailableOutfit(typeOutfit.outfit.name);
+
         LootBoxMapper.RemoveOne();
     }
 
@@ -131,9 +151,13 @@ public class LootBoxManger : MonoBehaviour
         var sprites = typeOutfits.SelectMany(x => x.sprites);
 
         sprites = sprites.Where(x => !OutfitMapper.IsOutfitAvailable(x.name));
-        var outfit = sprites.GetRandom();
-        var type = typeOutfits.First(x => x.sprites.Contains(outfit)).type;
+        var outfit = sprites.GetRandomOrDefault();
+        if (outfit == null)
+        {
+            return (null, default);
+        }
+
+        var type = typeOutfits.FirstOrDefault(x => x.sprites.Contains(outfit)).type;
         return (outfit, type);
     }
-
 }

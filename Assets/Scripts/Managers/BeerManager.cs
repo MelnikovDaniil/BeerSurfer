@@ -42,6 +42,10 @@ public class BeerManager : MonoBehaviour
     public Text beerCounterText;
     public Outline beerCounterOutline;
 
+    [Space(20)]
+    public Sprite doubleBeerSprite;
+    public bool doubleBeerBonus;
+
     private List<BeerView> pooledBeer;
     private float currentBeerGroupLenght;
 
@@ -107,7 +111,7 @@ public class BeerManager : MonoBehaviour
 
     private void GenerateWithoutObstacles(RoadPart roadPart)
     {
-        var beerSprite = beerSprites.GetRandom();
+        var beerSprite = GetBeerSprite();
         var beerCount = Random.Range(minMaxBeerOnScreen.constantMin, minMaxBeerOnScreen.constantMax);
 
         var x = -currentBeerGroupLenght / 2;
@@ -127,7 +131,7 @@ public class BeerManager : MonoBehaviour
 
     private void GenerateWithObstacle(RoadPart roadPart)
     {
-        var beerSprite = beerSprites.GetRandom();
+        var beerSprite = GetBeerSprite();
         var generationPattern = roadPart.obstacle.beerPatterns.GetRandom();
         var positions = GetBeerPositioForObstacle(generationPattern).ToList();
 
@@ -180,5 +184,15 @@ public class BeerManager : MonoBehaviour
     private void OnDifficultyChange(float difficultyCoof) 
     {
         currentBeerGroupLenght = (maxBeerGroupLength - beerGroupLength) * difficultyCoof + beerGroupLength;
+    }
+
+    private Sprite GetBeerSprite()
+    {
+        if (doubleBeerBonus)
+        {
+            return doubleBeerSprite;
+        }
+
+        return beerSprites.GetRandom();
     }
 }

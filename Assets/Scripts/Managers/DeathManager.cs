@@ -9,6 +9,7 @@ public class DeathManager : MonoBehaviour
     public void ShowDeathPanel()
     {
         gameObject.SetActive(true);
-        deathPanel.ShowDeathPanel(GameManager.beer, GameManager.score);
+        var beer = BeerManager.Instance.doubleBeerBonus ? GameManager.beer * 2 : GameManager.beer;
+        deathPanel.ShowDeathPanel(beer, GameManager.score);
     }
 }

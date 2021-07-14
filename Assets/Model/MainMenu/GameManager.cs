@@ -51,7 +51,8 @@ public class GameManager : MonoBehaviour
         {
             RecordMapper.Set(score);
         }
-        BeerMapper.Add(beer);
+        var finalBeer = BeerManager.Instance.doubleBeerBonus ? beer * 2 : beer;
+        BeerMapper.Add(finalBeer);
         Time.timeScale = 1;
         isPaused = false;
     }
@@ -86,6 +87,13 @@ public class GameManager : MonoBehaviour
             else
             {
                 SoundManager.PlayMusic("naruto");
+            }
+
+            if (DobleBeerBonusMapper.Get() > 0)
+            {
+                character.EnableDobleBeerBonus();
+                DobleBeerBonusMapper.RemoveOne();
+                BeerManager.Instance.doubleBeerBonus = true;
             }
         }
     }
