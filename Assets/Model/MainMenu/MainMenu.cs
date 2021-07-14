@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
 
     public Text beerText;
     public Text scoreText;
+    public Text discountText;
 
     public HangerView hanger;
     public OutfitManager outfitManager;
@@ -90,7 +91,15 @@ public class MainMenu : MonoBehaviour
 
     public void UpdateInfo()
     {
-        scoreText.text = "record: " + RecordMapper.Get();
+        discountText.transform.parent.gameObject.SetActive(false);
+        scoreText.text = RecordMapper.Get().ToString();
         beerText.text = BeerMapper.Get().ToString();
+
+        var discountCount = DobleBeerBonusMapper.Get();
+        if (discountCount > 0)
+        {
+            discountText.transform.parent.gameObject.SetActive(true);
+            discountText.text = discountCount.ToString();
+        }
     }
 }

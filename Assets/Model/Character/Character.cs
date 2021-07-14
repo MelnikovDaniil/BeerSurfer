@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     public float drinkRepeatTime = 10f;
     public SpriteRenderer phoneRenderer;
     public Sprite phoneSprite;
+    public GameObject discount;
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
@@ -32,6 +33,12 @@ public class Character : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        discount.SetActive(false);
+    }
+
+    public void EnableDobleBeerBonus()
+    {
+        discount.SetActive(true);
     }
 
     private void Start()
