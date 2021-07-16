@@ -17,7 +17,7 @@ MonoBehaviour:
   middleSprites:
   - {fileID: 21300000, guid: b9b860610e3237244abe0e2c2c10d100, type: 3}
   - {fileID: 21300000, guid: 224b78799ca577140badb8ba717f6686, type: 3}
-  - {fileID: 21300000, guid: 4f96bbe6a147c604ab0eb6dc5623734f, type: 3}
+  - {fileID: 21300000, guid: 9a020addeb2c36841816c86937601538, type: 3}
   finishSprite: {fileID: 21300000, guid: f0d63d1aacc9198498888211ec9c9727, type: 3}
   startFrontSprite: {fileID: 21300000, guid: 931e6347542f1544e827c263f0d81083, type: 3}
   middleFrontSprites: []
@@ -25,6 +25,10 @@ MonoBehaviour:
   Background:
   - {fileID: 21300000, guid: f9a3157c4ac557141b5b0990cc5dc852, type: 3}
   obstacles:
-  - {fileID: 934929739328717394, guid: be9c8343182a3c84a81429ec258c3ded, type: 3}
-  - {fileID: 4464380890191498860, guid: 7dac0d5b8f6bdbc4cb893b27a0b4c5bb, type: 3}
-  - {fileID: 8341250692927447904, guid: 4a028a4dae434384d84d6f3fced6a441, type: 3}
+  - {fileID: 5002005189406344660, guid: 3a131abaf58867f48940b8903fc4d94f, type: 3}
+  - {fileID: 2833709546195987714, guid: 4a3ce0c19abaaf64c870ab53b45514e9, type: 3}
+  - {fileID: 9040053250124612356, guid: fa724f1813e1bc64db863bfb771c3a93, type: 3}
+  - {fileID: 3517254461021005132, guid: 985f1c5b92acdc14c83d506041a9c8d3, type: 3}
+  - {fileID: 7675121766858561711, guid: 90e30496ae90eba4e86d3f362a75c2d2, type: 3}
+  - {fileID: 6301297970697652379, guid: 2a77e2fad9e06434c9203127c6d71fc5, type: 3}
+  - {fileID: 7149038898877951799, guid: 6676b75a84dc5664e8d734cb40514c21, type: 3}
