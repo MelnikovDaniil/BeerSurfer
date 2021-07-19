@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Assets.Scripts.Extension;
 using static UnityEngine.ParticleSystem;
 using UnityEngine.UI;
 
@@ -115,7 +114,7 @@ public class BeerManager : MonoBehaviour
         var beerCount = Random.Range(minMaxBeerOnScreen.constantMin, minMaxBeerOnScreen.constantMax);
 
         var x = -currentBeerGroupLenght / 2;
-        var beerGap = currentBeerGroupLenght / (beerCount - 1);
+        var beerGap = currentBeerGroupLenght / (beerCount + 1);
 
         for (var i = 0; i < beerCount; i++)
         {

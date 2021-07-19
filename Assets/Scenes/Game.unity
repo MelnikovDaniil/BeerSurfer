@@ -1879,6 +1879,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1348379027744051830, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411819280176878201, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411819280176878201, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225971290749881362, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.18128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225971290749881362, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.18128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225971290749881362, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.18128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225971290749881362, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225971290749881362, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599070958749172676, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_Name
+      value: ButtFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599070958749172676, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4595371703329329547, guid: 95e822bf6876be9409403846cd8be181, type: 3}
       propertyPath: m_Size.x
       value: 3.01
@@ -2162,6 +2202,14 @@ PrefabInstance:
     - target: {fileID: 4595371704457731055, guid: 95e822bf6876be9409403846cd8be181, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595371704479289501, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6684018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595371704479289501, guid: 95e822bf6876be9409403846cd8be181, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00053223525
       objectReference: {fileID: 0}
     - target: {fileID: 4595371704488792703, guid: 95e822bf6876be9409403846cd8be181, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22083,6 +22131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd71870fba306748a2e0e1533c71340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beerPatternLibrary: {fileID: 11400000, guid: ba108209b9c715840977dea1f3c1dbaa, type: 2}
   paralaxOffset: 19.2
   paralaxAdditionalBgSpeed: 4
   paralaxGroundSpeed: 10
@@ -22119,10 +22168,13 @@ MonoBehaviour:
     high: 0
   - type: 2
     high: 3.5
+  bonusChanse: 0.05
   lootboxStartScore: 2000
-  lootBoxStawnChange: 0.08
+  lootBoxStawnChanse: 1
   maxLootBoxByGame: 1
   lootBoxPrefab: {fileID: 1050437811656342860, guid: 414997a99cdd1324488bb28067f44d4c, type: 3}
+  pepperSpawnChanse: 1
+  pepperPrefab: {fileID: 1386839159968336761, guid: d8543bfc5c8a4ab468900d127adadd28, type: 3}
 --- !u!4 &1929615238
 Transform:
   m_ObjectHideFlags: 0
