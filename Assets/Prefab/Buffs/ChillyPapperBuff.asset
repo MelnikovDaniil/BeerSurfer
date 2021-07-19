@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31d67e6692ee834eb7c3b27a398561f, type: 3}
+  m_Name: ChillyPapperBuff
+  m_EditorClassIdentifier: 
+  Duration: 10
+  buffSound: {fileID: 8300000, guid: af491b873693893439158f2d0348f0cc, type: 3}
+  speedUpCoof: 2

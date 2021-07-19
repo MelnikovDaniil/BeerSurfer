@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,8 +17,14 @@ public class Character : MonoBehaviour
     public Sprite phoneSprite;
     public GameObject discount;
 
-    private Animator _animator;
-    private Rigidbody2D _rigidbody;
+
+    [NonSerialized]
+    public bool enableMovementActions;
+
+    [NonSerialized]
+    public Rigidbody2D rigidbody;
+    [NonSerialized]
+    public Animator animator;
 
     private Vector2? firstPressPos;
     private Vector2 secondPressPos;
@@ -25,14 +33,16 @@ public class Character : MonoBehaviour
     [NonSerialized]
     public bool isStartedRun = false;
 
+    private readonly List<TimedBuff> _buffs = new List<TimedBuff>();
+
     private bool isDead = false;
     private bool isGrounded = true;
     private bool isFalling = false;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody2D>();
         discount.SetActive(false);
     }
 
@@ -43,6 +53,7 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
+        enableMovementActions = true;
         if (Random.value > 0.5f)
         {
             phoneRenderer.sprite = phoneSprite;
@@ -58,7 +69,7 @@ public class Character : MonoBehaviour
         if (!isDead)
         {
 
-            if (Input.GetMouseButtonDown(0) && !GameManager.isPaused)
+            if (Input.GetMouseButtonDown(0) && !GameManager.isPaused && enableMovementActions)
             {
                 //save began touch 2d point
                 firstPressPos = Input.mousePosition;
@@ -93,15 +104,44 @@ public class Character : MonoBehaviour
                 firstPressPos = null;
             }
 
-            if (!isFalling && _rigidbody.velocity.y < 0)
+            if (!isFalling && rigidbody.velocity.y < 0)
             {
                 isFalling = true;
-                _animator.SetTrigger("fall");
+                animator.SetTrigger("fall");
             }
         }
         else
         {
             transform.position += Vector3.left * 10 * Time.deltaTime;
+        }
+
+        BuffUpdate();
+    }
+
+    public void AddBuff(TimedBuff buff)
+    {
+        if (!_buffs.Any(x => x.ToString() == buff.ToString()))
+        {
+            _buffs.Add(buff);
+            buff.Activate();
+        }
+        else
+        {
+            var item = _buffs.FirstOrDefault(x => x.ToString() == buff.ToString());
+            item.Update();
+        }
+    }
+
+    private void BuffUpdate()
+    {
+        var buffs = _buffs.ToArray();
+        foreach (var buff in buffs)
+        {
+            buff.Tick(Time.deltaTime);
+            if (buff.IsFinished)
+            {
+                _buffs.Remove(buff);
+            }
         }
     }
 
@@ -114,22 +154,22 @@ public class Character : MonoBehaviour
             {
                 isGrounded = false;
                 isFalling = false;
-                _animator.Play("Jump");
-                _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                animator.Play("Jump");
+                rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
         }
     }
     
     private void Slip()
     {
-        _animator.Play("Slip");
-        _rigidbody.velocity = Vector2.zero;
-        _rigidbody.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
+        animator.Play("Slip");
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
     }
 
     private void Death()
     {
-        _animator.SetTrigger("death");
+        animator.SetTrigger("death");
         isDead = true;
         OnDeathEvent?.Invoke();
     }
@@ -138,7 +178,7 @@ public class Character : MonoBehaviour
     {
         if (!isStartedRun)
         {
-            _animator.SetTrigger("beer");
+            animator.SetTrigger("beer");
         }
         else
         {
@@ -148,13 +188,13 @@ public class Character : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        _animator.SetBool("run", true);
+        animator.SetBool("run", true);
         isGrounded = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        _animator.SetBool("run", false);
+        animator.SetBool("run", false);
         isGrounded = false;
     }
 
@@ -172,6 +212,13 @@ public class Character : MonoBehaviour
         else if (collision.TryGetComponent<BeerView>(out var beer))
         {
             OnBeerPickUpEvent?.Invoke(beer);
+        }
+        else if (collision.TryGetComponent<BonusView>(out var bonus))
+        {
+            var buff = bonus.buffInitializator.InitializeBuff(gameObject);
+            AddBuff(buff);
+            bonus.PickUp();
+            Destroy(collision.gameObject);
         }
     }
 }
