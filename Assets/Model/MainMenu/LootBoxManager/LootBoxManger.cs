@@ -23,12 +23,18 @@ public class LootBoxManger : MonoBehaviour
 
     public int lootboxCost = 300;
 
+    [Space(20)]
+    public Animator statisticPanel;
+    public Text discountText;
+    public Text beerText;
+
     private Animator _animator;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         UpdateNotification();
+        UpdateInfo();
     }
 
     public void UpdateNotification()
@@ -43,6 +49,9 @@ public class LootBoxManger : MonoBehaviour
 
     public void OpenMenu()
     {
+        UpdateInfo();
+        statisticPanel.gameObject.SetActive(true);
+        statisticPanel.SetTrigger("showHide");
         openLootBoxButton.enabled = false;
         var lootBoxCount = LootBoxMapper.Get();
         notificationText.text = lootBoxCount.ToString();
@@ -61,6 +70,7 @@ public class LootBoxManger : MonoBehaviour
 
     public void HideMenu()
     {
+        statisticPanel.SetTrigger("showHide");
         openLootBoxButton.enabled = false;
         var lootBoxCount = LootBoxMapper.Get();
         if (lootBoxCount > 0)
@@ -89,6 +99,7 @@ public class LootBoxManger : MonoBehaviour
             byeLootboxButton.gameObject.SetActive(true);
         }
         UpdateNotification();
+        UpdateInfo();
     }
 
     public void ByeLootBox()
@@ -99,6 +110,7 @@ public class LootBoxManger : MonoBehaviour
         openLootBoxButton.enabled = true;
         _animator.SetTrigger("drop");
         UpdateNotification();
+        UpdateInfo();
         byeLootboxButton.gameObject.SetActive(false);
     }
 
@@ -159,5 +171,18 @@ public class LootBoxManger : MonoBehaviour
 
         var type = typeOutfits.FirstOrDefault(x => x.sprites.Contains(outfit)).type;
         return (outfit, type);
+    }
+
+    public void UpdateInfo()
+    {
+        discountText.transform.parent.gameObject.SetActive(false);
+        beerText.text = BeerMapper.Get().ToString();
+
+        var discountCount = DobleBeerBonusMapper.Get();
+        if (discountCount > 0)
+        {
+            discountText.transform.parent.gameObject.SetActive(true);
+            discountText.text = discountCount.ToString();
+        }
     }
 }
