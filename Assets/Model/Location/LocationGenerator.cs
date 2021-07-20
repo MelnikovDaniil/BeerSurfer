@@ -8,11 +8,15 @@ using Random = UnityEngine.Random;
 
 public class LocationGenerator : MonoBehaviour
 {
+    public static LocationGenerator Instance;
+    public static bool enableObstacleSpawn;
     public const int BgOrderingLayer1 = -12;
     public const int BgOrderingLayer2 = -13;
 
     public const int InnerRoadOrderingLayer = -10;
     public const int OpenRoadOrderingLayer = -11;
+
+    public BeerPatternLibrary beerPatternLibrary;
 
     public float paralaxOffset = 645;
     public float paralaxAdditionalBgSpeed = 4;
@@ -41,12 +45,18 @@ public class LocationGenerator : MonoBehaviour
     };
 
     [Space(20)]
+    [Range(0, 1)]
+    public float bonusChanse = 0.05f;
+    [Space(20)]
     public int lootboxStartScore;
-    [Range(0f, 1f)]
-    public float lootBoxStawnChange = 0.05f;
+    public int lootBoxStawnChanse = 1;
     public int maxLootBoxByGame = 1;
     public LootBoxItemView lootBoxPrefab;
 
+    [Space(20)]
+    public int pepperSpawnChanse = 1;
+    public BonusView pepperPrefab;
+    
     private ScriptableLocation currentLocation;
     private Queue<Sprite> roadQueue;
     private Queue<Sprite> frontQueue;
@@ -57,9 +67,15 @@ public class LocationGenerator : MonoBehaviour
 
     private float additionalBgSpeed;
     private float groundSpeed;
-    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
+        enableObstacleSpawn = true;
         DifficultyManger.OnDifficultyChange += OnDifficultyChange;
 
         currentBgOrdering = BgOrderingLayer1;
@@ -87,7 +103,23 @@ public class LocationGenerator : MonoBehaviour
         gameStarted = true;
     }
 
-    public void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
+    public void ClearRoad()
+    {
+        foreach (var road in paralaxGround)
+        {
+            road.Clear();
+        }
+    }
+
+    public void ClearRoad(RoadPart except)
+    {
+        foreach (var road in paralaxGround.Where(x => x != except))
+        {
+            road.Clear();
+        }
+    }
+
+    private void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
     {
         var vectorSpeed = Vector3.left * speed * Time.deltaTime;
         var itemsCount = paralaxItems.Count();
@@ -102,7 +134,7 @@ public class LocationGenerator : MonoBehaviour
         }
     }
 
-    public void FrontMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
+    private void FrontMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
     {
         var vectorSpeed = Vector3.left * speed * Time.deltaTime;
         var itemsCount = paralaxItems.Count();
@@ -118,7 +150,7 @@ public class LocationGenerator : MonoBehaviour
         }
     }
 
-    public void GroundMove(IEnumerable<RoadPart> paralaxItems, float speed)
+    private void GroundMove(IEnumerable<RoadPart> paralaxItems, float speed)
     {
         var vectorSpeed = Vector3.left * speed * Time.deltaTime;
         var itemsCount = paralaxItems.Count();
@@ -152,17 +184,19 @@ public class LocationGenerator : MonoBehaviour
                     road.EnableWalls();
                 }
 
-                var randomChanse = Random.value;
-                if (GameManager.score > lootboxStartScore && maxLootBoxByGame > 0 && randomChanse < lootBoxStawnChange)
-                {
-                    maxLootBoxByGame--;
-                    GenerateLootBox(road);
-                }
-                else if (randomChanse < obstacleChance)
+                if (enableObstacleSpawn && Random.value < obstacleChance)
                 {
                     GenerateObstacle(road);
                 }
-                BeerManager.Instance.GenerateBeer(road);
+
+                if (Random.value < bonusChanse)
+                {
+                    GenerateBonus(road);
+                }
+                else
+                {
+                    BeerManager.Instance.GenerateBeer(road);
+                }
             }
             road.transform.position += vectorSpeed;
         }
@@ -202,11 +236,47 @@ public class LocationGenerator : MonoBehaviour
         frontQueue.Enqueue(currentLocation.finishFrontSprite);
     }
 
-    private void GenerateLootBox(RoadPart roadPart)
+    private void GenerateBonus(RoadPart roadPart)
     {
-        var spawnedLootBox = Instantiate(lootBoxPrefab, roadPart.transform);
-        spawnedLootBox.transform.localPosition = new Vector3(0, 1);
-        roadPart.objectToRemove.Add(spawnedLootBox.gameObject);
+        var currentLootBoxSpawnChanse = GameManager.score > lootboxStartScore && maxLootBoxByGame > 0 ? lootBoxStawnChanse : 0;
+        var allBonusChanges = pepperSpawnChanse + currentLootBoxSpawnChanse;
+
+        var lootboxPersentChanse = (float)currentLootBoxSpawnChanse / allBonusChanges;
+        var pepperPersentChanse = (float)pepperSpawnChanse / allBonusChanges;
+
+        GameObject spawnedBonus = null;
+        var randomChanse = Random.value;
+        if (randomChanse < lootboxPersentChanse)
+        {
+            maxLootBoxByGame--;
+            spawnedBonus = Instantiate(lootBoxPrefab.gameObject, roadPart.transform);
+        }
+        else if (randomChanse < pepperPersentChanse + lootboxPersentChanse)
+        {
+            var spawnedPepper = Instantiate(pepperPrefab, roadPart.transform);
+            spawnedPepper.OnBonusPickUp += () => ClearRoad(roadPart);
+            spawnedBonus = spawnedPepper.gameObject;
+        }
+
+        var bonusPosition = Vector2.zero;
+        if (roadPart.obstacle != null)
+        {
+            var beerPatternType = roadPart.obstacle.beerPatterns.GetRandom();
+            var beerPositions = beerPatternLibrary.beerPatterns.First(x => x.type == beerPatternType).beerPositions;
+            bonusPosition = beerPositions[beerPositions.Count / 2];
+        }
+        else
+        {
+            bonusPosition = new Vector2(0, Random.Range(-3.3f, 3.3f));
+        }
+
+        spawnedBonus.transform.localPosition = bonusPosition;
+        roadPart.objectToRemove.Add(spawnedBonus.gameObject);
+    }
+
+    private void SpawnedBonus_OnBonusPickUp()
+    {
+        throw new NotImplementedException();
     }
 
     private void GenerateObstacle(RoadPart roadPart)
