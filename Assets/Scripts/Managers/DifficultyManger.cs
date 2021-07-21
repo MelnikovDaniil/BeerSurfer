@@ -12,6 +12,10 @@ public class DifficultyManger : MonoBehaviour
     public int maxScoreDifficulty = 8500;
     public float difficltUpdateTime = 2f;
 
+    private void Awake()
+    {
+        OnDifficultyChange = null;
+    }
 
     private void Start()
     {
@@ -20,7 +24,7 @@ public class DifficultyManger : MonoBehaviour
 
     public void ChangeDifference()
     {
-        differenceCoof = (float)GameManager.score / maxScoreDifficulty;
+        differenceCoof = Mathf.Clamp01((float)GameManager.score / maxScoreDifficulty);
         OnDifficultyChange?.Invoke(differenceCoof);
     }
 }

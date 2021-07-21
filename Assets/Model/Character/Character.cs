@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     public Sprite phoneSprite;
     public GameObject discount;
 
-
+    public GameObject maxSpeedParticles;
     [NonSerialized]
     public bool enableMovementActions;
 
@@ -25,13 +25,13 @@ public class Character : MonoBehaviour
     public Rigidbody2D rigidbody;
     [NonSerialized]
     public Animator animator;
+    [NonSerialized]
+    public bool isStartedRun = false;
 
     private Vector2? firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
 
-    [NonSerialized]
-    public bool isStartedRun = false;
 
     private readonly List<TimedBuff> _buffs = new List<TimedBuff>();
 
@@ -44,6 +44,7 @@ public class Character : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         discount.SetActive(false);
+        maxSpeedParticles.SetActive(false);
     }
 
     public void EnableDobleBeerBonus()
@@ -53,6 +54,7 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
+        DifficultyManger.OnDifficultyChange += OnDifficultyChange;
         enableMovementActions = true;
         if (Random.value > 0.5f)
         {
@@ -61,6 +63,14 @@ public class Character : MonoBehaviour
         else
         {
             InvokeRepeating(nameof(DrinkBeer), drinkRepeatTime, drinkRepeatTime);
+        }
+    }
+
+    private void OnDifficultyChange(float differenceCoof)
+    {
+        if (differenceCoof >= 1 && !maxSpeedParticles.activeSelf)
+        {
+            maxSpeedParticles.SetActive(true);
         }
     }
 
