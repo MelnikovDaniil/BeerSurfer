@@ -27703,13 +27703,11 @@ MonoBehaviour:
   paralaxGroundSpeed: 10
   speedDifferenceFactor: 1
   locations:
-  - {fileID: 11400000, guid: 529af6224d91bee4d83b079639d9b1a9, type: 2}
   - {fileID: 11400000, guid: f8857efea62b38745b694757ed110b70, type: 2}
   - {fileID: 11400000, guid: ca218e8207589e844892dcdb7aa6b321, type: 2}
   - {fileID: 11400000, guid: 4e1ecaacd7ac225418060a4684db322b, type: 2}
   - {fileID: 11400000, guid: 417780a89ccafad488bc1a512dc2db3c, type: 2}
   - {fileID: 11400000, guid: 7c2d1b80c4e65824baef6b15589db9cf, type: 2}
-  - {fileID: 11400000, guid: e628a0d336db1b1408e82e7756fbe00e, type: 2}
   locationLenght: 3
   paralaxFirstLayerBg:
   - {fileID: 616453513}
