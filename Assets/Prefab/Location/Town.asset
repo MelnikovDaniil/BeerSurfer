@@ -13,19 +13,24 @@ MonoBehaviour:
   m_Name: Town
   m_EditorClassIdentifier: 
   locationType: 0
-  startSprite: {fileID: 21300000, guid: 4004b1441cc182640b47664744322d0e, type: 3}
+  startSprite: {fileID: 21300000, guid: 30ef556be1d09dc448d20e3eee86f9f0, type: 3}
   middleSprites:
-  - {fileID: 21300000, guid: e301db6915735034f8423a2e73c2e3a8, type: 3}
-  - {fileID: 21300000, guid: 84fa743a756a4984aae6c45dbd762164, type: 3}
-  finishSprite: {fileID: 21300000, guid: c87a6ea913eea0144a4eea40d0bffab2, type: 3}
+  - {fileID: 21300000, guid: 9fbdb0d24f654c543b489f5a2291efd8, type: 3}
+  - {fileID: 21300000, guid: 44541f0378ab6f547b4b44a791f452ee, type: 3}
+  - {fileID: 21300000, guid: cdddfe63be66b394393dce73d66d6678, type: 3}
+  - {fileID: 21300000, guid: e238da49c0c11b44d92b71055549ade4, type: 3}
+  finishSprite: {fileID: 21300000, guid: e3fa967406877184b9615bb818296aac, type: 3}
   startFrontSprite: {fileID: 0}
   middleFrontSprites: []
   finishFrontSprite: {fileID: 0}
   Background:
-  - {fileID: 21300000, guid: c57e71ec6d2807b418794f6798f918e0, type: 3}
+  - {fileID: 21300000, guid: 7202136e95f5d1c4b94f3d9fe3984922, type: 3}
   obstacles:
   - {fileID: 2250628000756136788, guid: 89cdd6672ae71844bbad753e8e0a323e, type: 3}
   - {fileID: 1197073523101192381, guid: 0fe8864d08631694bb6a82c9f99ef1bb, type: 3}
-  - {fileID: 510804433816719892, guid: f37ec31f7faa9014a978ce3c6eaf462b, type: 3}
-  - {fileID: 8484494182024668634, guid: ee8bb654e89210d418686e9b9d852e02, type: 3}
+  - {fileID: 7504280671732277608, guid: f37ec31f7faa9014a978ce3c6eaf462b, type: 3}
+  - {fileID: 2577414099305899298, guid: c8ea585c0ff29374e943d80a6bad3dec, type: 3}
   - {fileID: 6600470634985652886, guid: d3428f90a6e71ae41a1a746b629dd37a, type: 3}
+  - {fileID: 8470292493484857871, guid: d27f866680cd41e4a8709d076bdc7005, type: 3}
+  - {fileID: 8484494182024668634, guid: 0001898593b11684e80c3216cdd80bd2, type: 3}
+  - {fileID: 2424730797529584756, guid: cd0d9a932f65e1f478eea7ef73832742, type: 3}
