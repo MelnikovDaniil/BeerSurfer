@@ -16,6 +16,7 @@ public class TvView : MonoBehaviour
     public TextMeshPro recordText;
     public TextMeshPro beerText;
     public TextMeshPro beerBonusText;
+    public TextMeshPro batText;
 
     private List<GameObject> elements;
 
@@ -52,6 +53,7 @@ public class TvView : MonoBehaviour
         var record = RecordMapper.Get();
         var beer = BeerMapper.Get();
         var dobleBeerBonus = DobleBeerBonusMapper.Get();
+        var bats = BatBonusMapper.Get();
 
         if (record == 0)
         {
@@ -70,6 +72,13 @@ public class TvView : MonoBehaviour
             {
                 beerBonusText.text = dobleBeerBonus.ToString();
                 elements.Add(beerBonusText.transform.parent.gameObject);
+            }
+
+
+            if (bats > 0)
+            {
+                batText.text = bats.ToString();
+                elements.Add(batText.transform.parent.gameObject);
             }
 
             return elements;

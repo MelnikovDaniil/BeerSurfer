@@ -56,7 +56,10 @@ public class LocationGenerator : MonoBehaviour
     [Space(20)]
     public int pepperSpawnChanse = 1;
     public BonusView pepperPrefab;
-    
+    [Space(20)]
+    public int batSpawnChanse = 1;
+    public BonusView batPrefab;
+
     private ScriptableLocation currentLocation;
     private Queue<Sprite> roadQueue;
     private Queue<Sprite> frontQueue;
@@ -239,10 +242,11 @@ public class LocationGenerator : MonoBehaviour
     private void GenerateBonus(RoadPart roadPart)
     {
         var currentLootBoxSpawnChanse = GameManager.score > lootboxStartScore && maxLootBoxByGame > 0 ? lootBoxStawnChanse : 0;
-        var allBonusChanges = pepperSpawnChanse + currentLootBoxSpawnChanse;
+        var allBonusChanges = pepperSpawnChanse + currentLootBoxSpawnChanse + batSpawnChanse;
 
         var lootboxPersentChanse = (float)currentLootBoxSpawnChanse / allBonusChanges;
         var pepperPersentChanse = (float)pepperSpawnChanse / allBonusChanges;
+        var batPersentChanse = (float)batSpawnChanse / allBonusChanges;
 
         GameObject spawnedBonus = null;
         var randomChanse = Random.value;
@@ -256,6 +260,10 @@ public class LocationGenerator : MonoBehaviour
             var spawnedPepper = Instantiate(pepperPrefab, roadPart.transform);
             spawnedPepper.OnBonusPickUp += () => ClearRoad(roadPart);
             spawnedBonus = spawnedPepper.gameObject;
+        }
+        else if (randomChanse < pepperPersentChanse + lootboxPersentChanse + batPersentChanse)
+        {
+            spawnedBonus = Instantiate(batPrefab.gameObject, roadPart.transform);
         }
 
         var bonusPosition = Vector2.zero;
