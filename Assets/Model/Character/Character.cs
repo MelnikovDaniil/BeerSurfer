@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Character : MonoBehaviour
@@ -13,9 +15,14 @@ public class Character : MonoBehaviour
     public float jumpForce;
     public float sensitive = 0.3f;
     public float drinkRepeatTime = 10f;
+    public float batCharge = 5f;
     public SpriteRenderer phoneRenderer;
     public Sprite phoneSprite;
     public GameObject discount;
+    public Animator bitAnimator;
+    public Text batText;
+    public Image batIcon;
+    public BitBuff batBuff;
 
     public GameObject maxSpeedParticles;
     [NonSerialized]
@@ -27,11 +34,19 @@ public class Character : MonoBehaviour
     public Animator animator;
     [NonSerialized]
     public bool isStartedRun = false;
+    [NonSerialized]
+    public bool bitEnabled = false;
+
+    public ParticleSystem crushParticlesPrefab;
 
     private Vector2? firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
 
+    private float clicked = 0;
+    private float clicktime = 0;
+    private float clickdelay = 0.5f;
+    private float currentBatCharge;
 
     private readonly List<TimedBuff> _buffs = new List<TimedBuff>();
 
@@ -78,12 +93,43 @@ public class Character : MonoBehaviour
     {
         if (!isDead)
         {
+            if (currentBatCharge > 0)
+            {
+                currentBatCharge -= Time.deltaTime;
+                var coof = 1f - (currentBatCharge / batCharge);
+                batIcon.fillAmount = coof;
+                if (currentBatCharge <= 0)
+                {
+                    batText.transform.parent.gameObject.SetActive(false);
+                }
+            }
 
             if (Input.GetMouseButtonDown(0) && !GameManager.isPaused && enableMovementActions)
             {
+                clicked++;
+                if (clicked == 1) clicktime = Time.time;
                 //save began touch 2d point
                 firstPressPos = Input.mousePosition;
             }
+            if (clicked > 1 && Time.time - clicktime < clickdelay)
+            {
+                clicked = 0;
+                clicktime = 0;
+                if (isStartedRun && !bitEnabled && BatBonusMapper.Get() > 0 && currentBatCharge <= 0)
+                {
+                    currentBatCharge = 5;
+                    BatBonusMapper.RemoveOne();
+                    batText.transform.parent.gameObject.SetActive(true);
+                    batText.text = BatBonusMapper.Get().ToString();
+                    var bat = batBuff.InitializeBuff(gameObject);
+                    AddBuff(bat);
+                }
+            }
+            else if (clicked > 2 || Time.time - clicktime > 1)
+            {
+                clicked = 0;
+            }
+
             if (firstPressPos != null && Input.GetMouseButton(0))
             {
                 //save ended touch 2d point
@@ -140,6 +186,21 @@ public class Character : MonoBehaviour
             var item = _buffs.FirstOrDefault(x => x.ToString() == buff.ToString());
             item.Update();
         }
+    }
+
+    public void ActivateBit()
+    {
+        if (!bitEnabled)
+        {
+            bitEnabled = true;
+            bitAnimator.SetBool("active", true);
+        }
+    }
+
+    public void DeactivateBit()
+    {
+        bitEnabled = false;
+        bitAnimator.SetBool("active", false);
     }
 
     private void BuffUpdate()
@@ -212,7 +273,22 @@ public class Character : MonoBehaviour
     {
         if (collision.GetComponent<Obstacle>() || collision.tag == "Road")
         {
-            Death();
+            if (bitEnabled && collision.tag != "Road")
+            {
+                var chushParitcles = Instantiate(
+                    crushParticlesPrefab,
+                    collision.transform.parent);
+                crushParticlesPrefab.transform.localPosition = new Vector3(collision.transform.localPosition.x, 0);
+                Destroy(chushParitcles.gameObject, 1f);
+                Destroy(collision.gameObject);
+                var bat = _buffs.First(x => x.Buff.Name == "Bat");
+                bat.End();
+                _buffs.Remove(bat);
+            }
+            else
+            {
+                Death();
+            }
         }
         else if (collision.GetComponent<LootBoxItemView>())
         {

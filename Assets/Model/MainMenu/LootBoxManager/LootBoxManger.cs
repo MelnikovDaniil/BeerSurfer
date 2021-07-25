@@ -20,12 +20,14 @@ public class LootBoxManger : MonoBehaviour
     public Button openLootBoxButton;
 
     public Sprite doubleBeerBonusSprite;
+    public Sprite batSprite;
 
     public int lootboxCost = 300;
 
     [Space(20)]
     public Animator statisticPanel;
     public Text discountText;
+    public Text batText;
     public Text beerText;
 
     private Animator _animator;
@@ -141,8 +143,16 @@ public class LootBoxManger : MonoBehaviour
         else
         {
             bonusImage.enabled = true;
-            bonusImage.sprite = doubleBeerBonusSprite;
-            DobleBeerBonusMapper.AddOne();
+            if (Random.value < 0.5f)
+            {
+                bonusImage.sprite = batSprite;
+                BatBonusMapper.AddOne();
+            }
+            else
+            {
+                bonusImage.sprite = doubleBeerBonusSprite;
+                DobleBeerBonusMapper.AddOne();
+            }
         }
 
         LootBoxMapper.RemoveOne();
@@ -176,6 +186,7 @@ public class LootBoxManger : MonoBehaviour
     public void UpdateInfo()
     {
         discountText.transform.parent.gameObject.SetActive(false);
+        batText.transform.parent.gameObject.SetActive(false);
         beerText.text = BeerMapper.Get().ToString();
 
         var discountCount = DobleBeerBonusMapper.Get();
@@ -183,6 +194,13 @@ public class LootBoxManger : MonoBehaviour
         {
             discountText.transform.parent.gameObject.SetActive(true);
             discountText.text = discountCount.ToString();
+        }
+
+        var batCount = BatBonusMapper.Get();
+        if (batCount > 0)
+        {
+            batText.transform.parent.gameObject.SetActive(true);
+            batText.text = batCount.ToString();
         }
     }
 }
