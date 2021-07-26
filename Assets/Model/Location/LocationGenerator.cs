@@ -26,7 +26,8 @@ public class LocationGenerator : MonoBehaviour
 
     [Space(20)]
     public List<ScriptableLocation> locations;
-    public int locationLenght = 10;
+    public int innerLocationLenght = 5;
+    public int outerLocationLenght = 10;
 
     [Space(20)]
     public List<SpriteRenderer> paralaxFirstLayerBg;
@@ -230,6 +231,7 @@ public class LocationGenerator : MonoBehaviour
         roadQueue.Enqueue(currentLocation.startSprite);
         frontQueue.Enqueue(currentLocation.startFrontSprite);
 
+        var locationLenght = currentLocation.locationType == LocationType.Inner ? innerLocationLenght : outerLocationLenght; 
         for (var i = 0; i < locationLenght; i++)
         {
             roadQueue.Enqueue(currentLocation.middleSprites.GetRandom());
