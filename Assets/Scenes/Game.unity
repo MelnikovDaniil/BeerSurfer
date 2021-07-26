@@ -28466,8 +28466,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beerPatternLibrary: {fileID: 11400000, guid: ba108209b9c715840977dea1f3c1dbaa, type: 2}
   paralaxOffset: 19.2
-  paralaxAdditionalBgSpeed: 4
-  paralaxGroundSpeed: 10
+  paralaxAdditionalBgSpeed: 3
+  paralaxGroundSpeed: 8
   speedDifferenceFactor: 1
   locations:
   - {fileID: 11400000, guid: 529af6224d91bee4d83b079639d9b1a9, type: 2}
@@ -28588,8 +28588,8 @@ MonoBehaviour:
   brownColor: {r: 0.9725491, g: 0.70980394, b: 0.23529413, a: 1}
   brownOutlineColor: {r: 0.57254905, g: 0.24705884, b: 0.1764706, a: 1}
   beerPrefab: {fileID: 2708121801915106583, guid: c49a2430486fa2a4e86d9e42cdf91b5f, type: 3}
-  beerGroupLength: 10
-  maxBeerGroupLength: 20
+  beerGroupLength: 8
+  maxBeerGroupLength: 16
   beeerSpawnHeight: -2
   minMaxBeerOnScreen:
     m_Mode: 3
