@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MarketNew
   m_EditorClassIdentifier: 
   locationType: 1
-  startSprite: {fileID: 21300000, guid: bc6ef1efea579c44a8ae5fc2cab3c1df, type: 3}
+  startSprite: {fileID: 21300000, guid: 07254c21588948844bf19ba92de923ec, type: 3}
   middleSprites:
   - {fileID: 21300000, guid: fe389d8fcba79ab4cac8ade986c3613d, type: 3}
   - {fileID: 21300000, guid: 868fdc0dfd677a343a2cbf22520b40a5, type: 3}
