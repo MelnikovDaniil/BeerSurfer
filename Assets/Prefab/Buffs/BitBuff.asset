@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3233a4cc1b759c40bc959aa5085d43a, type: 3}
   m_Name: BitBuff
   m_EditorClassIdentifier: 
-  Duration: 10
+  sprite: {fileID: 21300000, guid: 3907acd25864ee346bf1c77226362d1b, type: 3}
+  duration: 10
   buffSound: {fileID: 8300000, guid: af491b873693893439158f2d0348f0cc, type: 3}

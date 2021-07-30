@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31d67e6692ee834eb7c3b27a398561f, type: 3}
   m_Name: ChillyPapperBuff
   m_EditorClassIdentifier: 
-  Duration: 10
+  sprite: {fileID: 21300000, guid: 6a995f66f3d552d4e9a37157be081686, type: 3}
+  duration: 10
   buffSound: {fileID: 8300000, guid: af491b873693893439158f2d0348f0cc, type: 3}
   speedUpCoof: 2

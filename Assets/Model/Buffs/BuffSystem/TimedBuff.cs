@@ -6,7 +6,7 @@ public abstract class TimedBuff
     public ScriptableBuff Buff;
     public bool IsFinished;
 
-    protected float Duration;
+    public float Duration;
     protected GameObject obj;
 
     public TimedBuff(float duration, ScriptableBuff buff, GameObject obj)
@@ -35,7 +35,7 @@ public abstract class TimedBuff
 
     public void Update()
     {
-        Duration = Buff.Duration;
+        Duration = Buff.duration;
     }
 
     public abstract void Activate();

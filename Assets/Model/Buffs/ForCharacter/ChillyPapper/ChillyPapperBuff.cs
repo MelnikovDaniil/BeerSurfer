@@ -9,6 +9,6 @@ public class ChillyPapperBuff : ScriptableBuff
 
     public override TimedBuff InitializeBuff(GameObject obj)
     {
-        return new TimedChillyPapperBuff(Duration, this, obj);
+        return new TimedChillyPapperBuff(duration, this, obj);
     }
 }
