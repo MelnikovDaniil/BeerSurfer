@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8208494000535448049}
   - component: {fileID: 1197073523101192381}
-  - component: {fileID: 7186058332190526073}
+  - component: {fileID: 4128362511419912387}
   m_Layer: 0
   m_Name: CarObstacle
   m_TagString: Untagged
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleType: 0
   beerPatterns: 00000000
---- !u!61 &7186058332190526073
-BoxCollider2D:
+--- !u!60 &4128362511419912387
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -60,7 +60,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07055497, y: 0.9611157}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -70,9 +70,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.3470144, y: 1.676954}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.7213977, y: 2.020699}
+      - {x: -2.471449, y: 1.2725818}
+      - {x: -2.6428304, y: 0.34895718}
+      - {x: 2.7758496, y: 0.34895778}
+      - {x: 2.5700436, y: 1.25405}
+      - {x: 0.9408325, y: 2.0093236}
 --- !u!1 &332435679466104783
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 332435679466104783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.13, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 8208494000535448049}
   m_RootOrder: 0

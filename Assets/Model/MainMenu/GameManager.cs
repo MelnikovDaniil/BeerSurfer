@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         BeerMapper.Add(finalBeer);
         Time.timeScale = 1;
         isPaused = false;
+        beer = 0;
     }
 
     private void Start()

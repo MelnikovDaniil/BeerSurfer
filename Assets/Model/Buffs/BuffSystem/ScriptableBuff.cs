@@ -4,7 +4,9 @@ public abstract class ScriptableBuff : ScriptableObject
 {
     public virtual string Name { get; }
 
-    public float Duration;
+    public Sprite sprite;
+
+    public float duration;
 
     public AudioClip buffSound;
 

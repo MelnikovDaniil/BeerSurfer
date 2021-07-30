@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9077614712170732805}
   - component: {fileID: 2057190340995327049}
-  - component: {fileID: 8046320972278480525}
+  - component: {fileID: 474192490452900290}
   m_Layer: 0
   m_Name: Cactus1Obstacle
   m_TagString: Untagged
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleType: 0
   beerPatterns: 00000000
---- !u!61 &8046320972278480525
-BoxCollider2D:
+--- !u!60 &474192490452900290
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -142,7 +142,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06729007, y: 1.3353179}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -152,6 +152,10 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.937096, y: 3.1383204}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.6960147, y: 3.3628805}
+      - {x: -1.4713664, y: 1.0220342}
+      - {x: -0.22009382, y: -0.28046072}
+      - {x: 1.897686, y: -0.23449922}
+      - {x: 1.5099078, y: 2.6985884}

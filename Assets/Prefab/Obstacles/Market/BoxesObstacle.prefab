@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7554870191845144434}
   - component: {fileID: 697771665722052158}
   - component: {fileID: 3762786680606827180}
+  - component: {fileID: 4271643847552388732}
   m_Layer: 0
   m_Name: BoxesObstacle
   m_TagString: Untagged
@@ -72,14 +73,38 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.4911001, y: 1.138169}
-      - {x: 0.8719272, y: 1.1894848}
-      - {x: 0.87220603, y: 2.5624802}
+    - - {x: -1.5503516, y: -0.18900967}
+      - {x: -0.36308652, y: -0.24829245}
+      - {x: -0.28907555, y: 2.488748}
       - {x: -0.5418681, y: 2.5998013}
       - {x: -0.64141756, y: 1.3153434}
       - {x: -1.5167023, y: 1.1778328}
-      - {x: -1.5022777, y: -0.24134564}
-      - {x: 1.6993506, y: -0.4134739}
+--- !u!61 &4271643847552388732
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987849870371947290}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.19, y: 2.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 0.37}
+  m_EdgeRadius: 0
 --- !u!1 &2138976562638551372
 GameObject:
   m_ObjectHideFlags: 0

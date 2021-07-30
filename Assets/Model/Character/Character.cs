@@ -15,13 +15,11 @@ public class Character : MonoBehaviour
     public float jumpForce;
     public float sensitive = 0.3f;
     public float drinkRepeatTime = 10f;
-    public float batCharge = 5f;
+    public float batCharge = 10;
     public SpriteRenderer phoneRenderer;
     public Sprite phoneSprite;
     public GameObject discount;
     public Animator bitAnimator;
-    public Text batText;
-    public Image batIcon;
     public BitBuff batBuff;
 
     public GameObject maxSpeedParticles;
@@ -39,20 +37,22 @@ public class Character : MonoBehaviour
 
     public ParticleSystem crushParticlesPrefab;
 
+    public BatCounter batCounter;
+
     private Vector2? firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
 
     private float clicked = 0;
     private float clicktime = 0;
-    private float clickdelay = 0.5f;
-    private float currentBatCharge;
+    private float clickdelay = 0.3f;
 
     private readonly List<TimedBuff> _buffs = new List<TimedBuff>();
 
     private bool isDead = false;
     private bool isGrounded = true;
     private bool isFalling = false;
+    private float currentBatCharge;
 
     private void Awake()
     {
@@ -96,12 +96,6 @@ public class Character : MonoBehaviour
             if (currentBatCharge > 0)
             {
                 currentBatCharge -= Time.deltaTime;
-                var coof = 1f - (currentBatCharge / batCharge);
-                batIcon.fillAmount = coof;
-                if (currentBatCharge <= 0)
-                {
-                    batText.transform.parent.gameObject.SetActive(false);
-                }
             }
 
             if (Input.GetMouseButtonDown(0) && !GameManager.isPaused && enableMovementActions)
@@ -117,12 +111,11 @@ public class Character : MonoBehaviour
                 clicktime = 0;
                 if (isStartedRun && !bitEnabled && BatBonusMapper.Get() > 0 && currentBatCharge <= 0)
                 {
-                    currentBatCharge = 5;
                     BatBonusMapper.RemoveOne();
-                    batText.transform.parent.gameObject.SetActive(true);
-                    batText.text = BatBonusMapper.Get().ToString();
                     var bat = batBuff.InitializeBuff(gameObject);
                     AddBuff(bat);
+                    currentBatCharge = batBuff.duration + batCharge;
+                    batCounter.SetCooldown(currentBatCharge);
                 }
             }
             else if (clicked > 2 || Time.time - clicktime > 1)
@@ -144,12 +137,14 @@ public class Character : MonoBehaviour
                 //swipe left
                 if (currentSwipe.y > 0 && currentSwipe.x > -sensitive && currentSwipe.x < sensitive)
                 {
+                    clicked = 0;
                     firstPressPos = null;
                     Jump();
                 }
                 //swipe right
                 if (isStartedRun && currentSwipe.y < 0 && currentSwipe.x > -sensitive && currentSwipe.x < sensitive)
                 {
+                    clicked = 0;
                     firstPressPos = null;
                     Slip();
                 }
@@ -180,6 +175,7 @@ public class Character : MonoBehaviour
         {
             _buffs.Add(buff);
             buff.Activate();
+            UIManager.AddBuff(buff);
         }
         else
         {
@@ -283,6 +279,7 @@ public class Character : MonoBehaviour
                 Destroy(collision.gameObject);
                 var bat = _buffs.First(x => x.Buff.Name == "Bat");
                 bat.End();
+                bat.IsFinished = true;
                 _buffs.Remove(bat);
             }
             else

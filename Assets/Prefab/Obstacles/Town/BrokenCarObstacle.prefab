@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7504280671193431612}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.13, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 7504280671732277611}
   m_RootOrder: 0
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7504280671732277611}
   - component: {fileID: 7504280671732277608}
-  - component: {fileID: 7504280671732277609}
+  - component: {fileID: 8212525381382548034}
   m_Layer: 0
   m_Name: BrokenCarObstacle
   m_TagString: Untagged
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleType: 0
   beerPatterns: 00000000
---- !u!61 &7504280671732277609
-BoxCollider2D:
+--- !u!60 &8212525381382548034
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,7 +143,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07055497, y: 0.9611157}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -153,9 +153,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.5442944, y: 1.676954}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.5461583, y: 2.0923166}
+      - {x: -2.4106536, y: 1.3122842}
+      - {x: -2.7086701, y: 0.2737757}
+      - {x: 2.6832001, y: 0.33308768}
+      - {x: 2.703411, y: 0.90592575}
+      - {x: 0.86101365, y: 2.1249485}
 --- !u!1001 &7504280670816050848
 PrefabInstance:
   m_ObjectHideFlags: 0
