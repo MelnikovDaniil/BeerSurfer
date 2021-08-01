@@ -128,6 +128,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SecondLife()
+    {
+        Time.timeScale = 1;
+        gameEnded = false;
+        character.SecondLife();
+        LocationGenerator.Instance.ClearRoad();
+    }
 
     private void StopPoits()
     {
