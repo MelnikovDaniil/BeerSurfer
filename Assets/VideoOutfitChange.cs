@@ -42,6 +42,14 @@ public class VideoOutfitChange : MonoBehaviour
         InvokeRepeating(nameof(SetRandomSkin), delay, outfitGap);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CancelInvoke();
+        }
+    }
+
     private void SetRandomSkin()
     {
         foreach (var item in outfitModels)
