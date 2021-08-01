@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0
   outfitGap: 2
+  changeOutfitByKeyDown: 1
   outfitLibrary: {fileID: 11400000, guid: 4ea33d682e62a3f4cb7f127810eb7209, type: 2}
   characterBackHand: {fileID: 1214150317}
   characterBoots: {fileID: 1247975048}

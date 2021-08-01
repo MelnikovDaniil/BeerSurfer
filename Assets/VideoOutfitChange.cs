@@ -7,6 +7,8 @@ public class VideoOutfitChange : MonoBehaviour
 {
     public float delay;
     public float outfitGap;
+    public bool changeOutfitByKeyDown;
+
 
     [Space(20)]
     public OutfitLibrary outfitLibrary;
@@ -39,7 +41,10 @@ public class VideoOutfitChange : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(SetRandomSkin), delay, outfitGap);
+        if (!changeOutfitByKeyDown)
+        {
+            InvokeRepeating(nameof(SetRandomSkin), delay, outfitGap);
+        }
     }
 
     private void Update()
@@ -47,6 +52,11 @@ public class VideoOutfitChange : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CancelInvoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.D) && changeOutfitByKeyDown)
+        {
+            SetRandomSkin();
         }
     }
 
