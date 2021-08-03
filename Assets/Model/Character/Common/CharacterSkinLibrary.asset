@@ -141,7 +141,7 @@ MonoBehaviour:
       m_Sprite: {fileID: -7851974934738288565, guid: c05fa3707bb0e5a408dfa2348a69cbfb, type: 3}
     - m_Name: original_legs
       m_Hash: -143841092
-      m_Sprite: {fileID: -3110563093439604129, guid: 099ccdbf9cceb93459709b04074e0c8d, type: 3}
+      m_Sprite: {fileID: 4507085174563966144, guid: ebbdbeaa8682eae4bbb5c55b78a2781c, type: 3}
     - m_Name: Zabivnoy_Legs
       m_Hash: 2067412112
       m_Sprite: {fileID: 1073332059938789926, guid: 71f6354c4c3efd3489ba7e5bf059f7d6, type: 3}
