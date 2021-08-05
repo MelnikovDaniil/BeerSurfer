@@ -26,7 +26,6 @@ MonoBehaviour:
   Background:
   - {fileID: 21300000, guid: 7202136e95f5d1c4b94f3d9fe3984922, type: 3}
   obstacles:
-  - {fileID: 2250628000756136788, guid: 89cdd6672ae71844bbad753e8e0a323e, type: 3}
   - {fileID: 1197073523101192381, guid: 0fe8864d08631694bb6a82c9f99ef1bb, type: 3}
   - {fileID: 7504280671732277608, guid: f37ec31f7faa9014a978ce3c6eaf462b, type: 3}
   - {fileID: 2577414099305899298, guid: c8ea585c0ff29374e943d80a6bad3dec, type: 3}
