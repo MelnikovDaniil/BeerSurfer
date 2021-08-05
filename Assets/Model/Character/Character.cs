@@ -201,11 +201,18 @@ public class Character : MonoBehaviour
         bitAnimator.SetBool("active", false);
     }
 
-    public void SecondLife()
+    public void SecondLife(float delay)
     {
-        animator.Play("Run");
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.Play("SecondLife");
         isDead = false;
         transform.position = startPosition;
+        Invoke(nameof(SecondLifeEnd), delay);
+    }
+
+    public void SecondLifeEnd()
+    {
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     private void BuffUpdate()

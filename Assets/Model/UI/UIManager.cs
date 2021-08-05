@@ -10,11 +10,13 @@ public class UIManager : MonoBehaviour
     public int bonusCount;
     public Transform bonusPanel;
 
+    private Animator _animator;
     private List<UIBonusView> bonuses;
 
     private void Awake()
     {
         Instance = this;
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -32,5 +34,10 @@ public class UIManager : MonoBehaviour
     {
         var view = Instance.bonuses.First(x => !x.IsActive);
         view.Show(timedBuff);
+    }
+
+    public static void Blind()
+    {
+        Instance._animator.SetTrigger("blind");
     }
 }
