@@ -120,9 +120,9 @@ public class GameManager : MonoBehaviour
 
         if (gameEnded)
         {
-            if ((Time.timeScale - Time.fixedDeltaTime) > 0)
+            if ((Time.timeScale - Time.deltaTime) > 0)
             {
-                Time.timeScale -= Time.fixedDeltaTime;
+                Time.timeScale -= Time.deltaTime;
             }
             else
             {

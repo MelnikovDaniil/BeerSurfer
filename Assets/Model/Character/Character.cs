@@ -212,7 +212,7 @@ public class Character : MonoBehaviour
 
     public void SecondLifeEnd()
     {
-        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.updateMode = AnimatorUpdateMode.Normal;
     }
 
     private void BuffUpdate()
