@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public CanvasGroup uiCanvasGroup;
     public HangerView hangerView;
 
+    [Space(20)]
+    public float secondLifeDelay = 2;
+
     private bool gameStarted;
     private bool gameEnded;
     private float timeScale;
@@ -117,9 +120,9 @@ public class GameManager : MonoBehaviour
 
         if (gameEnded)
         {
-            if ((Time.timeScale - Time.fixedDeltaTime) > 0)
+            if ((Time.timeScale - Time.deltaTime) > 0)
             {
-                Time.timeScale -= Time.fixedDeltaTime;
+                Time.timeScale -= Time.deltaTime;
             }
             else
             {
@@ -128,6 +131,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SecondLife()
+    {
+        gameEnded = false;
+        character.SecondLife(secondLifeDelay);
+        LocationGenerator.Instance.ClearRoad();
+        UIManager.Blind();
+        StartCoroutine(SecondLifeEnd());
+    }
+
+    public IEnumerator SecondLifeEnd()
+    {
+        yield return new WaitForSecondsRealtime(secondLifeDelay);
+        Time.timeScale = 1;
+    }
 
     private void StopPoits()
     {

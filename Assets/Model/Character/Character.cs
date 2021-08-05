@@ -53,6 +53,7 @@ public class Character : MonoBehaviour
     private bool isGrounded = true;
     private bool isFalling = false;
     private float currentBatCharge;
+    private Vector2 startPosition;
 
     private void Awake()
     {
@@ -60,6 +61,7 @@ public class Character : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         discount.SetActive(false);
         maxSpeedParticles.SetActive(false);
+        startPosition = transform.position;
     }
 
     public void EnableDobleBeerBonus()
@@ -197,6 +199,20 @@ public class Character : MonoBehaviour
     {
         bitEnabled = false;
         bitAnimator.SetBool("active", false);
+    }
+
+    public void SecondLife(float delay)
+    {
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.Play("SecondLife");
+        isDead = false;
+        transform.position = startPosition;
+        Invoke(nameof(SecondLifeEnd), delay);
+    }
+
+    public void SecondLifeEnd()
+    {
+        animator.updateMode = AnimatorUpdateMode.Normal;
     }
 
     private void BuffUpdate()
