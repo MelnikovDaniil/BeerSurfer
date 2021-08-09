@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     [Space(20)]
     public float secondLifeDelay = 2;
+
+    [Space(20)]
+    public List<AudioClip> music;
 
     private bool gameStarted;
     private bool gameEnded;
@@ -84,14 +88,7 @@ public class GameManager : MonoBehaviour
             character.OnJumpEvent -= StartGame;
             character.isStartedRun = true;
             locationGenerator.StartGame();
-            if (Random.value <= 0.10f)
-            {
-                SoundManager.PlayMusic("dejavu");
-            }
-            else
-            {
-                SoundManager.PlayMusic("naruto");
-            }
+            SoundManager.PlayMusic(music.GetRandom().name);
 
             if (DobleBeerBonusMapper.Get() > 0)
             {

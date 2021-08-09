@@ -32,10 +32,12 @@ public class MainMenu : MonoBehaviour
     {
         shop.gameObject.SetActive(false);
         hanger.OnHangerClickEvent += OpenShop;
+        SoundManager.PlayMusic("MenuMusic");
     }
 
     public void OpenGame()
     {
+        SoundManager.PlayMusic("MenuMusic");
         shopIsOpen = false;
         shop.HideMenu();
         outfitManager.UpdateOutfits();
