@@ -21,7 +21,8 @@ public class Character : MonoBehaviour
     public GameObject discount;
     public Animator bitAnimator;
     public BitBuff batBuff;
-
+    public AudioClip batCrush;
+    
     public GameObject maxSpeedParticles;
     [NonSerialized]
     public bool enableMovementActions;
@@ -294,6 +295,7 @@ public class Character : MonoBehaviour
                 Destroy(chushParitcles.gameObject, 1f);
                 Destroy(collision.gameObject);
                 var bat = _buffs.First(x => x.Buff.Name == "Bat");
+                SoundManager.PlaySound(batCrush);
                 bat.End();
                 bat.IsFinished = true;
                 _buffs.Remove(bat);
@@ -305,6 +307,7 @@ public class Character : MonoBehaviour
         }
         else if (collision.GetComponent<LootBoxItemView>())
         {
+            SoundManager.PlaySound("lootbox");
             Destroy(collision.gameObject);
             LootBoxMapper.AddOne();
         }

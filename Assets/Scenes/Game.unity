@@ -18828,6 +18828,7 @@ MonoBehaviour:
   discount: {fileID: 1895214599}
   bitAnimator: {fileID: 1683210542}
   batBuff: {fileID: 11400000, guid: 3a4295f82ee79a645b396e25fbb7aae0, type: 2}
+  batCrush: {fileID: 8300000, guid: b79695e9f53d67149ba9deeee988fb06, type: 3}
   maxSpeedParticles: {fileID: 631943415}
   crushParticlesPrefab: {fileID: 8251836283911209071, guid: eff14b73973ece04f8761ac63ef71576, type: 3}
   batCounter: {fileID: 3075814659644357886}
