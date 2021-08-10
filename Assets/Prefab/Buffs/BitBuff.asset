@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3907acd25864ee346bf1c77226362d1b, type: 3}
   duration: 10
-  buffSound: {fileID: 8300000, guid: df6607c8868df0442a0f1ed7e29a0acc, type: 3}
+  buffSound: {fileID: 8300000, guid: 7c6a9b3842a23a2499ffd8d59b5d3de6, type: 3}
