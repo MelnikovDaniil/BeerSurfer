@@ -24,12 +24,15 @@ public class MainMenu : MonoBehaviour
     public HangerView hanger;
     public OutfitManager outfitManager;
 
+    public Animator shopCharacterAnimator;
+
     [NonSerialized]
     public bool shopIsOpen;
 
 
     private void Start()
     {
+        shopCharacterAnimator.SetTrigger("shop");
         shop.gameObject.SetActive(false);
         hanger.OnHangerClickEvent += OpenShop;
         SoundManager.PlayMusic("MenuMusic");
@@ -48,10 +51,10 @@ public class MainMenu : MonoBehaviour
     private void OpenShop()
     {
         shopIsOpen = true;
+        shop.gameObject.SetActive(true);
         cameraManager.SetTarget(shopMenuGameObject, cameraManager.camera.orthographicSize, switchMenuDelay, Vector3.zero);
         cameraManager.OnReachesTargetEvnet += () =>
         {
-            shop.gameObject.SetActive(true);
             shop.OpenMenu();
             UpdateInfo();
             SoundManager.PlayMusic("lift");
