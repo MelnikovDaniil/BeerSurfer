@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bc8875f1e037e4cb8ac889ffde2150, type: 3}
+  m_Name: DinoDesert
+  m_EditorClassIdentifier: 
+  locationType: 0
+  startSprite: {fileID: 21300000, guid: 8e2312d96b0548340b58e2180154e06c, type: 3}
+  middleSprites:
+  - {fileID: 21300000, guid: c212044aad294d9458e4beca74511348, type: 3}
+  - {fileID: 21300000, guid: f7d166258f7e0bf4fb7c70fb90a7b39f, type: 3}
+  finishSprite: {fileID: 21300000, guid: 353f354ad9d0fd3468b760ae2c75fc74, type: 3}
+  startFrontSprite: {fileID: 0}
+  middleFrontSprites: []
+  finishFrontSprite: {fileID: 0}
+  Background:
+  - {fileID: 21300000, guid: d0b6bec34e43698429e62f30bb657ca4, type: 3}
+  obstacles:
+  - {fileID: 6377353857063024481, guid: 0331db898fa0bc74ca220d05d25834f9, type: 3}
+  - {fileID: 5653731282164076547, guid: 4183989e6057d8e41aa13c1ffb0e67d6, type: 3}
+  - {fileID: 8785364069699955626, guid: b01c8c3440ce6b94595f458dc946564e, type: 3}
