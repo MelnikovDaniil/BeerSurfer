@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6d34ce21a4360b140a7d341718767980, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5a1870df0300d44f973b07705d6b279, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8484494182024668634}
   - component: {fileID: 475173179744714526}
   m_Layer: 0
-  m_Name: LukeObstacle
+  m_Name: LukeObstacle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
