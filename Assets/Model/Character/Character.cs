@@ -44,6 +44,9 @@ public class Character : MonoBehaviour
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
 
+    private float currentJumpForce;
+    private float startGravity;
+
     private float clicked = 0;
     private float clicktime = 0;
     private float clickdelay = 0.3f;
@@ -62,7 +65,10 @@ public class Character : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         discount.SetActive(false);
         maxSpeedParticles.SetActive(false);
+
         startPosition = transform.position;
+        startGravity = rigidbody.gravityScale;
+        currentJumpForce = jumpForce;
     }
 
     public void EnableDobleBeerBonus()
@@ -86,6 +92,10 @@ public class Character : MonoBehaviour
 
     private void OnDifficultyChange(float differenceCoof)
     {
+        animator.speed = 1f + differenceCoof;
+        //currentJumpForce = jumpForce * (1f + differenceCoof);
+        //rigidbody.gravityScale = startGravity * (1f + differenceCoof);
+        //rigidbody.mass = 1f + differenceCoof;
         if (differenceCoof >= 1 && !maxSpeedParticles.activeSelf)
         {
             maxSpeedParticles.SetActive(true);
@@ -239,7 +249,7 @@ public class Character : MonoBehaviour
                 isGrounded = false;
                 isFalling = false;
                 animator.Play("Jump");
-                rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                rigidbody.AddForce(Vector2.up * currentJumpForce, ForceMode2D.Impulse);
             }
         }
     }
@@ -248,7 +258,7 @@ public class Character : MonoBehaviour
     {
         animator.Play("Slip");
         rigidbody.velocity = Vector2.zero;
-        rigidbody.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
+        rigidbody.AddForce(Vector2.down * currentJumpForce, ForceMode2D.Impulse);
     }
 
     private void Death()

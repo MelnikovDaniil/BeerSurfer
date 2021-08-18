@@ -3158,6 +3158,7 @@ GameObject:
   - component: {fileID: 187006198}
   - component: {fileID: 187006197}
   - component: {fileID: 187006196}
+  - component: {fileID: 187006199}
   m_Layer: 5
   m_Name: Counter
   m_TagString: Untagged
@@ -3241,6 +3242,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187006194}
   m_CullTransparentMesh: 1
+--- !u!95 &187006199
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187006194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 57f68cafc52eaa141bd49018d9d9cc9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &190888765
 GameObject:
   m_ObjectHideFlags: 0
@@ -18772,6 +18792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1257121433}
   - component: {fileID: 1257121434}
+  - component: {fileID: 1257121435}
   m_Layer: 5
   m_Name: BeerCounter
   m_TagString: Untagged
@@ -18808,6 +18829,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257121432}
   m_CullTransparentMesh: 1
+--- !u!95 &1257121435
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257121432}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 792281486df41364bad05663025548fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1257176692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29226,8 +29266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beerPatternLibrary: {fileID: 11400000, guid: ba108209b9c715840977dea1f3c1dbaa, type: 2}
   paralaxOffset: 19.2
-  paralaxAdditionalBgSpeed: 3
-  paralaxGroundSpeed: 8
+  paralaxAdditionalBgSpeed: 4
+  paralaxGroundSpeed: 10
   speedDifferenceFactor: 1
   locations:
   - {fileID: 11400000, guid: 529af6224d91bee4d83b079639d9b1a9, type: 2}
@@ -29349,8 +29389,8 @@ MonoBehaviour:
   brownColor: {r: 0.9725491, g: 0.70980394, b: 0.23529413, a: 1}
   brownOutlineColor: {r: 0.57254905, g: 0.24705884, b: 0.1764706, a: 1}
   beerPrefab: {fileID: 2708121801915106583, guid: c49a2430486fa2a4e86d9e42cdf91b5f, type: 3}
-  beerGroupLength: 8
-  maxBeerGroupLength: 16
+  beerGroupLength: 10
+  maxBeerGroupLength: 20
   beeerSpawnHeight: -2
   minMaxBeerOnScreen:
     m_Mode: 3
@@ -29374,6 +29414,7 @@ MonoBehaviour:
   - {fileID: -8972578769846966058, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
   - {fileID: -6483331860278906394, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
   - {fileID: 576098571373760339, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
+  beerTextAnimator: {fileID: 187006199}
   everySecondBeerChance: 0.2
   allBeerChance: 0.75
   amountOfPool: 20

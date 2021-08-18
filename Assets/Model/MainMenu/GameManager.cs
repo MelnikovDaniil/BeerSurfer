@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void SecondLife()
     {
-        gameEnded = false;
+        Time.timeScale = 0;
         character.SecondLife(secondLifeDelay);
         LocationGenerator.Instance.ClearRoad();
         UIManager.Blind();
@@ -140,6 +140,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator SecondLifeEnd()
     {
         yield return new WaitForSecondsRealtime(secondLifeDelay);
+        gameEnded = false;
         Time.timeScale = 1;
     }
 
@@ -162,28 +163,31 @@ public class GameManager : MonoBehaviour
 
     public void PauseOrResume()
     {
-        volumeSlider.value = GetVolume();
-        var paused = !isPaused;
-        if (paused)
+        if (!gameEnded)
         {
-            if (continueCoroutine != null)
+            volumeSlider.value = GetVolume();
+            var paused = !isPaused;
+            if (paused)
             {
-                StopCoroutine(continueCoroutine);
-            }
+                if (continueCoroutine != null)
+                {
+                    StopCoroutine(continueCoroutine);
+                }
 
-            pausePanelAnimtor.gameObject.SetActive(true);
-            if (Time.timeScale != 0)
-            {
-                timeScale = Time.timeScale;
+                pausePanelAnimtor.gameObject.SetActive(true);
+                if (Time.timeScale != 0)
+                {
+                    timeScale = Time.timeScale;
+                }
+                Time.timeScale = 0f;
+                isPaused = paused;
             }
-            Time.timeScale = 0f;
-            isPaused = paused;
+            else
+            {
+                continueCoroutine = StartCoroutine(GameContinue());
+            }
+            pausePanelAnimtor.SetBool("pause", paused);
         }
-        else
-        {
-            continueCoroutine = StartCoroutine(GameContinue());
-        }
-        pausePanelAnimtor.SetBool("pause", paused);
     }
 
     public IEnumerator GameContinue()
