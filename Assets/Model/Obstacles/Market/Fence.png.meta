@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ffe6574aef82914c917537a28ae07a0
+guid: 630ab85730e7ad0478e300329f809092
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -101,9 +101,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
-        width: 289
-        height: 469
+        y: 220
+        width: 292
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,9 +121,9 @@ TextureImporter:
       name: BorderedFence_1
       rect:
         serializedVersion: 2
-        x: 295
+        x: 291
         y: 0
-        width: 217
+        width: 221
         height: 438
       alignment: 0
       pivot: {x: 0, y: 0}
