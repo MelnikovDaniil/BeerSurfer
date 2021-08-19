@@ -92,7 +92,7 @@ public class Character : MonoBehaviour
 
     private void OnDifficultyChange(float differenceCoof)
     {
-        animator.speed = 1f + differenceCoof;
+        animator.speed = 1f + differenceCoof / 3f;
         //currentJumpForce = jumpForce * (1f + differenceCoof);
         //rigidbody.gravityScale = startGravity * (1f + differenceCoof);
         //rigidbody.mass = 1f + differenceCoof;
@@ -214,6 +214,7 @@ public class Character : MonoBehaviour
 
     public void SecondLife(float delay)
     {
+        animator.speed = 1;
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.Play("SecondLife");
         isDead = false;
