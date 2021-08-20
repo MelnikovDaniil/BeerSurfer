@@ -44,9 +44,6 @@ public class Character : MonoBehaviour
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
 
-    private float currentJumpForce;
-    private float startGravity;
-
     private float clicked = 0;
     private float clicktime = 0;
     private float clickdelay = 0.3f;
@@ -67,8 +64,6 @@ public class Character : MonoBehaviour
         maxSpeedParticles.SetActive(false);
 
         startPosition = transform.position;
-        startGravity = rigidbody.gravityScale;
-        currentJumpForce = jumpForce;
     }
 
     public void EnableDobleBeerBonus()
@@ -247,7 +242,7 @@ public class Character : MonoBehaviour
                 isGrounded = false;
                 isFalling = false;
                 animator.Play("Jump");
-                rigidbody.AddForce(Vector2.up * currentJumpForce, ForceMode2D.Impulse);
+                rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
         }
     }
@@ -256,7 +251,7 @@ public class Character : MonoBehaviour
     {
         animator.Play("Slip", 0, 0);
         rigidbody.velocity = Vector2.zero;
-        rigidbody.AddForce(Vector2.down * currentJumpForce, ForceMode2D.Impulse);
+        rigidbody.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
     }
 
     private void Death()

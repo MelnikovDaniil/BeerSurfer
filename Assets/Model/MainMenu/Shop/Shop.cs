@@ -62,6 +62,7 @@ public class Shop : MonoBehaviour
         {
             ShowOutfitCategory(outfit.OutfitType);
         }
+        gameObject.SetActive(false);
     }
 
     public void OpenMenu()
