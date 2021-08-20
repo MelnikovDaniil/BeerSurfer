@@ -256,6 +256,7 @@ public class Character : MonoBehaviour
 
     private void Death()
     {
+        _buffs.ForEach(x => x.End());
         animator.SetTrigger("death");
         isDead = true;
         OnDeathEvent?.Invoke();
