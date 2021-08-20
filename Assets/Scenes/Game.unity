@@ -297,7 +297,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_Size: {x: 0.5, y: 4.1917863}
   m_EdgeRadius: 0
 --- !u!61 &8255908
 BoxCollider2D:
@@ -323,7 +323,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_Size: {x: 0.5, y: 4.1917863}
   m_EdgeRadius: 0
 --- !u!1 &11742743
 GameObject:
@@ -27571,7 +27571,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_Size: {x: 0.5, y: 4.1917863}
   m_EdgeRadius: 0
 --- !u!61 &1742809482
 BoxCollider2D:
@@ -27597,7 +27597,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_Size: {x: 0.5, y: 4.1917863}
   m_EdgeRadius: 0
 --- !u!1 &1762937337
 GameObject:
@@ -28569,7 +28569,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_Size: {x: 0.5, y: 4.1917863}
   m_EdgeRadius: 0
 --- !u!61 &1865567187
 BoxCollider2D:
@@ -28595,7 +28595,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0211906, y: 4.1917863}
+  m_Size: {x: 0.5, y: 4.1917863}
   m_EdgeRadius: 0
 --- !u!1 &1875589948
 GameObject:
@@ -29266,8 +29266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beerPatternLibrary: {fileID: 11400000, guid: ba108209b9c715840977dea1f3c1dbaa, type: 2}
   paralaxOffset: 19.2
-  paralaxAdditionalBgSpeed: 3.5
-  paralaxGroundSpeed: 9
+  paralaxAdditionalBgSpeed: 3
+  paralaxGroundSpeed: 8.5
   speedDifferenceFactor: 1
   locations:
   - {fileID: 11400000, guid: 529af6224d91bee4d83b079639d9b1a9, type: 2}
@@ -29389,8 +29389,8 @@ MonoBehaviour:
   brownColor: {r: 0.9725491, g: 0.70980394, b: 0.23529413, a: 1}
   brownOutlineColor: {r: 0.57254905, g: 0.24705884, b: 0.1764706, a: 1}
   beerPrefab: {fileID: 2708121801915106583, guid: c49a2430486fa2a4e86d9e42cdf91b5f, type: 3}
-  beerGroupLength: 9
-  maxBeerGroupLength: 18
+  beerGroupLength: 8.5
+  maxBeerGroupLength: 17
   beeerSpawnHeight: -2
   minMaxBeerOnScreen:
     m_Mode: 3

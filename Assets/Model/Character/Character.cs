@@ -93,9 +93,6 @@ public class Character : MonoBehaviour
     private void OnDifficultyChange(float differenceCoof)
     {
         animator.speed = 1f + differenceCoof / 3f;
-        //currentJumpForce = jumpForce * (1f + differenceCoof);
-        //rigidbody.gravityScale = startGravity * (1f + differenceCoof);
-        //rigidbody.mass = 1f + differenceCoof;
         if (differenceCoof >= 1 && !maxSpeedParticles.activeSelf)
         {
             maxSpeedParticles.SetActive(true);
@@ -257,7 +254,7 @@ public class Character : MonoBehaviour
     
     private void Slip()
     {
-        animator.Play("Slip");
+        animator.Play("Slip", 0, 0);
         rigidbody.velocity = Vector2.zero;
         rigidbody.AddForce(Vector2.down * currentJumpForce, ForceMode2D.Impulse);
     }
