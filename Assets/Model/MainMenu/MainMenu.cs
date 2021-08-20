@@ -24,18 +24,23 @@ public class MainMenu : MonoBehaviour
     public HangerView hanger;
     public OutfitManager outfitManager;
 
+    public Animator shopCharacterAnimator;
+
     [NonSerialized]
     public bool shopIsOpen;
 
 
     private void Start()
     {
+        shopCharacterAnimator.SetTrigger("shop");
         shop.gameObject.SetActive(false);
         hanger.OnHangerClickEvent += OpenShop;
+        SoundManager.PlayMusic("MenuMusic");
     }
 
     public void OpenGame()
     {
+        SoundManager.PlayMusic("MenuMusic");
         shopIsOpen = false;
         shop.HideMenu();
         outfitManager.UpdateOutfits();

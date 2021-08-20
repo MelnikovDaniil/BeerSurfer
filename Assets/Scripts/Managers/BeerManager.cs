@@ -25,6 +25,10 @@ public class BeerManager : MonoBehaviour
     public MinMaxCurve minMaxBeerOnScreen = new MinMaxCurve(0, 4);
     public List<Sprite> beerSprites;
 
+
+    [Space(20)]
+    public Animator beerTextAnimator;
+
     [Space(20)]
     [SerializeField]
     [Range(0, 1)]
@@ -82,6 +86,8 @@ public class BeerManager : MonoBehaviour
         beer.Collect();
         var sprite = beer.GetSprite();
         uiBeerIcon.sprite = sprite;
+
+        beerTextAnimator.Play("Pulse");
 
         if (sprite.name.Contains("Green"))
         {

@@ -37,7 +37,6 @@ public class Shop : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        shopCharacterAnimator.SetTrigger("shop");
         shop = new List<OutfitModel>
         {
             new OutfitModel { OutfitType = OutfitType.Head, Renderer = characterHead, Sprites = outfitLibrary.headSprites },
@@ -63,6 +62,7 @@ public class Shop : MonoBehaviour
         {
             ShowOutfitCategory(outfit.OutfitType);
         }
+        gameObject.SetActive(false);
     }
 
     public void OpenMenu()

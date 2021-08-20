@@ -21,7 +21,8 @@ public class Character : MonoBehaviour
     public GameObject discount;
     public Animator bitAnimator;
     public BitBuff batBuff;
-
+    public AudioClip batCrush;
+    
     public GameObject maxSpeedParticles;
     [NonSerialized]
     public bool enableMovementActions;
@@ -61,6 +62,7 @@ public class Character : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         discount.SetActive(false);
         maxSpeedParticles.SetActive(false);
+
         startPosition = transform.position;
     }
 
@@ -85,6 +87,7 @@ public class Character : MonoBehaviour
 
     private void OnDifficultyChange(float differenceCoof)
     {
+        animator.speed = 1f + differenceCoof / 3f;
         if (differenceCoof >= 1 && !maxSpeedParticles.activeSelf)
         {
             maxSpeedParticles.SetActive(true);
@@ -203,6 +206,7 @@ public class Character : MonoBehaviour
 
     public void SecondLife(float delay)
     {
+        animator.speed = 1;
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.Play("SecondLife");
         isDead = false;
@@ -245,13 +249,14 @@ public class Character : MonoBehaviour
     
     private void Slip()
     {
-        animator.Play("Slip");
+        animator.Play("Slip", 0, 0);
         rigidbody.velocity = Vector2.zero;
         rigidbody.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
     }
 
     private void Death()
     {
+        _buffs.ForEach(x => x.End());
         animator.SetTrigger("death");
         isDead = true;
         OnDeathEvent?.Invoke();
@@ -294,6 +299,7 @@ public class Character : MonoBehaviour
                 Destroy(chushParitcles.gameObject, 1f);
                 Destroy(collision.gameObject);
                 var bat = _buffs.First(x => x.Buff.Name == "Bat");
+                SoundManager.PlaySound(batCrush);
                 bat.End();
                 bat.IsFinished = true;
                 _buffs.Remove(bat);
@@ -305,6 +311,7 @@ public class Character : MonoBehaviour
         }
         else if (collision.GetComponent<LootBoxItemView>())
         {
+            SoundManager.PlaySound("lootbox");
             Destroy(collision.gameObject);
             LootBoxMapper.AddOne();
         }

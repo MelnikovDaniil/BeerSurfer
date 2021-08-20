@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     [Space(20)]
     public float secondLifeDelay = 2;
+
+    [Space(20)]
+    public List<AudioClip> music;
 
     private bool gameStarted;
     private bool gameEnded;
@@ -84,14 +88,7 @@ public class GameManager : MonoBehaviour
             character.OnJumpEvent -= StartGame;
             character.isStartedRun = true;
             locationGenerator.StartGame();
-            if (Random.value <= 0.10f)
-            {
-                SoundManager.PlayMusic("dejavu");
-            }
-            else
-            {
-                SoundManager.PlayMusic("naruto");
-            }
+            SoundManager.PlayMusic(music.GetRandom().name);
 
             if (DobleBeerBonusMapper.Get() > 0)
             {
@@ -133,7 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void SecondLife()
     {
-        gameEnded = false;
+        Time.timeScale = 0;
         character.SecondLife(secondLifeDelay);
         LocationGenerator.Instance.ClearRoad();
         UIManager.Blind();
@@ -143,6 +140,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator SecondLifeEnd()
     {
         yield return new WaitForSecondsRealtime(secondLifeDelay);
+        gameEnded = false;
         Time.timeScale = 1;
     }
 
@@ -165,28 +163,31 @@ public class GameManager : MonoBehaviour
 
     public void PauseOrResume()
     {
-        volumeSlider.value = GetVolume();
-        var paused = !isPaused;
-        if (paused)
+        if (!gameEnded)
         {
-            if (continueCoroutine != null)
+            volumeSlider.value = GetVolume();
+            var paused = !isPaused;
+            if (paused)
             {
-                StopCoroutine(continueCoroutine);
-            }
+                if (continueCoroutine != null)
+                {
+                    StopCoroutine(continueCoroutine);
+                }
 
-            pausePanelAnimtor.gameObject.SetActive(true);
-            if (Time.timeScale != 0)
-            {
-                timeScale = Time.timeScale;
+                pausePanelAnimtor.gameObject.SetActive(true);
+                if (Time.timeScale != 0)
+                {
+                    timeScale = Time.timeScale;
+                }
+                Time.timeScale = 0f;
+                isPaused = paused;
             }
-            Time.timeScale = 0f;
-            isPaused = paused;
+            else
+            {
+                continueCoroutine = StartCoroutine(GameContinue());
+            }
+            pausePanelAnimtor.SetBool("pause", paused);
         }
-        else
-        {
-            continueCoroutine = StartCoroutine(GameContinue());
-        }
-        pausePanelAnimtor.SetBool("pause", paused);
     }
 
     public IEnumerator GameContinue()
