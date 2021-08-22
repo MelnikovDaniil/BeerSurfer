@@ -15,4 +15,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 6a995f66f3d552d4e9a37157be081686, type: 3}
   duration: 10
   buffSound: {fileID: 8300000, guid: f658a08fbe8b7b74a9914496c2f3edd7, type: 3}
+  activationParticles: {fileID: 4835387444486489202, guid: 6fc6f4d04e6c20b40bd0ea105d422041, type: 3}
   speedUpCoof: 2
