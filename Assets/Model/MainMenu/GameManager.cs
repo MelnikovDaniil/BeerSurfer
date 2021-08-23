@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("ShopAvailable", 0) != 0 || LootBoxMapper.Get() > 0 || BeerMapper.Get() >= 300)
         {
-            hangerView.gameObject.SetActive(true);
+            hangerView.Enable();
             PlayerPrefs.SetInt("ShopAvailable", 1);
         }
         else
         {
-            hangerView.gameObject.SetActive(false);
+            hangerView.Disable();
         }
     }
 
