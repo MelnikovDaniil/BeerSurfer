@@ -29278,6 +29278,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7c2d1b80c4e65824baef6b15589db9cf, type: 2}
   - {fileID: 11400000, guid: e628a0d336db1b1408e82e7756fbe00e, type: 2}
   - {fileID: 11400000, guid: 38d731b2d6540564faa6178b8b5666cc, type: 2}
+  - {fileID: 11400000, guid: c1f8435bfc6aa0740b0e64d26adae36a, type: 2}
   innerLocationLenght: 3
   outerLocationLenght: 6
   paralaxFirstLayerBg:
