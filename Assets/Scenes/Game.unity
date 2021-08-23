@@ -18872,6 +18872,7 @@ MonoBehaviour:
   batCrush: {fileID: 8300000, guid: b79695e9f53d67149ba9deeee988fb06, type: 3}
   maxSpeedParticles: {fileID: 631943415}
   crushParticlesPrefab: {fileID: 8251836283911209071, guid: eff14b73973ece04f8761ac63ef71576, type: 3}
+  lootboxParticlesPrefab: {fileID: 3459618193215456770, guid: be1f05b500213884aaaa44e9d42f34d5, type: 3}
   batCounter: {fileID: 3075814659644357886}
 --- !u!61 &1257176693
 BoxCollider2D:
