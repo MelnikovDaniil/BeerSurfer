@@ -15,4 +15,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 3907acd25864ee346bf1c77226362d1b, type: 3}
   duration: 10
   buffSound: {fileID: 8300000, guid: 7c6a9b3842a23a2499ffd8d59b5d3de6, type: 3}
-  activationParticles: {fileID: 4477875772557421077, guid: d4db32e3827b8e443865b38fd040393b, type: 3}
+  activationParticles: {fileID: 3459618193215456770, guid: dea3b4175a4858144bab6f88cac5d3c1, type: 3}
