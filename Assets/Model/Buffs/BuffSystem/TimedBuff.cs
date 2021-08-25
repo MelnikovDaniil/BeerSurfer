@@ -15,6 +15,9 @@ public abstract class TimedBuff
         this.Buff = buff;
         this.obj = obj;
         SoundManager.PlaySoundUI(buff.buffSound);
+
+        var particles = GameObject.Instantiate(Buff.activationParticles, obj.transform.position, Quaternion.identity, obj.transform);
+        particles.Play();
     }
 
     protected TimedBuff(ScriptableBuff buff, GameObject obj)
@@ -39,5 +42,6 @@ public abstract class TimedBuff
     }
 
     public abstract void Activate();
+
     public abstract void End();
 }

@@ -18957,6 +18957,7 @@ MonoBehaviour:
   batCrush: {fileID: 8300000, guid: b79695e9f53d67149ba9deeee988fb06, type: 3}
   maxSpeedParticles: {fileID: 631943415}
   crushParticlesPrefab: {fileID: 8251836283911209071, guid: eff14b73973ece04f8761ac63ef71576, type: 3}
+  lootboxParticlesPrefab: {fileID: 3459618193215456770, guid: be1f05b500213884aaaa44e9d42f34d5, type: 3}
   batCounter: {fileID: 3075814659644357886}
 --- !u!61 &1257176693
 BoxCollider2D:
@@ -29509,6 +29510,8 @@ MonoBehaviour:
   beerCounterOutline: {fileID: 187006196}
   doubleBeerSprite: {fileID: 21300000, guid: 358c654b91d20d84fbd553c12ab41051, type: 3}
   doubleBeerBonus: 0
+  beerSoundResetTime: 0.5
+  pitchInteration: 0.05
 --- !u!1 &1930513762
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,8 +49,15 @@ public class BeerManager : MonoBehaviour
     public Sprite doubleBeerSprite;
     public bool doubleBeerBonus;
 
+    [Space(20)]
+    public float beerSoundResetTime = 0.5f;
+    public float pitchInteration = 0.05f;
+
     private List<BeerView> pooledBeer;
     private float currentBeerGroupLenght;
+
+    private float currentSoundPitch;
+    private float currentSoundResetTime;
 
     private void Awake()
     {
@@ -62,6 +69,8 @@ public class BeerManager : MonoBehaviour
         DifficultyManger.OnDifficultyChange += OnDifficultyChange;
         character.OnBeerPickUpEvent += BeerPickUp;
 
+        currentSoundResetTime = beerSoundResetTime;
+        currentSoundPitch = 1;
 
         currentBeerGroupLenght = beerGroupLength;
         var pooledBeerObject = new GameObject("pooledBeer")
@@ -79,10 +88,24 @@ public class BeerManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (currentSoundResetTime > 0)
+        {
+            currentSoundResetTime -= Time.deltaTime;
+            if (currentSoundResetTime <= 0)
+            {
+                currentSoundPitch = 1;
+            }
+        }
+    }
+
     private void BeerPickUp(BeerView beer)
     {
         GameManager.beer++;
-        SoundManager.PlaySound("beer");
+        SoundManager.PlaySound("beer").Source.pitch = currentSoundPitch;
+        currentSoundResetTime = beerSoundResetTime;
+        currentSoundPitch = Mathf.Clamp(currentSoundPitch + 0.1f, 1f, 2f);
         beer.Collect();
         var sprite = beer.GetSprite();
         uiBeerIcon.sprite = sprite;
