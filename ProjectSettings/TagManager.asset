@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Beer
   - Road
-  - GuidObstacle
+  - GuideObstacle
   layers:
   - Default
   - TransparentFX

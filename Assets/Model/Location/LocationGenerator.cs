@@ -61,6 +61,10 @@ public class LocationGenerator : MonoBehaviour
     public int batSpawnChanse = 1;
     public BonusView batPrefab;
 
+
+    [Space(20)]
+    public ScriptableLocation guideLocation;
+
     private ScriptableLocation currentLocation;
     private Queue<Sprite> roadQueue;
     private Queue<Sprite> frontQueue;
@@ -71,6 +75,8 @@ public class LocationGenerator : MonoBehaviour
 
     private float additionalBgSpeed;
     private float groundSpeed;
+    private int guidObstacleNum = 0;
+
 
     private void Awake()
     {
@@ -188,12 +194,16 @@ public class LocationGenerator : MonoBehaviour
                     road.EnableWalls();
                 }
 
-                if (enableObstacleSpawn && Random.value < obstacleChance)
+                if (GuideMapper.IsActive())
+                {
+                    GenerateGuideObstacle(road);
+                }
+                else if (enableObstacleSpawn && Random.value < obstacleChance)
                 {
                     GenerateObstacle(road);
                 }
 
-                if (Random.value < bonusChanse)
+                if (!GuideMapper.IsActive() && Random.value < bonusChanse)
                 {
                     GenerateBonus(road);
                 }
@@ -210,7 +220,14 @@ public class LocationGenerator : MonoBehaviour
     {
         if (currentLocation == null)
         {
-            currentLocation = locations.Where(x => x.locationType != LocationType.Inner).GetRandom();
+            if (GuideMapper.IsActive())
+            {
+                currentLocation = guideLocation;
+            }
+            else
+            {
+                currentLocation = locations.Where(x => x.locationType != LocationType.Inner).GetRandom();
+            }
         }
         else
         {
@@ -284,11 +301,6 @@ public class LocationGenerator : MonoBehaviour
         roadPart.objectToRemove.Add(spawnedBonus.gameObject);
     }
 
-    private void SpawnedBonus_OnBonusPickUp()
-    {
-        throw new NotImplementedException();
-    }
-
     private void GenerateObstacle(RoadPart roadPart)
     {
         var obstacle = currentLocation.obstacles.GetRandom();
@@ -298,6 +310,20 @@ public class LocationGenerator : MonoBehaviour
 
         roadPart.obstacle = spawnedObstacle;
         roadPart.objectToRemove.Add(spawnedObstacle.gameObject);
+    }
+    private void GenerateGuideObstacle(RoadPart roadPart)
+    {
+        if (guidObstacleNum < 3)
+        {
+            var obstacle = currentLocation.obstacles[guidObstacleNum];
+            guidObstacleNum++;
+            var spawnedObstacle = Instantiate(obstacle, roadPart.transform);
+            var high = obstacleHigh.First(x => x.type == obstacle.obstacleType).high;
+            spawnedObstacle.transform.localPosition = new Vector3(0, high);
+
+            roadPart.obstacle = spawnedObstacle;
+            roadPart.objectToRemove.Add(spawnedObstacle.gameObject);
+        }
     }
 
     private void OnDifficultyChange(float difficultyCoof)
