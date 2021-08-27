@@ -37,6 +37,7 @@ public class Character : MonoBehaviour
     public bool bitEnabled = false;
 
     public ParticleSystem crushParticlesPrefab;
+    public ParticleSystem lootboxParticlesPrefab;
 
     public BatCounter batCounter;
 
@@ -326,7 +327,9 @@ public class Character : MonoBehaviour
         }
         else if (collision.GetComponent<LootBoxItemView>())
         {
-            SoundManager.PlaySound("lootbox");
+            SoundManager.PlaySound("lootbox"); 
+            var particles = Instantiate(lootboxParticlesPrefab, transform.position, Quaternion.identity, transform);
+            particles.Play();
             Destroy(collision.gameObject);
             LootBoxMapper.AddOne();
         }

@@ -10,5 +10,7 @@ public abstract class ScriptableBuff : ScriptableObject
 
     public AudioClip buffSound;
 
+    public ParticleSystem activationParticles;
+    
     public abstract TimedBuff InitializeBuff(GameObject obj);
 }
