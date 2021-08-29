@@ -24299,7 +24299,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -7
-  m_Sprite: {fileID: 7795085465242543974, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
+  m_Sprite: {fileID: -6683844032729045937, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -28443,7 +28443,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8972578769846966058, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
+  m_Sprite: {fileID: -6683844032729045937, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -29471,10 +29471,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 1257176692}
   beerPatternLibrary: {fileID: 11400000, guid: ba108209b9c715840977dea1f3c1dbaa, type: 2}
-  greenColor: {r: 0.6156863, g: 0.7568628, b: 0.22352943, a: 1}
-  greenOutlineColor: {r: 0.12941177, g: 0.3803922, b: 0.3137255, a: 1}
-  brownColor: {r: 0.9725491, g: 0.70980394, b: 0.23529413, a: 1}
-  brownOutlineColor: {r: 0.57254905, g: 0.24705884, b: 0.1764706, a: 1}
+  greenColor: {r: 0, g: 0.92549026, b: 0.16862746, a: 1}
+  greenOutlineColor: {r: 0.0020469967, g: 0.4339623, b: 0.08192175, a: 1}
+  redColor: {r: 0.92549026, g: 0.078431375, b: 0.22352943, a: 1}
+  redOutlineColor: {r: 0.4716981, g: 0.011124954, b: 0.011124954, a: 1}
+  orangeColor: {r: 0.909804, g: 0.5803922, b: 0.24705884, a: 1}
+  orangeOutlineColor: {r: 0.735849, g: 0.30273035, b: 0.024296915, a: 1}
   beerPrefab: {fileID: 2708121801915106583, guid: c49a2430486fa2a4e86d9e42cdf91b5f, type: 3}
   beerGroupLength: 8.5
   maxBeerGroupLength: 17
@@ -29497,10 +29499,12 @@ MonoBehaviour:
     m_ConstantMin: 0
     m_ConstantMax: 5
   beerSprites:
-  - {fileID: 7795085465242543974, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
-  - {fileID: -8972578769846966058, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
-  - {fileID: -6483331860278906394, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
-  - {fileID: 576098571373760339, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
+  - {fileID: -6683844032729045937, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
+  - {fileID: 3026571117394065196, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
+  - {fileID: -2375517026124145119, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
+  - {fileID: 4096500952809212511, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
+  - {fileID: 5824616479234773891, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
+  - {fileID: -7429061901750471963, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
   beerTextAnimator: {fileID: 187006199}
   everySecondBeerChance: 0.2
   allBeerChance: 0.75
@@ -31905,7 +31909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8972578769846966058, guid: 86d1cd3a9be04764cb7b52f813eee267, type: 3}
+  m_Sprite: {fileID: -6683844032729045937, guid: 84ed725ae7c56a0499b8966ba05a5c59, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -32892,7 +32896,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4595371704879861074}
   m_Bounds:
-    m_Center: {x: 0.119412065, y: -0.12540603, z: 0}
+    m_Center: {x: 0.119412065, y: -0.12540638, z: 0.0000076293945}
     m_Extent: {x: 0.74868333, y: 0.25216612, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
