@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: 86d1cd3a9be04764cb7b52f813eee267
+guid: 84ed725ae7c56a0499b8966ba05a5c59
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7795085465242543974
-    second: Beer_Brown1
+      213: -6683844032729045937
+    second: Soda_Red1
   - first:
-      213: -8972578769846966058
-    second: Beer_Green1
+      213: -2375517026124145119
+    second: Soda_Orange1
   - first:
-      213: -6483331860278906394
-    second: Beer_Brown2
+      213: 3026571117394065196
+    second: Soda_Green1
   - first:
-      213: 576098571373760339
-    second: Beer_Green2
+      213: 4096500952809212511
+    second: Soda_Red2
+  - first:
+      213: -7429061901750471963
+    second: Soda_Orange2
+  - first:
+      213: 5824616479234773891
+    second: Soda_Green2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +64,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,70 +105,16 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Beer_Brown1
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 286
-        width: 78
-        height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 667a7953ee4bd2c60800000000000000
-      internalID: 7795085465242543974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Beer_Green1
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 286
-        width: 78
-        height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d86f08c52ffa7380800000000000000
-      internalID: -8972578769846966058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Beer_Brown2
+      name: Soda_Red1
       rect:
         serializedVersion: 2
         x: 0
-        y: 5
-        width: 78
+        y: 280
+        width: 117
         height: 204
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -171,19 +123,82 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e17a13f5049606a0800000000000000
-      internalID: -6483331860278906394
+      spriteID: f442217c3473e33a0800000000000000
+      internalID: -6683844032729045937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Beer_Green2
+      name: Soda_Orange1
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 277
+        width: 117
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e5afbc9d7780fd0800000000000000
+      internalID: -2375517026124145119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soda_Green1
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 278
+        width: 117
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c27fab3556a800a20800000000000000
+      internalID: 3026571117394065196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soda_Red2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 117
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5a0e3299e1b9d830800000000000000
+      internalID: 4096500952809212511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soda_Orange2
       rect:
         serializedVersion: 2
         x: 169
         y: 0
-        width: 78
+        width: 117
         height: 204
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -192,8 +207,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35fc75e2996bef700800000000000000
-      internalID: 576098571373760339
+      spriteID: 5e276cbaf8ba6e890800000000000000
+      internalID: -7429061901750471963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soda_Green2
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 0
+        width: 117
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 383dca5e3d135d050800000000000000
+      internalID: 5824616479234773891
       vertices: []
       indices: 
       edges: []
