@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: a698ccd4f4f2d6e4cbd3c73c32c96ea3
+guid: 88f31c237e721a04d85c2fd29eeb3dd0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5509753353421974763
-    second: TV
+      213: 8222077132905031655
+    second: TV_1_0
   - first:
-      213: -4939574387626844737
-    second: TV_Screen
+      213: -3560592233461924745
+    second: TV_1_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -93,23 +93,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TV
+      name: TV_1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,20 +105,20 @@ TextureImporter:
         width: 277
         height: 529
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5131449548c6983b0800000000000000
-      internalID: -5509753353421974763
+      spriteID: 7e7aaa6079faa1270800000000000000
+      internalID: 8222077132905031655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TV_Screen
+      name: TV_1_1
       rect:
         serializedVersion: 2
         x: 321
@@ -138,14 +126,14 @@ TextureImporter:
         width: 191
         height: 151
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbd52e3f34b137bb0800000000000000
-      internalID: -4939574387626844737
+      spriteID: 77cbc7e7a3c369ec0800000000000000
+      internalID: -3560592233461924745
       vertices: []
       indices: 
       edges: []
