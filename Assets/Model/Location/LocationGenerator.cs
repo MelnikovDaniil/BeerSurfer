@@ -38,12 +38,7 @@ public class LocationGenerator : MonoBehaviour
     [Space(20)]
     [Range(0, 1)]
     public float obstacleChance = 0.5f;
-    public List<ObstacleHigh> obstacleHigh = new List<ObstacleHigh>
-    {
-        new ObstacleHigh{ type = ObstacleType.Bottom, high = -3.3f},
-        new ObstacleHigh{ type = ObstacleType.Middle, high = 0},
-        new ObstacleHigh{ type = ObstacleType.Top, high = 3.3f},
-    };
+    public float obstacleHigh = -3.3f;
 
     [Space(20)]
     [Range(0, 1)]
@@ -77,6 +72,9 @@ public class LocationGenerator : MonoBehaviour
     private float groundSpeed;
     private int guidObstacleNum = 0;
 
+    private bool enableJumpObstacles;
+    private bool enableSlipObstacles;
+    private bool enableMixedObstacles;
 
     private void Awake()
     {
@@ -127,6 +125,18 @@ public class LocationGenerator : MonoBehaviour
         {
             road.Clear();
         }
+    }
+
+    public void SetUpGenerator(GenerationCriteria criteria)
+    {
+        batSpawnChanse = criteria.batSpawn ? batSpawnChanse : 0;
+        pepperSpawnChanse = criteria.chillySpawn ? pepperSpawnChanse : 0;
+        enableJumpObstacles = criteria.enableJumpObstacles;
+        enableSlipObstacles = criteria.enableSlipObstacles;
+        enableMixedObstacles = criteria.enableMixedObstacles;
+        obstacleChance = criteria.obstacleChanse;
+        locations.Clear();
+        locations.Add(criteria.location);
     }
 
     private void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
@@ -303,10 +313,14 @@ public class LocationGenerator : MonoBehaviour
 
     private void GenerateObstacle(RoadPart roadPart)
     {
-        var obstacle = currentLocation.obstacles.GetRandom();
+        var obstacle = currentLocation.obstacles
+            .Where(obs => 
+                (obs.obstacleType == ObstacleType.Jump && enableJumpObstacles)
+                || (obs.obstacleType == ObstacleType.Slip && enableSlipObstacles)
+                || (obs.obstacleType == ObstacleType.Mixed && enableMixedObstacles))
+            .GetRandom();
         var spawnedObstacle = Instantiate(obstacle, roadPart.transform);
-        var high = obstacleHigh.First(x => x.type == obstacle.obstacleType).high;
-        spawnedObstacle.transform.localPosition = new Vector3(0, high);
+        spawnedObstacle.transform.localPosition = new Vector3(0, obstacleHigh);
 
         roadPart.obstacle = spawnedObstacle;
         roadPart.objectToRemove.Add(spawnedObstacle.gameObject);
@@ -318,8 +332,7 @@ public class LocationGenerator : MonoBehaviour
             var obstacle = currentLocation.obstacles[guidObstacleNum];
             guidObstacleNum++;
             var spawnedObstacle = Instantiate(obstacle, roadPart.transform);
-            var high = obstacleHigh.First(x => x.type == obstacle.obstacleType).high;
-            spawnedObstacle.transform.localPosition = new Vector3(0, high);
+            spawnedObstacle.transform.localPosition = new Vector3(0, obstacleHigh);
 
             roadPart.obstacle = spawnedObstacle;
             roadPart.objectToRemove.Add(spawnedObstacle.gameObject);

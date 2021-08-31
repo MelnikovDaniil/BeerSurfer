@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6b3a52f948b974083e921dc4dae2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleType: 0
+  obstacleType: 1
   beerPatterns: 0100000000000000
 --- !u!61 &3578901494878515174
 BoxCollider2D:

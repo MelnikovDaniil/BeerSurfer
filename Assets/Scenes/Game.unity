@@ -30289,6 +30289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1929615238}
+  - component: {fileID: 1929615242}
   - component: {fileID: 1929615237}
   - component: {fileID: 1929615239}
   - component: {fileID: 1929615240}
@@ -30346,13 +30347,7 @@ MonoBehaviour:
   - {fileID: 981856983}
   - {fileID: 682781302}
   obstacleChance: 0.75
-  obstacleHigh:
-  - type: 0
-    high: -3.5
-  - type: 1
-    high: 0
-  - type: 2
-    high: 3.5
+  obstacleHigh: -3.3
   bonusChanse: 0.1
   lootboxStartScore: 2000
   lootBoxStawnChanse: 1
@@ -30475,6 +30470,80 @@ MonoBehaviour:
   doubleBeerBonus: 0
   beerSoundResetTime: 0.5
   pitchInteration: 0.05
+--- !u!114 &1929615242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929615236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47fcee3b23dd9bf49b5a7783a6df8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: 1
+  levelRangeConfigurations:
+  - levelRange: {x: 1, y: 1}
+    generationCriteria:
+      raceTime: 30
+      location: {fileID: 11400000, guid: 0094ca07e84d7d64d853edfc24160cc0, type: 2}
+      batSpawn: 0
+      chillySpawn: 0
+      enableJumpObstacles: 1
+      enableSlipObstacles: 0
+      enableMixedObstacles: 0
+      obstacleChanse: 0.5
+  - levelRange: {x: 2, y: 2}
+    generationCriteria:
+      raceTime: 30
+      location: {fileID: 11400000, guid: 0094ca07e84d7d64d853edfc24160cc0, type: 2}
+      batSpawn: 0
+      chillySpawn: 0
+      enableJumpObstacles: 0
+      enableSlipObstacles: 1
+      enableMixedObstacles: 0
+      obstacleChanse: 0.5
+  - levelRange: {x: 3, y: 3}
+    generationCriteria:
+      raceTime: 30
+      location: {fileID: 11400000, guid: 0094ca07e84d7d64d853edfc24160cc0, type: 2}
+      batSpawn: 0
+      chillySpawn: 0
+      enableJumpObstacles: 1
+      enableSlipObstacles: 1
+      enableMixedObstacles: 0
+      obstacleChanse: 0.5
+  - levelRange: {x: 4, y: 4}
+    generationCriteria:
+      raceTime: 30
+      location: {fileID: 11400000, guid: 0094ca07e84d7d64d853edfc24160cc0, type: 2}
+      batSpawn: 0
+      chillySpawn: 0
+      enableJumpObstacles: 0
+      enableSlipObstacles: 0
+      enableMixedObstacles: 1
+      obstacleChanse: 0.5
+  - levelRange: {x: 5, y: 5}
+    generationCriteria:
+      raceTime: 30
+      location: {fileID: 11400000, guid: 0094ca07e84d7d64d853edfc24160cc0, type: 2}
+      batSpawn: 0
+      chillySpawn: 0
+      enableJumpObstacles: 1
+      enableSlipObstacles: 1
+      enableMixedObstacles: 1
+      obstacleChanse: 0.5
+  - levelRange: {x: 6, y: 10}
+    generationCriteria:
+      raceTime: 30
+      location: {fileID: 11400000, guid: 529af6224d91bee4d83b079639d9b1a9, type: 2}
+      batSpawn: 0
+      chillySpawn: 0
+      enableJumpObstacles: 1
+      enableSlipObstacles: 1
+      enableMixedObstacles: 1
+      obstacleChanse: 0.75
 --- !u!1 &1930513762
 GameObject:
   m_ObjectHideFlags: 0
