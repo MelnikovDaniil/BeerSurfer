@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
             character.isStartedRun = true;
             locationGenerator.StartGame();
             SoundManager.PlayMusic(music.GetRandom().name);
+            GuideManager.Instance.StartManager();
 
             if (DobleBeerBonusMapper.Get() > 0)
             {

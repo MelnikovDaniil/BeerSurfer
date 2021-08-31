@@ -6,13 +6,13 @@ public static class BatBonusMapper
 
     public static void AddOne()
     {
-        var count = PlayerPrefs.GetInt(MapperName, 0) + 1;
+        var count = Get() + 1;
         PlayerPrefs.SetInt(MapperName, count);
     }
 
     public static bool RemoveOne()
     {
-        var boxCount = PlayerPrefs.GetInt(MapperName, 0);
+        var boxCount = Get();
         if (boxCount > 0)
         {
             boxCount -= 1;
@@ -24,6 +24,6 @@ public static class BatBonusMapper
 
     public static int Get()
     {
-        return PlayerPrefs.GetInt(MapperName, 0);
+        return PlayerPrefs.GetInt(MapperName, 3);
     }
 }

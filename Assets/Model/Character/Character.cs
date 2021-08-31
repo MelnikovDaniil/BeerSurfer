@@ -115,13 +115,17 @@ public class Character : MonoBehaviour
             {
                 clicked = 0;
                 clicktime = 0;
-                if (isStartedRun && !bitEnabled && BatBonusMapper.Get() > 0 && currentBatCharge <= 0)
+                if (isStartedRun && !bitEnabled 
+                    && BatBonusMapper.Get() > 0 
+                    && currentBatCharge <= 0
+                    && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Bat))
                 {
                     BatBonusMapper.RemoveOne();
                     var bat = batBuff.InitializeBuff(gameObject);
                     AddBuff(bat);
                     currentBatCharge = batBuff.duration + batCharge;
                     batCounter.SetCooldown(currentBatCharge);
+                    GuideManager.Instance.FinishStep();
                 }
             }
             else if (clicked > 2 || Time.time - clicktime > 1)
@@ -141,14 +145,19 @@ public class Character : MonoBehaviour
                 currentSwipe.Normalize();
 
                 //swipe left
-                if (currentSwipe.y > 0 && currentSwipe.x > -sensitive && currentSwipe.x < sensitive)
+                if (currentSwipe.y > 0 && currentSwipe.x > -sensitive 
+                    && currentSwipe.x < sensitive
+                    && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Jump))
                 {
                     clicked = 0;
                     firstPressPos = null;
                     Jump();
                 }
                 //swipe right
-                if (isStartedRun && currentSwipe.y < 0 && currentSwipe.x > -sensitive && currentSwipe.x < sensitive)
+                if (isStartedRun && currentSwipe.y < 0 
+                    && currentSwipe.x > -sensitive 
+                    && currentSwipe.x < sensitive
+                    && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Slip))
                 {
                     clicked = 0;
                     firstPressPos = null;
@@ -244,6 +253,7 @@ public class Character : MonoBehaviour
                 isFalling = false;
                 animator.Play("Jump");
                 rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                GuideManager.Instance.FinishStep();
             }
         }
     }
@@ -253,6 +263,7 @@ public class Character : MonoBehaviour
         animator.Play("Slip", 0, 0);
         rigidbody.velocity = Vector2.zero;
         rigidbody.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
+        GuideManager.Instance.FinishStep();
     }
 
     private void Death()
@@ -289,7 +300,11 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Obstacle>() || collision.tag == "Road")
+        if (collision.tag == "GuideObstacle" && GuideMapper.IsActive())
+        {
+            GuideManager.Instance.ActivateStep();
+        }
+        else if (collision.GetComponent<Obstacle>() || collision.tag == "Road")
         {
             if (bitEnabled && collision.tag != "Road")
             {
