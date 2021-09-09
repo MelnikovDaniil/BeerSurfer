@@ -79,6 +79,8 @@ public class LocationGenerator : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        roadQueue = new Queue<Sprite>();
+        frontQueue = new Queue<Sprite>();
     }
 
     private void Start()
@@ -87,8 +89,6 @@ public class LocationGenerator : MonoBehaviour
         DifficultyManger.OnDifficultyChange += OnDifficultyChange;
 
         currentBgOrdering = BgOrderingLayer1;
-        roadQueue = new Queue<Sprite>();
-        frontQueue = new Queue<Sprite>();
         groundSpeed = paralaxGroundSpeed;
         additionalBgSpeed = paralaxAdditionalBgSpeed;
         paralaxFirstLayerBg.ForEach(x => x.sortingOrder = BgOrderingLayer1);
@@ -129,12 +129,19 @@ public class LocationGenerator : MonoBehaviour
 
     public void SetUpGenerator(GenerationCriteria criteria)
     {
+        var startScreenCount = 3;
+        speedDifferenceFactor = 1;
+
         batSpawnChanse = criteria.batSpawn ? batSpawnChanse : 0;
         pepperSpawnChanse = criteria.chillySpawn ? pepperSpawnChanse : 0;
         enableJumpObstacles = criteria.enableJumpObstacles;
         enableSlipObstacles = criteria.enableSlipObstacles;
         enableMixedObstacles = criteria.enableMixedObstacles;
         obstacleChance = criteria.obstacleChanse;
+
+        var screenCount = (int)(criteria.raceTime / (paralaxOffset / paralaxGroundSpeed)) + 1 - startScreenCount;
+        innerLocationLenght = screenCount;
+        outerLocationLenght = screenCount;
         locations.Clear();
         locations.Add(criteria.location);
     }
@@ -241,7 +248,8 @@ public class LocationGenerator : MonoBehaviour
         }
         else
         {
-            currentLocation = locations.Where(x => x.locationType != currentLocation?.locationType).GetRandom();
+            currentLocation = locations.Where(x => x.locationType != currentLocation.locationType).GetRandomOrDefault();
+            currentLocation ??= locations.First();
         }
 
         if (currentBgOrdering == BgOrderingLayer1)
@@ -307,8 +315,11 @@ public class LocationGenerator : MonoBehaviour
             bonusPosition = new Vector2(0, Random.Range(-3.3f, 3.3f));
         }
 
-        spawnedBonus.transform.localPosition = bonusPosition;
-        roadPart.objectToRemove.Add(spawnedBonus.gameObject);
+        if (spawnedBonus != null)
+        {
+            spawnedBonus.transform.localPosition = bonusPosition;
+            roadPart.objectToRemove.Add(spawnedBonus.gameObject);
+        }
     }
 
     private void GenerateObstacle(RoadPart roadPart)
