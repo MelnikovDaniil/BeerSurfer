@@ -14,8 +14,10 @@ public class BeerManager : MonoBehaviour
     [Space(20)]
     public Color greenColor;
     public Color greenOutlineColor;
-    public Color brownColor;
-    public Color brownOutlineColor;
+    public Color redColor;
+    public Color redOutlineColor;
+    public Color orangeColor;
+    public Color orangeOutlineColor;
 
     [Space(20)]
     public BeerView beerPrefab;
@@ -117,10 +119,15 @@ public class BeerManager : MonoBehaviour
             beerCounterText.color = greenColor;
             beerCounterOutline.effectColor = greenOutlineColor;
         }
+        else if (sprite.name.Contains("Orange"))
+        {
+            beerCounterText.color = orangeColor;
+            beerCounterOutline.effectColor = orangeOutlineColor;
+        }
         else
         {
-            beerCounterText.color = brownColor;
-            beerCounterOutline.effectColor = brownOutlineColor;
+            beerCounterText.color = redColor;
+            beerCounterOutline.effectColor = redOutlineColor;
         }
     }
 

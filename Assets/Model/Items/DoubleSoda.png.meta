@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: edc1fb6c1c1166d4881cd4e1bd55b556
+guid: a6041fce7b3506e41b856088416f8014
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1365210890272713809
-    second: hangerTags_1_0
+      213: -3642183003120533682
+    second: DoubleSoda_0
   - first:
-      213: 6185061648791831664
-    second: hangerTags_1_1
+      213: -4515620015808346004
+    second: DoubleSoda_1
+  - first:
+      213: 7321443193914136575
+    second: DoubleSoda_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -52,7 +55,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 125
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hangerTags_1_0
+      name: DoubleSoda_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 98
-        width: 254
-        height: 72
+        x: 0
+        y: 444
+        width: 233
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +114,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c233e421432f210800000000000000
-      internalID: 1365210890272713809
+      spriteID: e4ff8041bdd547dc0800000000000000
+      internalID: -3642183003120533682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hangerTags_1_1
+      name: DoubleSoda_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 256
-        height: 73
+        y: 216
+        width: 233
+        height: 218
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +135,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 074012abcc0c5d550800000000000000
-      internalID: 6185061648791831664
+      spriteID: c688919358b4551c0800000000000000
+      internalID: -4515620015808346004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoubleSoda_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 233
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff714705bcdfa9560800000000000000
+      internalID: 7321443193914136575
       vertices: []
       indices: 
       edges: []
