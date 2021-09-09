@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Animator pausePanelAnimtor;
     public float continueDelay = 3f;
     public LocationGenerator locationGenerator;
+    public LevelManager levelManager;
     public MainMenu mainMenu;
     public DeathManager deathPanel;
     public Slider volumeSlider;
@@ -88,9 +89,9 @@ public class GameManager : MonoBehaviour
             character.OnJumpEvent -= StartGame;
             character.isStartedRun = true;
             locationGenerator.StartGame();
+            levelManager.StartLevel();
             SoundManager.PlayMusic(music.GetRandom().name);
             GuideManager.Instance.StartManager();
-
             if (DobleBeerBonusMapper.Get() > 0)
             {
                 character.EnableDobleBeerBonus();
