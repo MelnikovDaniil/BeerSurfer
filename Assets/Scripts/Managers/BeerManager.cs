@@ -157,7 +157,7 @@ public class BeerManager : MonoBehaviour
             var beer = GetPooledBeer();
             beer.Enable();
             beer.transform.parent = roadPart.transform;
-            beer.transform.localPosition = new Vector2(x, beeerSpawnHeight);
+            beer.transform.position = new Vector2(x + roadPart.transform.position.x, beeerSpawnHeight);
             beer.ChangeSprite(beerSprite);
             roadPart.objectToRemove.Add(beer.gameObject);
             x += beerGap;
@@ -178,7 +178,7 @@ public class BeerManager : MonoBehaviour
                 var beer = GetPooledBeer();
                 beer.Enable();
                 beer.transform.parent = roadPart.transform;
-                beer.transform.localPosition = positions[i];
+                beer.transform.position = new Vector2(positions[i].x + roadPart.transform.position.x, positions[i].y);
                 roadPart.objectToRemove.Add(beer.gameObject);
                 beer.ChangeSprite(beerSprite);
             }
@@ -190,7 +190,7 @@ public class BeerManager : MonoBehaviour
                 var beer = GetPooledBeer();
                 beer.Enable();
                 beer.transform.parent = roadPart.transform;
-                beer.transform.localPosition = position;
+                beer.transform.position = new Vector2(position.x + roadPart.transform.position.x, position.y);
                 roadPart.objectToRemove.Add(beer.gameObject);
                 beer.ChangeSprite(beerSprite);
             }

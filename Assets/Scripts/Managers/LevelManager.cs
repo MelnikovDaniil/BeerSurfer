@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     public List<LevelRangeConfiguration> levelRangeConfigurations;
     public TextMeshPro startText1;
     public TextMeshPro startText2;
-    private GenerationCriteria criteria;
+    private GenerationCriteria lvlCriteria;
 
     public void Start()
     {
@@ -21,22 +21,35 @@ public class LevelManager : MonoBehaviour
             currentLevel = LevelMapper.Get();
         }
 
-        var lvlCriteria = levelRangeConfigurations
-                .First(configuration =>
+        lvlCriteria = levelRangeConfigurations
+                .FirstOrDefault(configuration =>
                     currentLevel >= configuration.levelRange.x
                     && currentLevel <= configuration.levelRange.y)
-                .generationCriteria;
-        criteria = lvlCriteria;
-        var text = "LVL " + currentLevel;
+                ?.generationCriteria;
+
+        string text;
+        if (lvlCriteria != null)
+        {
+            text = "LVL " + currentLevel;
+
+            Random.InitState(512512521 + currentLevel);
+            LocationGenerator.Instance.SetUpGenerator(lvlCriteria);
+        }
+        else
+        {
+            text = "Infinity";
+        }
+
         startText1.text = text;
         startText2.text = text;
-        Random.InitState(512512521 + currentLevel);
-        LocationGenerator.Instance.SetUpGenerator(lvlCriteria);
     }
 
     public void StartLevel()
     {
-        StartCoroutine(FinishLevel(criteria.raceTime));
+        if (lvlCriteria != null)
+        {
+            StartCoroutine(FinishLevel(lvlCriteria.raceTime));
+        }
     }
 
     private IEnumerator FinishLevel(float time)
