@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleType: 0
-  beerPatterns: 
+  beerPatterns: 01000000
 --- !u!61 &5339037304363786170
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3260359444363768332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5649, y: 0.4643, z: 0}
+  m_LocalPosition: {x: 0.5649, y: 3.2, z: 0}
   m_LocalScale: {x: 0.94690806, y: 0.94690806, z: 0.94690806}
   m_Children:
   - {fileID: 5815286716154435853}
@@ -146,7 +146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -9
   m_Sprite: {fileID: 21300000, guid: b2dcf23f4e9ef6749bc9a165b05b1440, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,8 +177,8 @@ MonoBehaviour:
   - {fileID: 5815286715876583900}
   - {fileID: 5815286716971903733}
   m_Bounds:
-    m_Center: {x: -0.7157412, y: -0.0018196106, z: 0}
-    m_Extent: {x: 0.88088876, y: 2.2231803, z: 0}
+    m_Center: {x: -0.7157414, y: -0.0018200874, z: 0}
+    m_Extent: {x: 0.8808886, y: 2.2231798, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!95 &3260359444363768323

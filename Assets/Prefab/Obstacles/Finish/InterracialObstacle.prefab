@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleType: 0
-  beerPatterns: 
+  beerPatterns: 01000000
 --- !u!1 &6214439166061560148
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6214439166061560148}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.18, z: 0}
+  m_LocalPosition: {x: 0, y: 3.2, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 3944428574031913040}
@@ -244,7 +244,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -9
   m_Sprite: {fileID: 21300000, guid: 28b291e276fcdc547bcdfc10b8e4badb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -279,8 +279,8 @@ MonoBehaviour:
   - {fileID: 5840039200683150064}
   - {fileID: 2513882870099120448}
   m_Bounds:
-    m_Center: {x: -0.0017998219, y: -0.00000023841858, z: 0}
-    m_Extent: {x: 2.0732005, y: 2.04, z: 0}
+    m_Center: {x: -0.0017998219, y: 0.00000023841858, z: 0}
+    m_Extent: {x: 2.0732005, y: 2.0400004, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!95 &2890611399431859738

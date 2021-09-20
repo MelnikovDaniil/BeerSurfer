@@ -20,5 +20,8 @@ public class ScriptableLocation : ScriptableObject
     public List<Sprite> Background;
 
     [Space(20)]
+    public List<Sprite> Undergrounds;
+
+    [Space(20)]
     public List<Obstacle> obstacles;
 }

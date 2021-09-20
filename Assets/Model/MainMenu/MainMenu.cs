@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
     {
         shop.HideMenu();
         yield return new WaitForSeconds(switchDelay);
-        cameraManager.SetTarget(lootboxMenuGameObject, 5, switchMenuDelay, Vector3.zero);
+        cameraManager.SetTarget(lootboxMenuGameObject, switchMenuDelay, Vector3.zero);
         cameraManager.OnReachesTargetEvnet += lootBoxManger.OpenMenu;
     }
 
@@ -91,7 +91,7 @@ public class MainMenu : MonoBehaviour
     {
         lootBoxManger.HideMenu();
         yield return new WaitForSeconds(switchDelay);
-        cameraManager.SetTarget(shopMenuGameObject, 5, switchMenuDelay, Vector3.zero);
+        cameraManager.SetTarget(shopMenuGameObject, switchMenuDelay, Vector3.zero);
         cameraManager.OnReachesTargetEvnet +=  shop.OpenMenu;
     }
 

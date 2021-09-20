@@ -22,7 +22,9 @@ MonoBehaviour:
   middleFrontSprites: []
   finishFrontSprite: {fileID: 0}
   Background:
-  - {fileID: 21300000, guid: ce99b98e3e583c3459a4af70912cdf3c, type: 3}
+  - {fileID: 21300000, guid: 3ac7b6cbb33923a45be5f728b1fe8d01, type: 3}
+  Undergrounds:
+  - {fileID: 21300000, guid: 9ee28c2df02bc2745803d32c73cc0674, type: 3}
   obstacles:
   - {fileID: 2250628000756136788, guid: 89cdd6672ae71844bbad753e8e0a323e, type: 3}
   - {fileID: 430664384556599946, guid: 51c71b7e217025440828acebf39c70b1, type: 3}

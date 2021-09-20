@@ -32,6 +32,7 @@ public class LocationGenerator : MonoBehaviour
     [Space(20)]
     public List<SpriteRenderer> paralaxFirstLayerBg;
     public List<SpriteRenderer> paralaxSecondLayerBg;
+    public List<SpriteRenderer> paralaxUnderground;
     public List<RoadPart> paralaxGround;
     public List<SpriteRenderer> paralaxFront;
 
@@ -63,6 +64,7 @@ public class LocationGenerator : MonoBehaviour
     private ScriptableLocation currentLocation;
     private Queue<Sprite> roadQueue;
     private Queue<Sprite> frontQueue;
+    private Queue<Sprite> undergroundQueue;
 
     private int currentBgOrdering;
 
@@ -72,15 +74,16 @@ public class LocationGenerator : MonoBehaviour
     private float groundSpeed;
     private int guidObstacleNum = 0;
 
-    private bool enableJumpObstacles;
-    private bool enableSlipObstacles;
-    private bool enableMixedObstacles;
+    private bool enableJumpObstacles = true;
+    private bool enableSlipObstacles = true;
+    private bool enableMixedObstacles = true;
 
     private void Awake()
     {
         Instance = this;
         roadQueue = new Queue<Sprite>();
         frontQueue = new Queue<Sprite>();
+        undergroundQueue = new Queue<Sprite>();
     }
 
     private void Start()
@@ -102,7 +105,9 @@ public class LocationGenerator : MonoBehaviour
             ParalaxMove(paralaxFirstLayerBg, additionalBgSpeed);
             ParalaxMove(paralaxSecondLayerBg, additionalBgSpeed);
             GroundMove(paralaxGround, groundSpeed);
-            FrontMove(paralaxFront, groundSpeed);
+
+            ParalaxMove(paralaxFront, groundSpeed, frontQueue);
+            ParalaxMove(paralaxUnderground, groundSpeed, undergroundQueue);
         }
     }
 
@@ -146,7 +151,7 @@ public class LocationGenerator : MonoBehaviour
         locations.Add(criteria.location);
     }
 
-    private void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
+    private void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed, Queue<Sprite> nextSpriteQueue = null)
     {
         var vectorSpeed = Vector3.left * speed * Time.deltaTime;
         var itemsCount = paralaxItems.Count();
@@ -156,22 +161,10 @@ public class LocationGenerator : MonoBehaviour
             if (item.transform.position.x < -itemMoveDistance)
             {
                 item.transform.position += new Vector3(paralaxOffset * itemsCount, 0);
-            }
-            item.transform.position += vectorSpeed;
-        }
-    }
-
-    private void FrontMove(IEnumerable<SpriteRenderer> paralaxItems, float speed)
-    {
-        var vectorSpeed = Vector3.left * speed * Time.deltaTime;
-        var itemsCount = paralaxItems.Count();
-        var itemMoveDistance = paralaxOffset * itemsCount / (itemsCount - 1);
-        foreach (var item in paralaxItems)
-        {
-            if (item.transform.position.x < -itemMoveDistance)
-            {
-                item.transform.position += new Vector3(paralaxOffset * itemsCount, 0);
-                item.sprite = frontQueue.Dequeue();
+                if (nextSpriteQueue != null && nextSpriteQueue.Any())
+                {
+                    item.sprite = nextSpriteQueue.Dequeue();
+                }
             }
             item.transform.position += vectorSpeed;
         }
@@ -263,12 +256,14 @@ public class LocationGenerator : MonoBehaviour
             paralaxFirstLayerBg.ForEach(x => x.sprite = currentLocation.Background.GetRandom());
         }
 
+
         roadQueue.Enqueue(currentLocation.startSprite);
         frontQueue.Enqueue(currentLocation.startFrontSprite);
 
         var locationLenght = currentLocation.locationType == LocationType.Inner ? innerLocationLenght : outerLocationLenght; 
         for (var i = 0; i < locationLenght; i++)
         {
+            undergroundQueue.Enqueue(currentLocation.Undergrounds.GetRandom());
             roadQueue.Enqueue(currentLocation.middleSprites.GetRandom());
             frontQueue.Enqueue(currentLocation.middleFrontSprites.GetRandomOrDefault());
         }
@@ -315,9 +310,10 @@ public class LocationGenerator : MonoBehaviour
             bonusPosition = new Vector2(0, Random.Range(-3.3f, 3.3f));
         }
 
+        bonusPosition = new Vector2(bonusPosition.x + roadPart.transform.position.x, bonusPosition.y);
         if (spawnedBonus != null)
         {
-            spawnedBonus.transform.localPosition = bonusPosition;
+            spawnedBonus.transform.position = bonusPosition;
             roadPart.objectToRemove.Add(spawnedBonus.gameObject);
         }
     }
@@ -331,7 +327,7 @@ public class LocationGenerator : MonoBehaviour
                 || (obs.obstacleType == ObstacleType.Mixed && enableMixedObstacles))
             .GetRandom();
         var spawnedObstacle = Instantiate(obstacle, roadPart.transform);
-        spawnedObstacle.transform.localPosition = new Vector3(0, obstacleHigh);
+        spawnedObstacle.transform.position = new Vector3(roadPart.transform.position.x, obstacleHigh);
 
         roadPart.obstacle = spawnedObstacle;
         roadPart.objectToRemove.Add(spawnedObstacle.gameObject);
@@ -343,7 +339,7 @@ public class LocationGenerator : MonoBehaviour
             var obstacle = currentLocation.obstacles[guidObstacleNum];
             guidObstacleNum++;
             var spawnedObstacle = Instantiate(obstacle, roadPart.transform);
-            spawnedObstacle.transform.localPosition = new Vector3(0, obstacleHigh);
+            spawnedObstacle.transform.position = new Vector3(roadPart.transform.position.x, obstacleHigh);
 
             roadPart.obstacle = spawnedObstacle;
             roadPart.objectToRemove.Add(spawnedObstacle.gameObject);

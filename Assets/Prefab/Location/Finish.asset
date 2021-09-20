@@ -13,21 +13,19 @@ MonoBehaviour:
   m_Name: Finish
   m_EditorClassIdentifier: 
   locationType: 1
-  startSprite: {fileID: 21300000, guid: 87b6b05e66aef194885cd0191f759b4c, type: 3}
+  startSprite: {fileID: 21300000, guid: 122e5474f77dbb34e9929ad8c79a663c, type: 3}
   middleSprites:
-  - {fileID: 21300000, guid: 95f148436d63df24092be723329ffbeb, type: 3}
-  - {fileID: 21300000, guid: 8843c78e20de43248bb37c6d3b67ab6b, type: 3}
-  - {fileID: 21300000, guid: d9ecde96c860bde47a991b6ba4dde94d, type: 3}
-  finishSprite: {fileID: 21300000, guid: f0d63d1aacc9198498888211ec9c9727, type: 3}
-  startFrontSprite: {fileID: 21300000, guid: 931e6347542f1544e827c263f0d81083, type: 3}
+  - {fileID: 21300000, guid: 122e5474f77dbb34e9929ad8c79a663c, type: 3}
+  finishSprite: {fileID: 21300000, guid: 86592ad2650848f40970b320c289a902, type: 3}
+  startFrontSprite: {fileID: 21300000, guid: e91e10ae4735a4046856b8c1e4ae11aa, type: 3}
   middleFrontSprites: []
-  finishFrontSprite: {fileID: 21300000, guid: 2dc8dded3740b8d419431dd3251571c9, type: 3}
+  finishFrontSprite: {fileID: 21300000, guid: e91e10ae4735a4046856b8c1e4ae11aa, type: 3}
   Background:
   - {fileID: 21300000, guid: f9a3157c4ac557141b5b0990cc5dc852, type: 3}
+  Undergrounds:
+  - {fileID: 21300000, guid: 0d13ed7c01f38924e8701a5248b3d835, type: 3}
   obstacles:
-  - {fileID: 5002005189406344660, guid: 3a131abaf58867f48940b8903fc4d94f, type: 3}
-  - {fileID: 2833709546195987714, guid: 4a3ce0c19abaaf64c870ab53b45514e9, type: 3}
-  - {fileID: 9040053250124612356, guid: fa724f1813e1bc64db863bfb771c3a93, type: 3}
-  - {fileID: 4462664572362983694, guid: bc1b0d438559543418eec4f5f82c17d4, type: 3}
-  - {fileID: 7149038898877951799, guid: 6676b75a84dc5664e8d734cb40514c21, type: 3}
-  - {fileID: 2749488653726809032, guid: 8882ae8e15212c0479cc5ffad359c408, type: 3}
+  - {fileID: 4773761750956324390, guid: 8f7d745d20280a44d8414f6ecee6b129, type: 3}
+  - {fileID: 5977614470081099655, guid: 34fa0d9e858be994780e0878b0c8d24b, type: 3}
+  - {fileID: 4124962835910526334, guid: a233a29a3fc39ce4d9b28fbe1fb24396, type: 3}
+  - {fileID: 1251906030401760010, guid: 431774494057353438909c7eab740d37, type: 3}
