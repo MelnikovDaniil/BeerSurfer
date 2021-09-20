@@ -32006,8 +32006,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca218e8207589e844892dcdb7aa6b321, type: 2}
   - {fileID: 11400000, guid: e628a0d336db1b1408e82e7756fbe00e, type: 2}
   - {fileID: 11400000, guid: e1a6d1acb4041204a84c83f5a7e3e92c, type: 2}
-  innerLocationLenght: 6
-  outerLocationLenght: 2
+  - {fileID: 11400000, guid: 38d731b2d6540564faa6178b8b5666cc, type: 2}
+  - {fileID: 11400000, guid: 4e1ecaacd7ac225418060a4684db322b, type: 2}
+  - {fileID: 11400000, guid: 417780a89ccafad488bc1a512dc2db3c, type: 2}
+  - {fileID: 11400000, guid: 7c2d1b80c4e65824baef6b15589db9cf, type: 2}
+  - {fileID: 11400000, guid: c1f8435bfc6aa0740b0e64d26adae36a, type: 2}
+  innerLocationLenght: 3
+  outerLocationLenght: 6
   paralaxFirstLayerBg:
   - {fileID: 616453513}
   - {fileID: 2003873834}
@@ -32163,7 +32168,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929615236}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47fcee3b23dd9bf49b5a7783a6df8c07, type: 3}
   m_Name: 
