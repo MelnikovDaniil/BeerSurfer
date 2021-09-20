@@ -74,9 +74,9 @@ public class LocationGenerator : MonoBehaviour
     private float groundSpeed;
     private int guidObstacleNum = 0;
 
-    private bool enableJumpObstacles;
-    private bool enableSlipObstacles;
-    private bool enableMixedObstacles;
+    private bool enableJumpObstacles = true;
+    private bool enableSlipObstacles = true;
+    private bool enableMixedObstacles = true;
 
     private void Awake()
     {
