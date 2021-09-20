@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bc8875f1e037e4cb8ac889ffde2150, type: 3}
+  m_Name: Finish
+  m_EditorClassIdentifier: 
+  locationType: 1
+  startSprite: {fileID: 21300000, guid: 87b6b05e66aef194885cd0191f759b4c, type: 3}
+  middleSprites:
+  - {fileID: 21300000, guid: 95f148436d63df24092be723329ffbeb, type: 3}
+  - {fileID: 21300000, guid: 8843c78e20de43248bb37c6d3b67ab6b, type: 3}
+  - {fileID: 21300000, guid: d9ecde96c860bde47a991b6ba4dde94d, type: 3}
+  finishSprite: {fileID: 21300000, guid: f0d63d1aacc9198498888211ec9c9727, type: 3}
+  startFrontSprite: {fileID: 21300000, guid: 931e6347542f1544e827c263f0d81083, type: 3}
+  middleFrontSprites: []
+  finishFrontSprite: {fileID: 21300000, guid: 2dc8dded3740b8d419431dd3251571c9, type: 3}
+  Background:
+  - {fileID: 21300000, guid: f9a3157c4ac557141b5b0990cc5dc852, type: 3}
+  obstacles:
+  - {fileID: 5002005189406344660, guid: 3a131abaf58867f48940b8903fc4d94f, type: 3}
+  - {fileID: 2833709546195987714, guid: 4a3ce0c19abaaf64c870ab53b45514e9, type: 3}
+  - {fileID: 9040053250124612356, guid: fa724f1813e1bc64db863bfb771c3a93, type: 3}
+  - {fileID: 4462664572362983694, guid: bc1b0d438559543418eec4f5f82c17d4, type: 3}
+  - {fileID: 7149038898877951799, guid: 6676b75a84dc5664e8d734cb40514c21, type: 3}
+  - {fileID: 2749488653726809032, guid: 8882ae8e15212c0479cc5ffad359c408, type: 3}
