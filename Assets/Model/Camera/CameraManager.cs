@@ -6,15 +6,34 @@ public class CameraManager : MonoBehaviour
     public event Action OnReachesTargetEvnet;
     GameObject _target;
     public Camera camera;
+    public float cameraSizeLimit = 11f;
+
+    private const float StandartWidth = 720f;
+    private const float StandartHight = 1280f;
+
     private float secondsForMoving;
     private float toCameraSize;
     private float currentTime;
-    private const float StandartCameraSize = 5;
     private const float XCameraKoof = 8.7f;
     private const float YCameraKoof = 5f;
     private Vector3 currentPosition;
     private float currentCameraSize;
     private Vector3 cameraShift;
+
+    private float standartCameraSize;
+
+
+    private void Awake()
+    {
+        var standartAspectRatio = StandartHight / StandartWidth;
+        var currentAspectRation = (float)Screen.height / Screen.width;
+        Debug.Log("standartAspectRatio" + standartAspectRatio);
+        Debug.Log("currentAspectRation" + currentAspectRation);
+        Debug.Log("orthographicSize" + camera.orthographicSize);
+        camera.orthographicSize = camera.orthographicSize / standartAspectRatio * currentAspectRation;
+        Debug.Log("orthographicSize" + camera.orthographicSize);
+        standartCameraSize = Mathf.Clamp(camera.orthographicSize, 0, cameraSizeLimit);
+    }
 
 
     // Update is called once per frame
@@ -43,6 +62,11 @@ public class CameraManager : MonoBehaviour
 
     }
 
+    public void SetTarget(GameObject target, float time, Vector3 cameraShift)
+    {
+        SetTarget(target, standartCameraSize, time, cameraShift);
+    }
+
     public void SetTarget(GameObject target, float size, float time, Vector3 cameraShift)
     {
         currentPosition = transform.position;
@@ -58,11 +82,11 @@ public class CameraManager : MonoBehaviour
     {
         currentPosition = transform.position;
         _target = new GameObject("basePosition");
-        _target.transform.position = new Vector3(0, 0, -10);
+        _target.transform.position = new Vector3(-2.6f, 0, -10);
         currentCameraSize = camera.orthographicSize;
         secondsForMoving = time;
         this.cameraShift = Vector3.zero;
-        toCameraSize = StandartCameraSize;
+        toCameraSize = standartCameraSize;
         currentTime = 0;
     }
 }
