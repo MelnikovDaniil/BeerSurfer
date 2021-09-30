@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
     {
         if (lvlCriteria != null)
         {
-            StartCoroutine(FinishLevel(lvlCriteria.raceTime));
+            //StartCoroutine(FinishLevel(lvlCriteria.raceTime));
         }
     }
 

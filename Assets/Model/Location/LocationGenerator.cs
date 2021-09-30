@@ -57,9 +57,12 @@ public class LocationGenerator : MonoBehaviour
     public int batSpawnChanse = 1;
     public BonusView batPrefab;
 
-
     [Space(20)]
     public ScriptableLocation guideLocation;
+    public ScriptableLocation finishLocation;
+
+    [Space(20)]
+    public float stoppingTime = 1.2f;
 
     private ScriptableLocation currentLocation;
     private Queue<Sprite> roadQueue;
@@ -67,6 +70,7 @@ public class LocationGenerator : MonoBehaviour
     private Queue<Sprite> undergroundQueue;
 
     private int currentBgOrdering;
+    private int levelLength;
 
     private bool gameStarted;
 
@@ -77,6 +81,8 @@ public class LocationGenerator : MonoBehaviour
     private bool enableJumpObstacles = true;
     private bool enableSlipObstacles = true;
     private bool enableMixedObstacles = true;
+
+    private bool levelSystem;
 
     private void Awake()
     {
@@ -111,6 +117,29 @@ public class LocationGenerator : MonoBehaviour
         }
     }
 
+    public void StopMoving()
+    {
+        DifficultyManger.OnDifficultyChange -= OnDifficultyChange;
+        StartCoroutine(StartStopping());
+    }
+
+    private IEnumerator StartStopping()
+    {
+        var currentStoppingTime = stoppingTime;
+        var rate = 0.1f;
+
+        while (currentStoppingTime > 0)
+        {
+            yield return new WaitForSeconds(rate);
+            currentStoppingTime -= rate;
+            var coof = currentStoppingTime / stoppingTime;
+            groundSpeed = coof * paralaxGroundSpeed;
+            additionalBgSpeed = coof * paralaxAdditionalBgSpeed;
+        }
+        groundSpeed = 0;
+        additionalBgSpeed = 0;
+    }
+
     public void StartGame()
     {
         gameStarted = true;
@@ -134,6 +163,7 @@ public class LocationGenerator : MonoBehaviour
 
     public void SetUpGenerator(GenerationCriteria criteria)
     {
+        levelSystem = true;
         var startScreenCount = 3;
         speedDifferenceFactor = 1;
 
@@ -144,11 +174,23 @@ public class LocationGenerator : MonoBehaviour
         enableMixedObstacles = criteria.enableMixedObstacles;
         obstacleChance = criteria.obstacleChanse;
 
-        var screenCount = (int)(criteria.raceTime / (paralaxOffset / paralaxGroundSpeed)) + 1 - startScreenCount;
-        innerLocationLenght = screenCount;
-        outerLocationLenght = screenCount;
+        levelLength = (int)(criteria.raceTime / (paralaxOffset / paralaxGroundSpeed)) + 1 - startScreenCount;
+        if (!locations.Any())
+        {
+            Debug.LogError("Locations not found");
+        }
+        else if (locations.Count == 1)
+        {
+            innerLocationLenght = levelLength;
+            outerLocationLenght = levelLength;
+        }
+        else
+        {
+            innerLocationLenght = criteria.innerLocationLength;
+            outerLocationLenght = criteria.outerLocationLength;
+        }
         locations.Clear();
-        locations.Add(criteria.location);
+        locations.AddRange(criteria.locations);
     }
 
     private void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed, Queue<Sprite> nextSpriteQueue = null)
@@ -186,8 +228,16 @@ public class LocationGenerator : MonoBehaviour
 
                 if (!roadQueue.Any())
                 {
-                    roadType = RoadType.Start;
                     GenerateLocation();
+                    if (levelSystem && levelLength == 0)
+                    {
+                        roadType = RoadType.LevelEnding;
+                    }
+                    else
+                    {
+                        roadType = RoadType.Start;
+
+                    }
                 }
 
                 road.ChangeSprite(roadQueue.Dequeue());
@@ -252,15 +302,25 @@ public class LocationGenerator : MonoBehaviour
         }
         else
         {
-            currentBgOrdering = BgOrderingLayer1;
-            paralaxFirstLayerBg.ForEach(x => x.sprite = currentLocation.Background.GetRandom());
+            if (levelSystem && levelLength == 0)
+            {
+                currentLocation = finishLocation;
+            }
+            else
+            {
+                currentBgOrdering = BgOrderingLayer1;
+                paralaxFirstLayerBg.ForEach(x => x.sprite = currentLocation.Background.GetRandom());
+            }
         }
 
 
         roadQueue.Enqueue(currentLocation.startSprite);
         frontQueue.Enqueue(currentLocation.startFrontSprite);
 
-        var locationLenght = currentLocation.locationType == LocationType.Inner ? innerLocationLenght : outerLocationLenght; 
+        var locationLenght = currentLocation.locationType == LocationType.Inner ? innerLocationLenght : outerLocationLenght;
+        locationLenght = Mathf.Clamp(locationLenght, 0, levelLength);
+        levelLength -= locationLenght;
+
         for (var i = 0; i < locationLenght; i++)
         {
             undergroundQueue.Enqueue(currentLocation.Undergrounds.GetRandom());

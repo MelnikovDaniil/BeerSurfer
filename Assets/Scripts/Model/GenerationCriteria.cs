@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -6,7 +7,9 @@ public class GenerationCriteria
 {
     public float raceTime = 30f;
 
-    public ScriptableLocation location;
+    public List<ScriptableLocation> locations;
+    public int innerLocationLength = 6;
+    public int outerLocationLength = 6;
 
     [Space(20f)]
     [Header("Bonuses")]

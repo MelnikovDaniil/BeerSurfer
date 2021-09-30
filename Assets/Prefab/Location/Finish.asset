@@ -19,7 +19,7 @@ MonoBehaviour:
   finishSprite: {fileID: 21300000, guid: 86592ad2650848f40970b320c289a902, type: 3}
   startFrontSprite: {fileID: 21300000, guid: e91e10ae4735a4046856b8c1e4ae11aa, type: 3}
   middleFrontSprites: []
-  finishFrontSprite: {fileID: 21300000, guid: e91e10ae4735a4046856b8c1e4ae11aa, type: 3}
+  finishFrontSprite: {fileID: 0}
   Background:
   - {fileID: 21300000, guid: f9a3157c4ac557141b5b0990cc5dc852, type: 3}
   Undergrounds:
