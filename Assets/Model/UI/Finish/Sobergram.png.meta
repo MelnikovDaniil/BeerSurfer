@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 628d59a49e7afdf429f76e060eddb463
+guid: 471d0b29c2f16ba4b86ea5adf759d501
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 9030527535450174495
-    second: Sobergram_Panel
+    second: Sobergram_0
   - first:
       213: 97143534100283540
-    second: Sobergram_NotActiveLike
+    second: Sobergram_1
   - first:
       213: -7958024259607338990
-    second: Sobergram_ActiveLike
+    second: Sobergram_2
   - first:
       213: 8206517353613035897
-    second: Sobergram_Comments
+    second: Sobergram_3
   - first:
       213: -6440645646606269841
-    second: Sobergram_Share
+    second: Sobergram_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sobergram_Panel
+      name: Sobergram_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 150
-        width: 720
-        height: 856
+        y: 164
+        width: 788
+        height: 935
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,13 +139,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sobergram_NotActiveLike
+      name: Sobergram_1
       rect:
         serializedVersion: 2
-        x: 42
-        y: 15
-        width: 85
-        height: 77
+        x: 47
+        y: 16
+        width: 92
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,13 +160,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sobergram_ActiveLike
+      name: Sobergram_2
       rect:
         serializedVersion: 2
-        x: 176
-        y: 10
-        width: 86
-        height: 77
+        x: 193
+        y: 11
+        width: 94
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,13 +181,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sobergram_Comments
+      name: Sobergram_3
       rect:
         serializedVersion: 2
-        x: 355
+        x: 389
         y: 0
-        width: 108
-        height: 90
+        width: 117
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,13 +202,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sobergram_Share
+      name: Sobergram_4
       rect:
         serializedVersion: 2
-        x: 549
-        y: 13
-        width: 100
-        height: 71
+        x: 601
+        y: 14
+        width: 109
+        height: 78
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

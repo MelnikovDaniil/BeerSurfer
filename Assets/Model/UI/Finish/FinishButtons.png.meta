@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7093e0cd31217454ebe422ff42808417
+guid: 123b3d2a884b78646b6d06987bbafe5a
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: -6214421222246926275
     second: FinishButtons_1
+  - first:
+      213: 4320000130657937684
+    second: FinishButtons_2
+  - first:
+      213: -7483570306321386831
+    second: FinishButtons_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,10 +118,10 @@ TextureImporter:
       name: FinishButtons_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 334
-        width: 720
-        height: 293
+        x: 2
+        y: 814
+        width: 181
+        height: 141
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,10 +139,10 @@ TextureImporter:
       name: FinishButtons_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
-        width: 680
-        height: 254
+        x: 218
+        y: 640
+        width: 697
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,6 +152,48 @@ TextureImporter:
       bones: []
       spriteID: d38b253e2d0f1c9a0800000000000000
       internalID: -6214421222246926275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FinishButtons_2
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 338
+        width: 697
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 419e1810b39b3fb30800000000000000
+      internalID: 4320000130657937684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FinishButtons_3
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 2
+        width: 697
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b27d00c474052890800000000000000
+      internalID: -7483570306321386831
       vertices: []
       indices: 
       edges: []

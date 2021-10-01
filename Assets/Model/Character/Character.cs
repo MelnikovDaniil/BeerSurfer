@@ -18,6 +18,7 @@ public class Character : MonoBehaviour
     public float drinkRepeatTime = 10f;
     public float batCharge = 10;
     public float finishingDelay = 2;
+    public float stoppingTime = 2;
     public SpriteRenderer phoneRenderer;
     public Sprite phoneSprite;
     public GameObject discount;
@@ -309,8 +310,9 @@ public class Character : MonoBehaviour
     {
         yield return new WaitForSeconds(finishingDelay);
         LocationGenerator.Instance.StopMoving();
-        ShakingManager.Instance.StartShaking();
         animator.Play("Stopping");
+        yield return new WaitForSeconds(stoppingTime);
+        ShakingManager.Instance.StartShaking();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

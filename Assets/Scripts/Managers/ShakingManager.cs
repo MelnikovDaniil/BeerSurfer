@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShakingManager : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class ShakingManager : MonoBehaviour
     public TextMeshPro bonusText;
     public List<int> rewardList;
 
+    [Space(20)]
+    public Image timerImage;
+    public Image timerArrowImage;
+    public TextMeshProUGUI tabCounter;
+    public Transform tabsParticles;
+
+    private Animator tabAnimator;
+    private float shakingTimeLeft;
     private Animator _characterAnimator;
     private bool shaking;
     private float boostStep;
@@ -43,13 +52,31 @@ public class ShakingManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                if (tabs == 0)
+                {
+                    Time.timeScale = 1;
+                    tabCounter.gameObject.SetActive(true);
+                    StartCoroutine(FinishShaking());
+                }
+                tabs += 1;
+                var tabsCoof = (float)tabs / maxTabs;
+                tabCounter.transform.parent.localScale = Vector3.one * (tabsCoof * 0.5f + 1f);
+                tabsParticles.localScale = Vector3.one * 120 * tabsCoof;
+                tabCounter.text = tabs.ToString();
+                tabAnimator.Play("Pulse");
                 var speed = _characterAnimator.GetFloat("shakingSpeed") + boostStep;
                 _characterAnimator.SetFloat("shakingSpeed", speed);
-                tabs += 1;
+                
                 if (tabs >= maxTabs)
                 {
                     Splash();
                 }
+            }
+            if (tabs > 0)
+            {
+                shakingTimeLeft -= Time.deltaTime;
+                timerImage.fillAmount = shakingTimeLeft / maxShakingTime;
+                timerArrowImage.transform.rotation = Quaternion.Euler(0, 0, 360 * shakingTimeLeft / maxShakingTime);
             }
         }
 
@@ -71,6 +98,7 @@ public class ShakingManager : MonoBehaviour
             {
                 particle = null;
                 UIManager.Sceenshot();
+                LevelManager.FinishLevel();
             }
 
         }
@@ -78,10 +106,15 @@ public class ShakingManager : MonoBehaviour
 
     public void StartShaking()
     {
+        UIManager.StartShaking();
         shaking = true;
         tabs = 0;
-        StartCoroutine(FinishShaking());
+        shakingTimeLeft = maxShakingTime;
+        Time.timeScale = 0;
+        tabCounter.gameObject.SetActive(false);
+        tabAnimator = tabCounter.GetComponent<Animator>();
     }
+
     private IEnumerator FinishShaking()
     {
         yield return new WaitForSeconds(maxShakingTime);
@@ -92,6 +125,10 @@ public class ShakingManager : MonoBehaviour
     {
         if (shaking)
         {
+            timerImage.fillAmount = 0;
+            timerArrowImage.transform.rotation = Quaternion.identity;
+
+            UIManager.FinishShaking();
             nextBonusPosition = bonusStartPosition;
             _characterAnimator.Play("SodaSplash");
             shaking = false;

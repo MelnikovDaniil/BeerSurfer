@@ -29,11 +29,7 @@ public class CameraManager : MonoBehaviour
         Instance = this;
         var standartAspectRatio = StandartHight / StandartWidth;
         var currentAspectRation = (float)Screen.height / Screen.width;
-        Debug.Log("standartAspectRatio" + standartAspectRatio);
-        Debug.Log("currentAspectRation" + currentAspectRation);
-        Debug.Log("orthographicSize" + camera.orthographicSize);
         camera.orthographicSize = camera.orthographicSize / standartAspectRatio * currentAspectRation;
-        Debug.Log("orthographicSize" + camera.orthographicSize);
         standartCameraSize = Mathf.Clamp(camera.orthographicSize, 0, cameraSizeLimit);
     }
 
