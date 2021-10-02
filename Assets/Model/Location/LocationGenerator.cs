@@ -147,7 +147,7 @@ public class LocationGenerator : MonoBehaviour
 
     public void ClearRoad()
     {
-        foreach (var road in paralaxGround)
+        foreach (var road in paralaxGround.Where(x => x.roadType != RoadType.LevelEnding))
         {
             road.Clear();
         }
@@ -155,7 +155,7 @@ public class LocationGenerator : MonoBehaviour
 
     public void ClearRoad(RoadPart except)
     {
-        foreach (var road in paralaxGround.Where(x => x != except))
+        foreach (var road in paralaxGround.Where(x => x != except && x.roadType != RoadType.LevelEnding))
         {
             road.Clear();
         }
@@ -175,6 +175,9 @@ public class LocationGenerator : MonoBehaviour
         obstacleChance = criteria.obstacleChanse;
 
         levelLength = (int)(criteria.raceTime / (paralaxOffset / paralaxGroundSpeed)) + 1 - startScreenCount;
+
+        locations.Clear();
+        locations.AddRange(criteria.locations);
         if (!locations.Any())
         {
             Debug.LogError("Locations not found");
@@ -189,8 +192,6 @@ public class LocationGenerator : MonoBehaviour
             innerLocationLenght = criteria.innerLocationLength;
             outerLocationLenght = criteria.outerLocationLength;
         }
-        locations.Clear();
-        locations.AddRange(criteria.locations);
     }
 
     private void ParalaxMove(IEnumerable<SpriteRenderer> paralaxItems, float speed, Queue<Sprite> nextSpriteQueue = null)

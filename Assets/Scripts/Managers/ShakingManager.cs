@@ -11,6 +11,7 @@ public class ShakingManager : MonoBehaviour
     public int maxTabs = 30;
     public float maxSplashForce;
     public float maxAnimationSpeed = 2;
+    public float minVelocity = 0.3f;
     public Transform handTransform;
     public ParticleSystem splashParticles;
     public Vector3 splashCameraShift;
@@ -48,59 +49,63 @@ public class ShakingManager : MonoBehaviour
 
     private void Update()
     {
-        if (shaking)
+        if (!GameManager.isPaused)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (shaking)
             {
-                if (tabs == 0)
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    Time.timeScale = 1;
-                    tabCounter.gameObject.SetActive(true);
-                    StartCoroutine(FinishShaking());
+                    if (tabs == 0)
+                    {
+                        Time.timeScale = 1;
+                        tabCounter.gameObject.SetActive(true);
+                        StartCoroutine(FinishShaking());
+                    }
+                    tabs += 1;
+                    var tabsCoof = (float)tabs / maxTabs;
+                    tabCounter.transform.parent.localScale = Vector3.one * (tabsCoof * 0.5f + 1f);
+                    tabsParticles.localScale = Vector3.one * 120 * tabsCoof;
+                    tabCounter.text = tabs.ToString();
+                    tabAnimator.Play("Pulse");
+                    var speed = _characterAnimator.GetFloat("shakingSpeed") + boostStep;
+                    _characterAnimator.SetFloat("shakingSpeed", speed);
+
+                    if (tabs >= maxTabs)
+                    {
+                        Splash();
+                    }
                 }
-                tabs += 1;
-                var tabsCoof = (float)tabs / maxTabs;
-                tabCounter.transform.parent.localScale = Vector3.one * (tabsCoof * 0.5f + 1f);
-                tabsParticles.localScale = Vector3.one * 120 * tabsCoof;
-                tabCounter.text = tabs.ToString();
-                tabAnimator.Play("Pulse");
-                var speed = _characterAnimator.GetFloat("shakingSpeed") + boostStep;
-                _characterAnimator.SetFloat("shakingSpeed", speed);
-                
-                if (tabs >= maxTabs)
+                if (tabs > 0)
                 {
-                    Splash();
+                    shakingTimeLeft -= Time.deltaTime;
+                    timerImage.fillAmount = shakingTimeLeft / maxShakingTime;
+                    timerArrowImage.transform.rotation = Quaternion.Euler(0, 0, 360 * shakingTimeLeft / maxShakingTime);
                 }
             }
-            if (tabs > 0)
+
+            if (particle != null)
             {
-                shakingTimeLeft -= Time.deltaTime;
-                timerImage.fillAmount = shakingTimeLeft / maxShakingTime;
-                timerArrowImage.transform.rotation = Quaternion.Euler(0, 0, 360 * shakingTimeLeft / maxShakingTime);
+                if (particle.transform.position.y > nextBonusPosition)
+                {
+                    nextBonusPosition += bonusGap;
+                    var text = Instantiate(bonusText, particle.transform.position + new Vector3(2, 0), Quaternion.identity);
+                    var beer = rewardQueue.Dequeue();
+                    GameManager.beer += beer;
+                    text.text = $"+{beer}";
+                }
+
+                var main = particle.main;
+                main.startLifetimeMultiplier = Mathf.Clamp((particle.transform.position.y - handTransform.position.y) / 5f, 0, 4f);
+
+                if (particleRigidbody.velocity.y < minVelocity)
+                {
+                    particleRigidbody.velocity = Vector2.zero;
+                    particle = null;
+                    UIManager.Sceenshot();
+                    LevelManager.FinishLevel();
+                }
+
             }
-        }
-
-        if (particle != null)
-        {
-            if (particle.transform.position.y > nextBonusPosition)
-            {
-                nextBonusPosition += bonusGap;
-                var text = Instantiate(bonusText, particle.transform.position + new Vector3(2, 0), Quaternion.identity);
-                var beer = rewardQueue.Dequeue();
-                GameManager.beer += beer;
-                text.text = $"+{beer}";
-            }
-
-            var main = particle.main;
-            main.startLifetimeMultiplier = Mathf.Clamp((particle.transform.position.y - handTransform.position.y) / 5f, 0, 4f);
-
-            if (particleRigidbody.velocity.y < 0.1f)
-            {
-                particle = null;
-                UIManager.Sceenshot();
-                LevelManager.FinishLevel();
-            }
-
         }
     }
 

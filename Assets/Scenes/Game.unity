@@ -13707,6 +13707,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 99853420}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &596177671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19369,7 +19381,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: +100
+  m_Text: 100
 --- !u!222 &1106594355
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -45581,7 +45593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fcee3b23dd9bf49b5a7783a6df8c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 99
+  currentLevel: 1
   levelRangeConfigurations:
   - levelRange: {x: 1, y: 2}
     generationCriteria:
@@ -45729,19 +45741,6 @@ MonoBehaviour:
   - levelRange: {x: 46, y: 55}
     generationCriteria:
       raceTime: 30
-      locations:
-      - {fileID: 11400000, guid: e628a0d336db1b1408e82e7756fbe00e, type: 2}
-      innerLocationLength: 6
-      outerLocationLength: 6
-      batSpawn: 1
-      chillySpawn: 1
-      enableJumpObstacles: 1
-      enableSlipObstacles: 1
-      enableMixedObstacles: 1
-      obstacleChanse: 0.75
-  - levelRange: {x: 99, y: 99}
-    generationCriteria:
-      raceTime: 15
       locations:
       - {fileID: 11400000, guid: e628a0d336db1b1408e82e7756fbe00e, type: 2}
       innerLocationLength: 6
@@ -49797,6 +49796,7 @@ MonoBehaviour:
   maxTabs: 30
   maxSplashForce: 29
   maxAnimationSpeed: 2
+  minVelocity: 0.3
   handTransform: {fileID: 1316538787}
   splashParticles: {fileID: 2676303262333257784, guid: 04ac7206ea03a8b4a8fe1d252b64b716, type: 3}
   splashCameraShift: {x: 2, y: 0, z: -10}
