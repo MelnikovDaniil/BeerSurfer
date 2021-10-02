@@ -45426,7 +45426,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 38d731b2d6540564faa6178b8b5666cc, type: 2}
   - {fileID: 11400000, guid: 4e1ecaacd7ac225418060a4684db322b, type: 2}
   - {fileID: 11400000, guid: 417780a89ccafad488bc1a512dc2db3c, type: 2}
-  - {fileID: 11400000, guid: 7c2d1b80c4e65824baef6b15589db9cf, type: 2}
   - {fileID: 11400000, guid: c1f8435bfc6aa0740b0e64d26adae36a, type: 2}
   innerLocationLenght: 3
   outerLocationLenght: 6

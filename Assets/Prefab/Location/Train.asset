@@ -17,13 +17,14 @@ MonoBehaviour:
   middleSprites:
   - {fileID: 21300000, guid: 95f148436d63df24092be723329ffbeb, type: 3}
   - {fileID: 21300000, guid: 8843c78e20de43248bb37c6d3b67ab6b, type: 3}
-  - {fileID: 21300000, guid: d9ecde96c860bde47a991b6ba4dde94d, type: 3}
   finishSprite: {fileID: 21300000, guid: f0d63d1aacc9198498888211ec9c9727, type: 3}
-  startFrontSprite: {fileID: 21300000, guid: 931e6347542f1544e827c263f0d81083, type: 3}
+  startFrontSprite: {fileID: 21300000, guid: 9813c83904d772d4a9e4aca09c3cef19, type: 3}
   middleFrontSprites: []
-  finishFrontSprite: {fileID: 21300000, guid: 2dc8dded3740b8d419431dd3251571c9, type: 3}
+  finishFrontSprite: {fileID: 21300000, guid: 06408fd71566cb545a67c49085232730, type: 3}
   Background:
   - {fileID: 21300000, guid: f9a3157c4ac557141b5b0990cc5dc852, type: 3}
+  Undergrounds:
+  - {fileID: 21300000, guid: 709ff685dd9d2f04f88badc3bbc20306, type: 3}
   obstacles:
   - {fileID: 5002005189406344660, guid: 3a131abaf58867f48940b8903fc4d94f, type: 3}
   - {fileID: 2833709546195987714, guid: 4a3ce0c19abaaf64c870ab53b45514e9, type: 3}

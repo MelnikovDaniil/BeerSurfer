@@ -18,7 +18,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9fbdb0d24f654c543b489f5a2291efd8, type: 3}
   - {fileID: 21300000, guid: 44541f0378ab6f547b4b44a791f452ee, type: 3}
   - {fileID: 21300000, guid: cdddfe63be66b394393dce73d66d6678, type: 3}
-  - {fileID: 21300000, guid: e238da49c0c11b44d92b71055549ade4, type: 3}
   finishSprite: {fileID: 21300000, guid: e3fa967406877184b9615bb818296aac, type: 3}
   startFrontSprite: {fileID: 0}
   middleFrontSprites: []
