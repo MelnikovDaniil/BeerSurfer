@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
-
-public enum ObstacleType
+﻿public enum ObstacleType
 {
+    NonObstacle = -1,
     Jump,
     Slip,
     Mixed,

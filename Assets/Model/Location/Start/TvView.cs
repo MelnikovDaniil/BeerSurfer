@@ -62,8 +62,11 @@ public class TvView : MonoBehaviour
         }
         else
         {
-            recordText.text = record.ToString();
-            elements.Add(recordText.transform.parent.gameObject);
+            if (LevelManager.Instance.lvlCriteria == null)
+            {
+                recordText.text = record.ToString();
+                elements.Add(recordText.transform.parent.gameObject);
+            }
 
             beerText.text = beer.ToString();
             elements.Add(beerText.transform.parent.gameObject);

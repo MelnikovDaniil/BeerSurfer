@@ -95,7 +95,7 @@ public class UIManager : MonoBehaviour
     private IEnumerator ContinueWithDelayRoutine()
     {
         finishContinueButton.interactable = false;
-        yield return new WaitForSeconds(continueDelayTime);
+        yield return new WaitForSecondsRealtime(continueDelayTime);
         finishContinueButton.interactable = true;
     }
 
@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
         var likes = 0;
         for (var i = 0; i < 10; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
             comments += Random.Range(0, 100);
             likes += Random.Range(0, 100);
             finishCommetsText.text = comments.ToString();

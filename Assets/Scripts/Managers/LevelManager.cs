@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     public List<LevelRangeConfiguration> levelRangeConfigurations;
     public TextMeshPro startText1;
     public TextMeshPro startText2;
-    private GenerationCriteria lvlCriteria;
+    public GenerationCriteria lvlCriteria;
 
     private void Awake()
     {

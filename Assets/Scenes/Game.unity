@@ -690,6 +690,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
       propertyPath: ShapeModule.type
       value: 10
       objectReference: {fileID: 0}
@@ -12572,6 +12576,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
       propertyPath: ShapeModule.type
       value: 10
       objectReference: {fileID: 0}
@@ -13708,6 +13716,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 99853420}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 596177668}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -16834,7 +16854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831198189}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.98, y: -1.63, z: 0}
+  m_LocalPosition: {x: -5.77, y: -1.63, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 1764223132}
@@ -21716,9 +21736,9 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.5
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -21730,7 +21750,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1210173226}
   m_OnClick:
     m_PersistentCalls:
@@ -30634,7 +30654,7 @@ ParticleSystem:
   looping: 0
   prewarm: 0
   playOnAwake: 0
-  useUnscaledTime: 0
+  useUnscaledTime: 1
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
@@ -36239,7 +36259,7 @@ ParticleSystem:
   looping: 0
   prewarm: 0
   playOnAwake: 0
-  useUnscaledTime: 0
+  useUnscaledTime: 1
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
@@ -42500,6 +42520,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
       propertyPath: ShapeModule.type
       value: 10
       objectReference: {fileID: 0}
@@ -43500,6 +43524,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
       propertyPath: ShapeModule.type
       value: 10
       objectReference: {fileID: 0}
@@ -43873,6 +43901,10 @@ PrefabInstance:
     - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057178268259859169, guid: 32170bf7c06c1e04080b51cc87312a20, type: 3}
       propertyPath: ShapeModule.type
@@ -45058,7 +45090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1913062432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45075,10 +45107,10 @@ RectTransform:
   m_Father: {fileID: 131973577}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 490, y: -65}
+  m_SizeDelta: {x: 180, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1919797569
 GameObject:
@@ -45592,7 +45624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fcee3b23dd9bf49b5a7783a6df8c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 1
+  currentLevel: -1
   levelRangeConfigurations:
   - levelRange: {x: 1, y: 2}
     generationCriteria:
@@ -45702,48 +45734,52 @@ MonoBehaviour:
     generationCriteria:
       raceTime: 30
       locations:
-      - {fileID: 11400000, guid: 529af6224d91bee4d83b079639d9b1a9, type: 2}
+      - {fileID: 11400000, guid: 38d731b2d6540564faa6178b8b5666cc, type: 2}
       innerLocationLength: 6
-      outerLocationLength: 6
-      batSpawn: 0
+      outerLocationLength: 3
+      batSpawn: 1
       chillySpawn: 1
       enableJumpObstacles: 1
       enableSlipObstacles: 1
       enableMixedObstacles: 1
       obstacleChanse: 0.75
-  - levelRange: {x: 26, y: 35}
+  - levelRange: {x: 26, y: 30}
     generationCriteria:
       raceTime: 30
       locations:
+      - {fileID: 11400000, guid: 38d731b2d6540564faa6178b8b5666cc, type: 2}
+      innerLocationLength: 6
+      outerLocationLength: 3
+      batSpawn: 1
+      chillySpawn: 1
+      enableJumpObstacles: 1
+      enableSlipObstacles: 1
+      enableMixedObstacles: 1
+      obstacleChanse: 0.75
+  - levelRange: {x: 31, y: 40}
+    generationCriteria:
+      raceTime: 30
+      locations:
+      - {fileID: 11400000, guid: 529af6224d91bee4d83b079639d9b1a9, type: 2}
+      - {fileID: 11400000, guid: 4e1ecaacd7ac225418060a4684db322b, type: 2}
       - {fileID: 11400000, guid: ca218e8207589e844892dcdb7aa6b321, type: 2}
       innerLocationLength: 6
-      outerLocationLength: 6
+      outerLocationLength: 3
       batSpawn: 1
       chillySpawn: 1
       enableJumpObstacles: 1
       enableSlipObstacles: 1
       enableMixedObstacles: 1
       obstacleChanse: 0.75
-  - levelRange: {x: 36, y: 45}
+  - levelRange: {x: 41, y: 50}
     generationCriteria:
       raceTime: 30
       locations:
+      - {fileID: 11400000, guid: c1f8435bfc6aa0740b0e64d26adae36a, type: 2}
+      - {fileID: 11400000, guid: 4e1ecaacd7ac225418060a4684db322b, type: 2}
       - {fileID: 11400000, guid: e628a0d336db1b1408e82e7756fbe00e, type: 2}
       innerLocationLength: 6
-      outerLocationLength: 6
-      batSpawn: 1
-      chillySpawn: 1
-      enableJumpObstacles: 1
-      enableSlipObstacles: 1
-      enableMixedObstacles: 1
-      obstacleChanse: 0.75
-  - levelRange: {x: 46, y: 55}
-    generationCriteria:
-      raceTime: 30
-      locations:
-      - {fileID: 11400000, guid: e628a0d336db1b1408e82e7756fbe00e, type: 2}
-      innerLocationLength: 6
-      outerLocationLength: 6
+      outerLocationLength: 3
       batSpawn: 1
       chillySpawn: 1
       enableJumpObstacles: 1
@@ -45752,6 +45788,17 @@ MonoBehaviour:
       obstacleChanse: 0.75
   startText1: {fileID: 674530890}
   startText2: {fileID: 1973415432}
+  lvlCriteria:
+    raceTime: 30
+    locations: []
+    innerLocationLength: 6
+    outerLocationLength: 6
+    batSpawn: 0
+    chillySpawn: 0
+    enableJumpObstacles: 1
+    enableSlipObstacles: 1
+    enableMixedObstacles: 1
+    obstacleChanse: 0.75
 --- !u!1 &1930513762
 GameObject:
   m_ObjectHideFlags: 0
@@ -49795,7 +49842,7 @@ MonoBehaviour:
   maxTabs: 30
   maxSplashForce: 29
   maxAnimationSpeed: 2
-  minVelocity: 0.3
+  minVelocity: 0.5
   handTransform: {fileID: 1316538787}
   splashParticles: {fileID: 2676303262333257784, guid: 04ac7206ea03a8b4a8fe1d252b64b716, type: 3}
   splashCameraShift: {x: 2, y: 0, z: -10}

@@ -192,6 +192,8 @@ public class Character : MonoBehaviour
         BuffUpdate();
     }
 
+    #region Buffs
+
     public void AddBuff(TimedBuff buff)
     {
         if (!_buffs.Any(x => x.ToString() == buff.ToString()))
@@ -207,6 +209,33 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void BuffUpdate()
+    {
+        var buffs = _buffs.ToArray();
+        foreach (var buff in buffs)
+        {
+            buff.Tick(Time.deltaTime);
+            if (buff.IsFinished)
+            {
+                _buffs.Remove(buff);
+            }
+        }
+    }
+
+    private void ClearBuffs()
+    {
+        var buffs = _buffs.ToArray();
+        foreach (var buff in buffs)
+        {
+            buff.Tick(buff.Duration);
+            if (buff.IsFinished)
+            {
+                _buffs.Remove(buff);
+            }
+        }
+    }
+
+    #endregion
     public void ActivateBit()
     {
         if (!bitEnabled)
@@ -229,25 +258,13 @@ public class Character : MonoBehaviour
         animator.Play("SecondLife");
         isDead = false;
         transform.position = startPosition;
-        Invoke(nameof(SecondLifeEnd), delay);
+        StartCoroutine(SecondLifeEnd(delay));
     }
 
-    public void SecondLifeEnd()
+    public IEnumerator SecondLifeEnd(float delay)
     {
+        yield return new WaitForSecondsRealtime(delay);
         animator.updateMode = AnimatorUpdateMode.Normal;
-    }
-
-    private void BuffUpdate()
-    {
-        var buffs = _buffs.ToArray();
-        foreach (var buff in buffs)
-        {
-            buff.Tick(Time.deltaTime);
-            if (buff.IsFinished)
-            {
-                _buffs.Remove(buff);
-            }
-        }
     }
 
     private void Jump()
@@ -276,7 +293,7 @@ public class Character : MonoBehaviour
 
     private void Death()
     {
-        _buffs.ForEach(x => x.End());
+        ClearBuffs();
         animator.SetTrigger("death");
         isDead = true;
         OnDeathEvent?.Invoke();
@@ -326,9 +343,11 @@ public class Character : MonoBehaviour
             if (bitEnabled)
             {
                 var chushParitcles = Instantiate(
-                    crushParticlesPrefab,
+                    crushParticlesPrefab, 
+                    new Vector3(collision.gameObject.transform.position.x, 0),
+                    Quaternion.identity,
                     collision.transform.parent);
-                crushParticlesPrefab.transform.localPosition = new Vector3(collision.transform.localPosition.x, 0);
+                //crushParticlesPrefab.transform.localPosition = collision.transform.localPosition
                 Destroy(chushParitcles.gameObject, 1f);
                 Destroy(collision.gameObject);
                 var bat = _buffs.First(x => x.Buff.Name == "Bat");
@@ -346,6 +365,7 @@ public class Character : MonoBehaviour
         {
             if (collision.tag == "LevelEnding")
             {
+                ClearBuffs();
                 gameEnded = true;
                 StartCoroutine(Stopping());
                 UIManager.Finish();

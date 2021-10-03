@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public static int score;
     public static int beer;
     public static bool isPaused;
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         score = 0;
         beer = 0;
         gameEnded = false;
@@ -144,7 +146,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void StopPoits()
+    public void StopPoits()
     {
         gameEnded = true;
     }
@@ -201,7 +203,7 @@ public class GameManager : MonoBehaviour
     private void OnApplicationPause(bool pause)
     {
 
-        if (gameStarted && pause)
+        if (gameStarted && !gameEnded && pause)
         {
             isPaused = false;
             PauseOrResume();
@@ -210,7 +212,7 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        if (gameStarted && !focus)
+        if (gameStarted && !gameEnded && !focus)
         {
             isPaused = false;
             PauseOrResume();

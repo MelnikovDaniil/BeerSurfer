@@ -101,8 +101,10 @@ public class ShakingManager : MonoBehaviour
                 {
                     particleRigidbody.velocity = Vector2.zero;
                     particle = null;
+                    Time.timeScale = 0;
                     UIManager.Sceenshot();
                     LevelManager.FinishLevel();
+                    GameManager.Instance.StopPoits();
                 }
 
             }

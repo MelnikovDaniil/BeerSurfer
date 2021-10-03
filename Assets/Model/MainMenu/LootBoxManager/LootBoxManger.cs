@@ -58,7 +58,8 @@ public class LootBoxManger : MonoBehaviour
         var lootBoxCount = LootBoxMapper.Get();
         notificationText.text = lootBoxCount.ToString();
         returnShopButton.SetActive(true);
-        byeLootboxButton.gameObject.SetActive(false);
+        byeLootboxButton.gameObject.SetActive(true);
+        byeLootboxButton.interactable = false;
         if (lootBoxCount > 0)
         {
             openLootBoxButton.enabled = true;
@@ -66,7 +67,7 @@ public class LootBoxManger : MonoBehaviour
         }
         else if (BeerMapper.Get() >= lootboxCost)
         {
-            byeLootboxButton.gameObject.SetActive(true);
+            byeLootboxButton.interactable = true;
         }
     }
 
@@ -90,7 +91,8 @@ public class LootBoxManger : MonoBehaviour
         var lootBoxCount = LootBoxMapper.Get();
         notificationText.text = lootBoxCount.ToString();
         returnShopButton.SetActive(true);
-        byeLootboxButton.gameObject.SetActive(false);
+        byeLootboxButton.gameObject.SetActive(true);
+        byeLootboxButton.interactable = false;
         if (lootBoxCount > 0)
         {
             openLootBoxButton.enabled = true;
@@ -98,7 +100,7 @@ public class LootBoxManger : MonoBehaviour
         }
         else if (BeerMapper.Get() >= lootboxCost)
         {
-            byeLootboxButton.gameObject.SetActive(true);
+            byeLootboxButton.interactable = true;
         }
         UpdateNotification();
         UpdateInfo();

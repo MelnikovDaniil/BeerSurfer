@@ -207,6 +207,10 @@ public class LocationGenerator : MonoBehaviour
                 if (nextSpriteQueue != null && nextSpriteQueue.Any())
                 {
                     item.sprite = nextSpriteQueue.Dequeue();
+                    if (levelSystem && currentLocation == finishLocation)
+                    {
+                        item.sortingOrder -= 1;
+                    }
                 }
             }
             item.transform.position += vectorSpeed;
@@ -230,7 +234,7 @@ public class LocationGenerator : MonoBehaviour
                 if (!roadQueue.Any())
                 {
                     GenerateLocation();
-                    if (levelSystem && levelLength == 0)
+                    if (levelSystem && currentLocation == finishLocation)
                     {
                         roadType = RoadType.LevelEnding;
                     }
@@ -264,13 +268,17 @@ public class LocationGenerator : MonoBehaviour
                     GenerateObstacle(road);
                 }
 
-                if (!GuideMapper.IsActive() && Random.value < bonusChanse)
+                if (!levelSystem || currentLocation != finishLocation)
                 {
-                    GenerateBonus(road);
-                }
-                else
-                {
-                    BeerManager.Instance.GenerateBeer(road);
+
+                    if (!GuideMapper.IsActive() && Random.value < bonusChanse)
+                    {
+                        GenerateBonus(road);
+                    }
+                    else
+                    {
+                        BeerManager.Instance.GenerateBeer(road);
+                    }
                 }
             }
             road.transform.position += vectorSpeed;
@@ -294,6 +302,14 @@ public class LocationGenerator : MonoBehaviour
         {
             currentLocation = locations.Where(x => x.locationType != currentLocation.locationType).GetRandomOrDefault();
             currentLocation ??= locations.First();
+            if (levelSystem && levelLength == 0)
+            {
+                currentLocation = finishLocation;
+                for (var i = 0; i < 2; i++)
+                {
+                    undergroundQueue.Enqueue(currentLocation.Undergrounds.GetRandom());
+                }
+            }
         }
 
         if (currentBgOrdering == BgOrderingLayer1)
@@ -303,15 +319,8 @@ public class LocationGenerator : MonoBehaviour
         }
         else
         {
-            if (levelSystem && levelLength == 0)
-            {
-                currentLocation = finishLocation;
-            }
-            else
-            {
-                currentBgOrdering = BgOrderingLayer1;
-                paralaxFirstLayerBg.ForEach(x => x.sprite = currentLocation.Background.GetRandom());
-            }
+            currentBgOrdering = BgOrderingLayer1;
+            paralaxFirstLayerBg.ForEach(x => x.sprite = currentLocation.Background.GetRandom());
         }
 
 
@@ -319,8 +328,11 @@ public class LocationGenerator : MonoBehaviour
         frontQueue.Enqueue(currentLocation.startFrontSprite);
 
         var locationLenght = currentLocation.locationType == LocationType.Inner ? innerLocationLenght : outerLocationLenght;
-        locationLenght = Mathf.Clamp(locationLenght, 0, levelLength);
-        levelLength -= locationLenght;
+        if (levelSystem)
+        {
+            locationLenght = Mathf.Clamp(locationLenght, 0, levelLength);
+            levelLength -= locationLenght;
+        }
 
         for (var i = 0; i < locationLenght; i++)
         {
@@ -385,7 +397,8 @@ public class LocationGenerator : MonoBehaviour
             .Where(obs => 
                 (obs.obstacleType == ObstacleType.Jump && enableJumpObstacles)
                 || (obs.obstacleType == ObstacleType.Slip && enableSlipObstacles)
-                || (obs.obstacleType == ObstacleType.Mixed && enableMixedObstacles))
+                || (obs.obstacleType == ObstacleType.Mixed && enableMixedObstacles)
+                || (obs.obstacleType == ObstacleType.NonObstacle))
             .GetRandom();
         var spawnedObstacle = Instantiate(obstacle, roadPart.transform);
         spawnedObstacle.transform.position = new Vector3(roadPart.transform.position.x, obstacleHigh);
