@@ -18,6 +18,6 @@ public class DeathPanelView : MonoBehaviour
     public void ShowDeathPanel(int beerCount, int scoreCount)
     {
         beerCountText.text = beerCount.ToString();
-        scoreCountText.text = scoreCount.ToString();
+        scoreCountText.text = "score: " + scoreCount.ToString();
     }
 }

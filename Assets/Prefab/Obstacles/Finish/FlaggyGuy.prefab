@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6b3a52f948b974083e921dc4dae2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleType: 0
+  obstacleType: -1
   beerPatterns: 01000000
 --- !u!1 &1702099161323166645
 GameObject:

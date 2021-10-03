@@ -4,9 +4,12 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public event Action OnReachesTargetEvnet;
+
+    public static CameraManager Instance;
     GameObject _target;
     public Camera camera;
     public float cameraSizeLimit = 11f;
+    public Vector2 clamp;
 
     private const float StandartWidth = 720f;
     private const float StandartHight = 1280f;
@@ -14,8 +17,6 @@ public class CameraManager : MonoBehaviour
     private float secondsForMoving;
     private float toCameraSize;
     private float currentTime;
-    private const float XCameraKoof = 8.7f;
-    private const float YCameraKoof = 5f;
     private Vector3 currentPosition;
     private float currentCameraSize;
     private Vector3 cameraShift;
@@ -25,13 +26,10 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         var standartAspectRatio = StandartHight / StandartWidth;
         var currentAspectRation = (float)Screen.height / Screen.width;
-        Debug.Log("standartAspectRatio" + standartAspectRatio);
-        Debug.Log("currentAspectRation" + currentAspectRation);
-        Debug.Log("orthographicSize" + camera.orthographicSize);
         camera.orthographicSize = camera.orthographicSize / standartAspectRatio * currentAspectRation;
-        Debug.Log("orthographicSize" + camera.orthographicSize);
         standartCameraSize = Mathf.Clamp(camera.orthographicSize, 0, cameraSizeLimit);
     }
 
@@ -41,19 +39,28 @@ public class CameraManager : MonoBehaviour
     {
         if (_target != null)
         {
-
-            if (secondsForMoving > currentTime)
+            if (secondsForMoving == -1)
+            {
+                var cameraPosition = new Vector3(
+                    _target.transform.position.x,
+                    Mathf.Clamp(_target.transform.position.y, -clamp.y + camera.orthographicSize * camera.aspect, clamp.y - camera.orthographicSize * camera.aspect), -10);
+                cameraPosition += cameraShift;
+                transform.position = cameraPosition;
+            }
+            else if (secondsForMoving > currentTime)
             {
                 currentTime += Time.deltaTime;
                 var k = currentTime / secondsForMoving;
                 var cameraSize = Mathf.Lerp(currentCameraSize, toCameraSize, k);
                 var cameraPosition = Vector3.Lerp(currentPosition, _target.transform.position + cameraShift, k);
+                cameraPosition = new Vector3(cameraPosition.x, cameraPosition.y, -10);
                 transform.position = cameraPosition;
                 camera.orthographicSize = cameraSize;
             }
             else
             {
-                transform.position = _target.transform.position;
+                var cameraPosition = new Vector3(_target.transform.position.x, _target.transform.position.y, -10);
+                transform.position = cameraPosition;
                 _target = null;
                 OnReachesTargetEvnet?.Invoke();
                 OnReachesTargetEvnet = null;

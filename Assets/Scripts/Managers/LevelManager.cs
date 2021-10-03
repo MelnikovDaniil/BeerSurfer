@@ -7,12 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance;
+
     [Tooltip("Define loading level. -1 value setup level from save system")]
     public int currentLevel = -1;
     public List<LevelRangeConfiguration> levelRangeConfigurations;
     public TextMeshPro startText1;
     public TextMeshPro startText2;
-    private GenerationCriteria lvlCriteria;
+    public GenerationCriteria lvlCriteria;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void Start()
     {
@@ -44,18 +51,8 @@ public class LevelManager : MonoBehaviour
         startText2.text = text;
     }
 
-    public void StartLevel()
+    public static void FinishLevel()
     {
-        if (lvlCriteria != null)
-        {
-            StartCoroutine(FinishLevel(lvlCriteria.raceTime));
-        }
-    }
-
-    private IEnumerator FinishLevel(float time)
-    {
-        yield return new WaitForSeconds(time);
         LevelMapper.Next();
-        SceneManager.LoadScene("Game");
     }
 }

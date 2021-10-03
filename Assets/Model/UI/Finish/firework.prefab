@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8057178268259859169}
   - component: {fileID: 2367781826115769265}
   m_Layer: 0
-  m_Name: BeerParticles
+  m_Name: firework
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

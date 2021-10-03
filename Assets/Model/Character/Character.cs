@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class Character : MonoBehaviour
     public float sensitive = 0.3f;
     public float drinkRepeatTime = 10f;
     public float batCharge = 10;
+    public float finishingDelay = 2;
+    public float stoppingTime = 2;
     public SpriteRenderer phoneRenderer;
     public Sprite phoneSprite;
     public GameObject discount;
@@ -52,6 +55,7 @@ public class Character : MonoBehaviour
     private readonly List<TimedBuff> _buffs = new List<TimedBuff>();
 
     private bool isDead = false;
+    private bool gameEnded = false;
     private bool isGrounded = true;
     private bool isFalling = false;
     private float currentBatCharge;
@@ -97,92 +101,98 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if (!isDead)
+        if (!gameEnded)
         {
-            if (currentBatCharge > 0)
-            {
-                currentBatCharge -= Time.deltaTime;
-            }
 
-            if (Input.GetMouseButtonDown(0) && !GameManager.isPaused && enableMovementActions)
+            if (!isDead)
             {
-                clicked++;
-                if (clicked == 1) clicktime = Time.time;
-                //save began touch 2d point
-                firstPressPos = Input.mousePosition;
-            }
-            if (clicked > 1 && Time.time - clicktime < clickdelay)
-            {
-                clicked = 0;
-                clicktime = 0;
-                if (isStartedRun && !bitEnabled 
-                    && BatBonusMapper.Get() > 0 
-                    && currentBatCharge <= 0
-                    && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Bat))
+                if (currentBatCharge > 0)
                 {
-                    BatBonusMapper.RemoveOne();
-                    var bat = batBuff.InitializeBuff(gameObject);
-                    AddBuff(bat);
-                    currentBatCharge = batBuff.duration + batCharge;
-                    batCounter.SetCooldown(currentBatCharge);
-                    GuideManager.Instance.FinishStep();
+                    currentBatCharge -= Time.deltaTime;
                 }
-            }
-            else if (clicked > 2 || Time.time - clicktime > 1)
-            {
-                clicked = 0;
-            }
 
-            if (firstPressPos != null && Input.GetMouseButton(0))
-            {
-                //save ended touch 2d point
-                secondPressPos = Input.mousePosition;
-
-                //create vector from the two points
-                currentSwipe = new Vector2(secondPressPos.x - firstPressPos.Value.x, secondPressPos.y - firstPressPos.Value.y);
-
-                //normalize the 2d vector
-                currentSwipe.Normalize();
-
-                //swipe left
-                if (currentSwipe.y > 0 && currentSwipe.x > -sensitive 
-                    && currentSwipe.x < sensitive
-                    && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Jump))
+                if (Input.GetMouseButtonDown(0) && !GameManager.isPaused && enableMovementActions)
+                {
+                    clicked++;
+                    if (clicked == 1) clicktime = Time.time;
+                    //save began touch 2d point
+                    firstPressPos = Input.mousePosition;
+                }
+                if (clicked > 1 && Time.time - clicktime < clickdelay)
                 {
                     clicked = 0;
-                    firstPressPos = null;
-                    Jump();
+                    clicktime = 0;
+                    if (isStartedRun && !bitEnabled
+                        && BatBonusMapper.Get() > 0
+                        && currentBatCharge <= 0
+                        && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Bat))
+                    {
+                        BatBonusMapper.RemoveOne();
+                        var bat = batBuff.InitializeBuff(gameObject);
+                        AddBuff(bat);
+                        currentBatCharge = batBuff.duration + batCharge;
+                        batCounter.SetCooldown(currentBatCharge);
+                        GuideManager.Instance.FinishStep();
+                    }
                 }
-                //swipe right
-                if (isStartedRun && currentSwipe.y < 0 
-                    && currentSwipe.x > -sensitive 
-                    && currentSwipe.x < sensitive
-                    && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Slip))
+                else if (clicked > 2 || Time.time - clicktime > 1)
                 {
                     clicked = 0;
+                }
+
+                if (firstPressPos != null && Input.GetMouseButton(0))
+                {
+                    //save ended touch 2d point
+                    secondPressPos = Input.mousePosition;
+
+                    //create vector from the two points
+                    currentSwipe = new Vector2(secondPressPos.x - firstPressPos.Value.x, secondPressPos.y - firstPressPos.Value.y);
+
+                    //normalize the 2d vector
+                    currentSwipe.Normalize();
+
+                    //swipe left
+                    if (currentSwipe.y > 0 && currentSwipe.x > -sensitive
+                        && currentSwipe.x < sensitive
+                        && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Jump))
+                    {
+                        clicked = 0;
+                        firstPressPos = null;
+                        Jump();
+                    }
+                    //swipe right
+                    if (isStartedRun && currentSwipe.y < 0
+                        && currentSwipe.x > -sensitive
+                        && currentSwipe.x < sensitive
+                        && GuideManager.Instance.WhaitingForOrNotGuide(GuideSteps.Slip))
+                    {
+                        clicked = 0;
+                        firstPressPos = null;
+                        Slip();
+                    }
+                }
+
+                if (firstPressPos != null && Input.GetMouseButtonUp(0))
+                {
                     firstPressPos = null;
-                    Slip();
+                }
+
+                if (!isFalling && rigidbody.velocity.y < 0)
+                {
+                    isFalling = true;
+                    animator.SetTrigger("fall");
                 }
             }
-
-            if (firstPressPos != null && Input.GetMouseButtonUp(0))
+            else
             {
-                firstPressPos = null;
+                transform.position += Vector3.left * 10 * Time.deltaTime;
             }
-
-            if (!isFalling && rigidbody.velocity.y < 0)
-            {
-                isFalling = true;
-                animator.SetTrigger("fall");
-            }
-        }
-        else
-        {
-            transform.position += Vector3.left * 10 * Time.deltaTime;
         }
 
         BuffUpdate();
     }
+
+    #region Buffs
 
     public void AddBuff(TimedBuff buff)
     {
@@ -199,6 +209,33 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void BuffUpdate()
+    {
+        var buffs = _buffs.ToArray();
+        foreach (var buff in buffs)
+        {
+            buff.Tick(Time.deltaTime);
+            if (buff.IsFinished)
+            {
+                _buffs.Remove(buff);
+            }
+        }
+    }
+
+    private void ClearBuffs()
+    {
+        var buffs = _buffs.ToArray();
+        foreach (var buff in buffs)
+        {
+            buff.Tick(buff.Duration);
+            if (buff.IsFinished)
+            {
+                _buffs.Remove(buff);
+            }
+        }
+    }
+
+    #endregion
     public void ActivateBit()
     {
         if (!bitEnabled)
@@ -221,25 +258,13 @@ public class Character : MonoBehaviour
         animator.Play("SecondLife");
         isDead = false;
         transform.position = startPosition;
-        Invoke(nameof(SecondLifeEnd), delay);
+        StartCoroutine(SecondLifeEnd(delay));
     }
 
-    public void SecondLifeEnd()
+    public IEnumerator SecondLifeEnd(float delay)
     {
+        yield return new WaitForSecondsRealtime(delay);
         animator.updateMode = AnimatorUpdateMode.Normal;
-    }
-
-    private void BuffUpdate()
-    {
-        var buffs = _buffs.ToArray();
-        foreach (var buff in buffs)
-        {
-            buff.Tick(Time.deltaTime);
-            if (buff.IsFinished)
-            {
-                _buffs.Remove(buff);
-            }
-        }
     }
 
     private void Jump()
@@ -268,7 +293,7 @@ public class Character : MonoBehaviour
 
     private void Death()
     {
-        _buffs.ForEach(x => x.End());
+        ClearBuffs();
         animator.SetTrigger("death");
         isDead = true;
         OnDeathEvent?.Invoke();
@@ -298,20 +323,31 @@ public class Character : MonoBehaviour
         isGrounded = false;
     }
 
+    private IEnumerator Stopping()
+    {
+        yield return new WaitForSeconds(finishingDelay);
+        LocationGenerator.Instance.StopMoving();
+        animator.Play("Stopping");
+        yield return new WaitForSeconds(stoppingTime);
+        ShakingManager.Instance.StartShaking();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "GuideObstacle" && GuideMapper.IsActive())
         {
             GuideManager.Instance.ActivateStep();
         }
-        else if (collision.GetComponent<Obstacle>() || collision.tag == "Road")
+        else if (collision.GetComponent<Obstacle>())
         {
-            if (bitEnabled && collision.tag != "Road")
+            if (bitEnabled)
             {
                 var chushParitcles = Instantiate(
-                    crushParticlesPrefab,
+                    crushParticlesPrefab, 
+                    new Vector3(collision.gameObject.transform.position.x, 0),
+                    Quaternion.identity,
                     collision.transform.parent);
-                crushParticlesPrefab.transform.localPosition = new Vector3(collision.transform.localPosition.x, 0);
+                //crushParticlesPrefab.transform.localPosition = collision.transform.localPosition
                 Destroy(chushParitcles.gameObject, 1f);
                 Destroy(collision.gameObject);
                 var bat = _buffs.First(x => x.Buff.Name == "Bat");
@@ -319,6 +355,20 @@ public class Character : MonoBehaviour
                 bat.End();
                 bat.IsFinished = true;
                 _buffs.Remove(bat);
+            }
+            else
+            {
+                Death();
+            }
+        }
+        else if (collision.GetComponent<RoadPart>())
+        {
+            if (collision.tag == "LevelEnding")
+            {
+                ClearBuffs();
+                gameEnded = true;
+                StartCoroutine(Stopping());
+                UIManager.Finish();
             }
             else
             {

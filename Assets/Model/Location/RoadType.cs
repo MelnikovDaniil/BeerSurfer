@@ -3,4 +3,5 @@
     Start,
     Middle,
     Finish,
+    LevelEnding,
 }

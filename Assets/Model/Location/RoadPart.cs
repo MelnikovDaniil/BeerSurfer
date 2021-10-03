@@ -14,6 +14,7 @@ public class RoadPart : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Collider2D _startWallColliders;
     private Collider2D _finishWallColliders;
+    private Collider2D _levelEndingColliders;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class RoadPart : MonoBehaviour
         var colliders = GetComponents<BoxCollider2D>();
         _startWallColliders = colliders[0];
         _finishWallColliders = colliders[1];
+        _levelEndingColliders = colliders[2];
     }
 
     public void ChangeSprite(Sprite sprite)
@@ -58,6 +60,7 @@ public class RoadPart : MonoBehaviour
         obstacle = null;
         _startWallColliders.enabled = false;
         _finishWallColliders.enabled = false;
+        _levelEndingColliders.enabled = false;
         objectToRemove.Clear();
     }
 
@@ -70,6 +73,10 @@ public class RoadPart : MonoBehaviour
                 break;
             case RoadType.Finish:
                 _finishWallColliders.enabled = true;
+                break;
+            case RoadType.LevelEnding:
+                _levelEndingColliders.enabled = true;
+                _levelEndingColliders.tag = "LevelEnding";
                 break;
         }
     }

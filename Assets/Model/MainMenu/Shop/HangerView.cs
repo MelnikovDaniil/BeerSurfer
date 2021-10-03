@@ -15,11 +15,13 @@ public class HangerView : MonoBehaviour
 
     public void Enable()
     {
+        GetComponent<Animator>().SetTrigger("show");
         tagRenderer.sprite = workingShopTagSprite;
+
     }
 
     public void Disable()
     {
-        GetComponent<Animator>().enabled = false;
+        
     }
 }
