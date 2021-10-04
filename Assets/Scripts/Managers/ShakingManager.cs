@@ -58,6 +58,7 @@ public class ShakingManager : MonoBehaviour
                     if (tabs == 0)
                     {
                         Time.timeScale = 1;
+                        SoundManager.PlaySound("shaking");
                         tabCounter.gameObject.SetActive(true);
                         StartCoroutine(FinishShaking());
                     }
@@ -87,6 +88,7 @@ public class ShakingManager : MonoBehaviour
             {
                 if (particle.transform.position.y > nextBonusPosition)
                 {
+                    SoundManager.PlaySound("lengthMark");
                     nextBonusPosition += bonusGap;
                     var text = Instantiate(bonusText, particle.transform.position + new Vector3(2, 0), Quaternion.identity);
                     var beer = rewardQueue.Dequeue();
@@ -102,6 +104,8 @@ public class ShakingManager : MonoBehaviour
                     particleRigidbody.velocity = Vector2.zero;
                     particle = null;
                     Time.timeScale = 0;
+                    SoundManager.PlaySoundUI("cameraShutter");
+                    SoundManager.PlaySoundWithDelay("calculating", 0.5f, false);
                     UIManager.Sceenshot();
                     LevelManager.FinishLevel();
                     GameManager.Instance.StopPoits();
@@ -135,6 +139,8 @@ public class ShakingManager : MonoBehaviour
             timerImage.fillAmount = 0;
             timerArrowImage.transform.rotation = Quaternion.identity;
 
+            SoundManager.PlaySound("hissOpening");
+            SoundManager.PlaySound("longHiss");
             UIManager.FinishShaking();
             nextBonusPosition = bonusStartPosition;
             _characterAnimator.Play("SodaSplash");
