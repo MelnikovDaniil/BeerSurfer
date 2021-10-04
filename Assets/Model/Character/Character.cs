@@ -370,9 +370,9 @@ public class Character : MonoBehaviour
                 StartCoroutine(Stopping());
                 UIManager.Finish();
                 SoundManager.StopMusic();
-                SoundManager.PlaySound("applause");
                 SoundManager.PlaySound("petard");
-                SoundManager.PlaySound("victory");
+                SoundManager.PlaySoundUI("victory");
+                SoundManager.PlaySoundUI("applause");
             }
             else
             {
