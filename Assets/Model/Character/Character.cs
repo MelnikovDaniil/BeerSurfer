@@ -369,6 +369,10 @@ public class Character : MonoBehaviour
                 gameEnded = true;
                 StartCoroutine(Stopping());
                 UIManager.Finish();
+                SoundManager.StopMusic();
+                SoundManager.PlaySound("applause");
+                SoundManager.PlaySound("petard");
+                SoundManager.PlaySound("victory");
             }
             else
             {
