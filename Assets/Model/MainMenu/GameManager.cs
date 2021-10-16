@@ -1,3 +1,7 @@
+using com.adjust.sdk;
+using GameAnalyticsSDK;
+using LionStudios.Suite.Analytics;
+using LionStudios.Suite.Debugging;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +13,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public static int score;
     public static int beer;
+
+    public static int colectedBeer;
+    public static int minigameBeer;
+    public static int adBonusBeer;
     public static bool isPaused;
+    public static float startTime;
+    public static float raceTime;
+    public static bool secondLifeActivated;
     public Character character;
 
     public Text beerCounterText;
@@ -20,9 +31,13 @@ public class GameManager : MonoBehaviour
     public LocationGenerator locationGenerator;
     public MainMenu mainMenu;
     public DeathManager deathPanel;
-    public Slider volumeSlider;
     public CanvasGroup uiCanvasGroup;
     public HangerView hangerView;
+
+    [Space(20)]
+    public Button pauseMuteButton;
+    public Sprite MuteOn;
+    public Sprite MuteOff;
 
     [Space(20)]
     public float secondLifeDelay = 2;
@@ -38,19 +53,42 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+#if UNITY_IOS
+        /* Mandatory - set your iOS app token here */
+        InitAdjust("y5vpikc3vbb4");
+#elif UNITY_ANDROID
+        /* Mandatory - set your Android app token here */
+        InitAdjust("y5vpikc3vbb4");
+#endif
+        GameAnalytics.Initialize();
+        LionAnalytics.GameStart();
         Instance = this;
         score = 0;
         beer = 0;
+        raceTime = -1;
         gameEnded = false;
         character.OnDeathEvent += StopPoits;
         character.OnDeathEvent += deathPanel.ShowDeathPanel;
         character.OnJumpEvent += StartGame;
-        volumeSlider.onValueChanged.AddListener(SetVolume);
-        volumeSlider.value = GetVolume();
+        pauseMuteButton.onClick.AddListener(Mute);
+        pauseMuteButton.onClick.AddListener(SetMuteIcon);
         uiCanvasGroup.alpha = 0;
         uiCanvasGroup.interactable = false;
         uiCanvasGroup.blocksRaycasts = false;
         SceneManager.sceneUnloaded += SceenLoaded;
+    }
+    private void Start()
+    {
+        LionDebugger.Hide();
+        if (PlayerPrefs.GetInt("ShopAvailable", 0) != 0 || LootBoxMapper.Get() > 0 || BeerMapper.Get() >= 300)
+        {
+            hangerView.Enable();
+            PlayerPrefs.SetInt("ShopAvailable", 1);
+        }
+        else
+        {
+            hangerView.Disable();
+        }
     }
 
     private void SceenLoaded(Scene arg0)
@@ -67,23 +105,13 @@ public class GameManager : MonoBehaviour
         beer = 0;
     }
 
-    private void Start()
-    {
-        if (PlayerPrefs.GetInt("ShopAvailable", 0) != 0 || LootBoxMapper.Get() > 0 || BeerMapper.Get() >= 300)
-        {
-            hangerView.Enable();
-            PlayerPrefs.SetInt("ShopAvailable", 1);
-        }
-        else
-        {
-            hangerView.Disable();
-        }
-    }
 
     private void StartGame()
     {
         if (!mainMenu.shopIsOpen)
         {
+            mainMenu.Close();
+            startTime = Time.time;
             gameStarted = true;
             uiCanvasGroup.interactable = true;
             uiCanvasGroup.blocksRaycasts = true;
@@ -133,6 +161,7 @@ public class GameManager : MonoBehaviour
     public void SecondLife()
     {
         Time.timeScale = 0;
+        secondLifeActivated = true;
         character.SecondLife(secondLifeDelay);
         LocationGenerator.Instance.ClearRoad();
         UIManager.Blind();
@@ -167,7 +196,7 @@ public class GameManager : MonoBehaviour
     {
         if (!gameEnded)
         {
-            volumeSlider.value = GetVolume();
+            SetMuteIcon();
             var paused = !isPaused;
             if (paused)
             {
@@ -219,15 +248,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SetVolume(float volume)
+    public void Mute()
     {
-        SoundManager.SetMusicVolume(volume);
-        SoundManager.SetSoundVolume(volume);
+        if (SoundManager.GetMusicMuted())
+        {
+            SoundManager.SetMusicMuted(false);
+            SoundManager.SetSoundMuted(false);
+        }
+        else
+        {
+            SoundManager.SetMusicMuted(true);
+            SoundManager.SetSoundMuted(true);
+        }
     }
 
-    private float GetVolume()
+    public void SetMuteIcon()
     {
-        return SoundManager.GetSoundVolume();
+        pauseMuteButton.image.sprite = SoundManager.GetMusicMuted() ? MuteOn : MuteOff;
     }
 
+    private void InitAdjust(string adjustAppToken)
+    {
+        var adjustConfig = new AdjustConfig(
+            adjustAppToken,
+            AdjustEnvironment.Production, // AdjustEnvironment.Sandbox to test in dashboard
+            true
+        );
+        adjustConfig.setLogLevel(AdjustLogLevel.Info); // AdjustLogLevel.Suppress to disable logs
+        adjustConfig.setSendInBackground(true);
+        new GameObject("Adjust").AddComponent<Adjust>(); // do not remove or rename
+
+        // Adjust.addSessionCallbackParameter("foo", "bar"); // if requested to set session-level parameters
+
+        //adjustConfig.setAttributionChangedDelegate((adjustAttribution) => {
+        //  Debug.LogFormat("Adjust Attribution Callback: ", adjustAttribution.trackerName);
+        //});
+
+        Adjust.start(adjustConfig);
+
+    }
 }

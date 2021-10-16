@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LionStudios.Suite.Analytics;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -46,13 +47,45 @@ public class LevelManager : MonoBehaviour
         {
             text = "Infinity";
         }
-
+        LevelMapper.AddAttempt();
+        LionAnalytics.LevelStart(currentLevel, LevelMapper.GetAttempt(), 0);
         startText1.text = text;
         startText2.text = text;
     }
 
+    public static void RestartLevel()
+    {
+        var additionalData = new Dictionary<string, object>() { { "secondLife", GameManager.secondLifeActivated } };
+        LionAnalytics.LevelRestart(
+            Instance.currentLevel,
+            LevelMapper.GetAttempt(),
+            (int)((Time.time - GameManager.startTime) / GameManager.raceTime * 100),
+            additionalData: additionalData);
+    }
+
     public static void FinishLevel()
     {
+        var additionalData = new Dictionary<string, object>() { { "secondLife", GameManager.secondLifeActivated } };
+        var collectedBeer = new VirtualCurrency("Collected Soda", "Basic", GameManager.colectedBeer);
+        var minigameBeer = new VirtualCurrency("Minigame Soda", "Basic", GameManager.minigameBeer);
+        var adBeer = new VirtualCurrency("Ad Soda", "Basic", GameManager.adBonusBeer);
+        var product = new Product();
+        product.AddVirtualCurrency(collectedBeer);
+        product.AddVirtualCurrency(minigameBeer);
+        product.AddVirtualCurrency(adBeer);
+
+        var reward = new Reward(product)
+        {
+            rewardName = "Finish Reward"
+        };
+        LionAnalytics.LevelComplete(
+            Instance.currentLevel,
+            LevelMapper.GetAttempt(),
+            100,
+            reward,
+            additionalData: additionalData);
+        LevelMapper.ResetAttempts();
         LevelMapper.Next();
+        LionAnalytics.SetPlayerLevel(LevelMapper.Get());
     }
 }

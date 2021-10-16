@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,16 +9,15 @@ public class UIManager : MonoBehaviour
     public UIBonusView UIBonusPrefab;
     public int bonusCount;
     public Transform bonusPanel;
-    public Image screenshotPlace;
 
     public Animator finishAnimator;
     public ParticleSystem finishParticles;
-    public Toggle likesToggle;
-    public Text finishLikeText;
-    public Text finishCommetsText;
-    public Text finishTagsText;
+    public Text beerCountText;
+    public float finishAdTime = 5f;
+    public Image adImage;
     public Button finishContinueButton;
-    public float continueDelayTime = 3f;
+    public Button adButton;
+    private float currentFinishAdTime;
 
     private Animator _animator;
     private List<UIBonusView> bonuses;
@@ -41,6 +39,19 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (currentFinishAdTime > 0)
+        {
+            currentFinishAdTime -= Time.unscaledDeltaTime;
+            adImage.fillAmount = currentFinishAdTime / finishAdTime;
+            if (currentFinishAdTime <= 0)
+            {
+                DisableAd();
+            }
+        }
+    }
+
     public static void AddBuff(TimedBuff timedBuff)
     {
         var view = Instance.bonuses.First(x => !x.IsActive);
@@ -54,6 +65,7 @@ public class UIManager : MonoBehaviour
 
     public static void Finish()
     {
+        Instance.finishAnimator.gameObject.SetActive(true);
         Instance.finishAnimator.SetTrigger("finish");
         Instance.finishParticles.Play();
     }
@@ -68,48 +80,22 @@ public class UIManager : MonoBehaviour
         Instance.finishAnimator.SetTrigger("shaking");
     }
 
-    public static void Sceenshot()
+    public static void FinishMenu()
     {
-        Instance.screenshotPlace.sprite = ScreenshotManger.TakeScreenshot(Camera.main.pixelWidth, Camera.main.pixelWidth * 2 / 3);
-        Instance.StartCoroutine(Instance.ContinueWithDelayRoutine());
-        Instance.finishTagsText.text = $"#lvl{LevelManager.Instance.currentLevel} {Instance.finishTagsText.text}";
+        Instance.ShowFinishMenu();
+    }
+
+    public void ShowFinishMenu()
+    {
+        currentFinishAdTime = finishAdTime;
+        beerCountText.text = GameManager.beer.ToString();
         Instance.finishAnimator.SetTrigger("screenshot");
-        Instance.StartCoroutine(Instance.LikesAndCommentRouting());
     }
 
-    public void Like()
+    public void DisableAd()
     {
-        var likes = int.Parse(finishLikeText.text);
-        if (likesToggle.isOn)
-        {
-            likes++;
-        }
-        else
-        {
-            likes--;
-        }
-        finishLikeText.text = likes.ToString();
-
-    }
-
-    private IEnumerator ContinueWithDelayRoutine()
-    {
-        finishContinueButton.interactable = false;
-        yield return new WaitForSecondsRealtime(continueDelayTime);
-        finishContinueButton.interactable = true;
-    }
-
-    private IEnumerator LikesAndCommentRouting()
-    {
-        var comments = 0;
-        var likes = 0;
-        for (var i = 0; i < 10; i++)
-        {
-            yield return new WaitForSecondsRealtime(0.1f);
-            comments += Random.Range(0, 100);
-            likes += Random.Range(0, 100);
-            finishCommetsText.text = comments.ToString();
-            finishLikeText.text = likes.ToString();
-        }
+        currentFinishAdTime = 0;
+        finishContinueButton.gameObject.SetActive(true);
+        adButton.gameObject.SetActive(false);
     }
 }

@@ -15,4 +15,20 @@ public static class LevelMapper
         var level = Get();
         PlayerPrefs.SetInt(MapperName, level + 1);
     }
+
+    public static int GetAttempt()
+    {
+        return PlayerPrefs.GetInt(MapperName + "Attempt", 0);
+    }
+    public static void AddAttempt()
+    {
+        var attempt = GetAttempt();
+        PlayerPrefs.SetInt(MapperName + "Attempt", attempt + 1);
+    }
+
+    public static void ResetAttempts()
+    {
+        var attempt = GetAttempt();
+        PlayerPrefs.SetInt(MapperName + "Attempt", 0);
+    }
 }

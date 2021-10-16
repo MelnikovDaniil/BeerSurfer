@@ -16,9 +16,9 @@ MonoBehaviour:
   clientTokens:
   - 
   appIds:
-  - 0
+  - 1165711363950112
   appLabels:
-  - App Name
+  - Soda Surfer
   cookie: 1
   logging: 1
   status: 1
