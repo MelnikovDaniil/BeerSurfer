@@ -104,11 +104,12 @@ public class ShakingManager : MonoBehaviour
                     particleRigidbody.velocity = Vector2.zero;
                     particle = null;
                     Time.timeScale = 0;
+                    GameManager.minigameBeer = GameManager.beer - GameManager.colectedBeer;
                     SoundManager.PlaySoundUI("cameraShutter");
                     SoundManager.PlaySoundWithDelay("calculating", 0.5f, false);
-                    UIManager.Sceenshot();
                     LevelManager.FinishLevel();
                     GameManager.Instance.StopPoits();
+                    UIManager.FinishMenu();
                 }
 
             }

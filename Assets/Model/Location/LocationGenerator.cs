@@ -167,6 +167,7 @@ public class LocationGenerator : MonoBehaviour
         var startScreenCount = 3;
         speedDifferenceFactor = 1;
 
+        GameManager.raceTime = criteria.raceTime;
         batSpawnChanse = criteria.batSpawn ? batSpawnChanse : 0;
         pepperSpawnChanse = criteria.chillySpawn ? pepperSpawnChanse : 0;
         enableJumpObstacles = criteria.enableJumpObstacles;

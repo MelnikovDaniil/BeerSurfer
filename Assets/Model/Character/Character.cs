@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Character : MonoBehaviour
@@ -368,6 +366,7 @@ public class Character : MonoBehaviour
                 ClearBuffs();
                 gameEnded = true;
                 StartCoroutine(Stopping());
+                GameManager.colectedBeer = GameManager.beer;
                 UIManager.Finish();
                 SoundManager.StopMusic();
                 SoundManager.PlaySound("petard");

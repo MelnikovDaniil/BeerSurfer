@@ -73,6 +73,12 @@ public class MainMenu : MonoBehaviour
         UpdateInfo();
     }
 
+    public void Close()
+    {
+        shopMenuGameObject.transform.parent.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+    }
+
     private IEnumerator DelayShowGame()
     {
         yield return new WaitForSeconds(switchDelay);
