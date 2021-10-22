@@ -274,7 +274,7 @@ public class GameManager : MonoBehaviour
             AdjustEnvironment.Production, // AdjustEnvironment.Sandbox to test in dashboard
             true
         );
-        adjustConfig.setLogLevel(AdjustLogLevel.Info); // AdjustLogLevel.Suppress to disable logs
+        adjustConfig.setLogLevel(AdjustLogLevel.Verbose); // AdjustLogLevel.Suppress to disable logs
         adjustConfig.setSendInBackground(true);
         new GameObject("Adjust").AddComponent<Adjust>(); // do not remove or rename
 
