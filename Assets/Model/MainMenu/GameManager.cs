@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public Character character;
 
     public Text beerCounterText;
+    public Text beerPauseCounterText;
     public Text scoreCounterText;
 
     public Animator pausePanelAnimtor;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     public LocationGenerator locationGenerator;
     public MainMenu mainMenu;
     public DeathManager deathPanel;
+    public OfferManager offerManager;
     public CanvasGroup uiCanvasGroup;
     public HangerView hangerView;
 
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
         uiCanvasGroup.interactable = false;
         uiCanvasGroup.blocksRaycasts = false;
         SceneManager.sceneUnloaded += SceenLoaded;
+        offerManager.SetUp();
     }
     private void Start()
     {
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        if (!mainMenu.shopIsOpen)
+        if (!mainMenu.shopIsOpen && !OfferManager.offerWindowShowing)
         {
             mainMenu.Close();
             startTime = Time.time;
@@ -196,6 +199,7 @@ public class GameManager : MonoBehaviour
     {
         if (!gameEnded)
         {
+            beerPauseCounterText.text = beer.ToString();
             SetMuteIcon();
             var paused = !isPaused;
             if (paused)
@@ -274,7 +278,7 @@ public class GameManager : MonoBehaviour
             AdjustEnvironment.Production, // AdjustEnvironment.Sandbox to test in dashboard
             true
         );
-        adjustConfig.setLogLevel(AdjustLogLevel.Info); // AdjustLogLevel.Suppress to disable logs
+        adjustConfig.setLogLevel(AdjustLogLevel.Verbose); // AdjustLogLevel.Suppress to disable logs
         adjustConfig.setSendInBackground(true);
         new GameObject("Adjust").AddComponent<Adjust>(); // do not remove or rename
 

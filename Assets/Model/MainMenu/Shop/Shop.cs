@@ -69,6 +69,12 @@ public class Shop : MonoBehaviour
     {
         _animator.SetTrigger("show");
         availableOutfits = GetAvailableOutfits();
+        availableOutfits.Reverse();
+
+        foreach (var outfit in availableOutfits)
+        {
+            ShowOutfitCategory(outfit.OutfitType);
+        }
     }
 
     public void HideMenu()
