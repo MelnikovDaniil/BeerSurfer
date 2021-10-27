@@ -17,13 +17,13 @@ public class OutfitManager : MonoBehaviour
     public SpriteRenderer characterTorso;
 
     private List<OutfitModel> allOutfits;
-    private void Start()
+
+    private void Awake()
     {
-        UpdateOutfits();
-        ResetOutfits();
+        SetUpOutfits();
     }
 
-    public void UpdateOutfits()
+    public void SetUpOutfits()
     {
         allOutfits = new List<OutfitModel>
         {
@@ -70,7 +70,7 @@ public class OutfitManager : MonoBehaviour
 
         while(!suitableKit)
         {
-            kitName = outfitLibrary.torsoSprites.Where(x => x.name.Contains("Default")).GetRandom().name.Split('_')[0];
+            kitName = outfitLibrary.torsoSprites.Where(x => !x.name.Contains("Default")).GetRandom().name.Split('_')[0];
             suitableKit = allOutfits.All(typeOutfit => typeOutfit.Sprites.Any(sprite => sprite.name.Contains(kitName)));
         }
 
@@ -98,20 +98,43 @@ public class OutfitManager : MonoBehaviour
         return kitName;
     }
 
-    public void SetUpKit(string kitName)
+    public void SetUpKit(string kitName, int runCount)
     {
         foreach (var typeOutfit in allOutfits)
         {
             var outfitName = OutfitMapper.GetOutfit(typeOutfit.OutfitType);
             var newOutfit = typeOutfit.Sprites.First(x => x.name.Contains(kitName));
 
-            if (!OutfitMapper.IsOutfitAvailable(outfitName))
+            if (!OutfitMapper.IsOutfitAvailable(newOutfit.name))
             {
-                OutfitMapper.SetTemporaryOutfit(newOutfit.name);
+                OutfitMapper.SetTempraryOutfit(newOutfit.name);
+                OutfitMapper.SetRememberOutfit(outfitName);
             }
 
-            OutfitMapper.SetRemenberOutfit(outfitName);
             OutfitMapper.SetOutfit(typeOutfit.OutfitType, newOutfit);
+        }
+
+        OutfitMapper.SetTempraryDuration(runCount);
+    }
+
+    public void RemoveTemproryKit()
+    {
+        foreach (var typeOutfit in allOutfits)
+        {
+            var currentOutfitName = OutfitMapper.GetOutfit(typeOutfit.OutfitType);
+            var previousOutfit = typeOutfit.Sprites.FirstOrDefault(x => OutfitMapper.GetOutfitStatus(x.name) == OutfitMapper.OutfitStatus.Previous);
+            var temproryOutfit = typeOutfit.Sprites.FirstOrDefault(x => OutfitMapper.GetOutfitStatus(x.name) == OutfitMapper.OutfitStatus.Temporary);
+            if (temproryOutfit != null)
+            {
+                if (currentOutfitName == temproryOutfit.name)
+                {
+                    OutfitMapper.SetOutfit(typeOutfit.OutfitType, previousOutfit);
+                }
+
+                OutfitMapper.SetAvailableOutfit(previousOutfit.name);
+                OutfitMapper.SetUnAvailableOutfit(temproryOutfit.name);
+            }
+            
         }
     }
 }

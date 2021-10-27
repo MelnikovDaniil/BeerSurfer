@@ -25,16 +25,22 @@ MonoBehaviour:
   UserMessagesSubmitted: 0
   UserMessagesFailed: 0
   CustomArea: 
-  gameKey: []
-  secretKey: []
-  Build: []
-  SelectedPlatformOrganization: []
-  SelectedPlatformStudio: []
-  SelectedPlatformGame: []
-  SelectedPlatformGameID: 
-  SelectedOrganization: 
-  SelectedStudio: 
-  SelectedGame: 
+  gameKey:
+  - 5be355ae3a3036d6b0cd6fccb44b17b2
+  secretKey:
+  - c85aa55ce59f4f8e78ef2bf7990b232e700de077
+  Build:
+  - 0.1
+  SelectedPlatformOrganization:
+  - Lion Studios
+  SelectedPlatformStudio:
+  - SoberMind
+  SelectedPlatformGame:
+  - Soda Surfer
+  SelectedPlatformGameID: 828b0200
+  SelectedOrganization: 01000000
+  SelectedStudio: 01000000
+  SelectedGame: 01000000
   NewVersion: 
   Changes: 
   SignUpOpen: 0
@@ -57,7 +63,7 @@ MonoBehaviour:
   ResourceItemTypes: []
   ResourceCurrencies: []
   LastCreatedGamePlatform: -1
-  Platforms: 
+  Platforms: 0b000000
   CurrentInspectorState: 1
   ClosedHints: 
   DisplayHints: 0
@@ -85,7 +91,7 @@ MonoBehaviour:
   IncludeGooglePlay: 1
   FpsCriticalThreshold: 20
   FpsCirticalSubmitInterval: 1
-  PlatformFoldOut: 
+  PlatformFoldOut: 01
   CustomDimensions01FoldOut: 0
   CustomDimensions02FoldOut: 0
   CustomDimensions03FoldOut: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,7 +18,13 @@ public class UIManager : MonoBehaviour
     public Image adImage;
     public Button finishContinueButton;
     public Button adButton;
+    public int adReward = 150;
+
+
+    public Text adRewardBonusText;
+    public Text adRewardButtonText;
     private float currentFinishAdTime;
+
 
     private Animator _animator;
     private List<UIBonusView> bonuses;
@@ -89,7 +96,25 @@ public class UIManager : MonoBehaviour
     {
         currentFinishAdTime = finishAdTime;
         beerCountText.text = GameManager.beer.ToString();
+        adRewardButtonText.text = "+" + adReward;
+        adRewardBonusText.text = "+" + adReward;
         Instance.finishAnimator.SetTrigger("screenshot");
+    }
+
+    public void AcceptAd()
+    {
+        GameManager.beer += adReward;
+        GameManager.adBonusBeer = adReward;
+        adRewardBonusText.GetComponent<Animator>().SetTrigger("adReward");
+        StartCoroutine(ChangeFinishBeerRoutine());
+
+        DisableAd();
+    }
+
+    private IEnumerator ChangeFinishBeerRoutine()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        beerCountText.text = GameManager.beer.ToString();
     }
 
     public void DisableAd()

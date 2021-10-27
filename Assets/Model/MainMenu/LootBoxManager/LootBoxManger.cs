@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class LootBoxManger : MonoBehaviour
 {
@@ -127,6 +129,8 @@ public class LootBoxManger : MonoBehaviour
 
         _animator.SetTrigger("show");
         var typeOutfit = GenerateRandomOutfit();
+        var randomState = Random.state;
+        Random.InitState((int)DateTime.Now.Ticks);
         if (Random.value < outfitChanse && typeOutfit.outfit != null)
         {
             dummy.gameObject.SetActive(true);
@@ -145,6 +149,7 @@ public class LootBoxManger : MonoBehaviour
         else
         {
             bonusImage.enabled = true;
+
             if (Random.value < 0.5f)
             {
                 bonusImage.sprite = batSprite;
@@ -157,6 +162,7 @@ public class LootBoxManger : MonoBehaviour
             }
         }
 
+        Random.state = randomState;
         LootBoxMapper.RemoveOne();
     }
 

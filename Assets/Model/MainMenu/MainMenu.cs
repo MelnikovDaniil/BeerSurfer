@@ -35,6 +35,7 @@ public class MainMenu : MonoBehaviour
         shopCharacterAnimator.SetTrigger("shop");
         shop.gameObject.SetActive(false);
         hanger.OnHangerClickEvent += OpenShop;
+        outfitManager.ResetOutfits();
         SoundManager.PlayMusic("MenuMusic");
     }
 
@@ -43,7 +44,7 @@ public class MainMenu : MonoBehaviour
         SoundManager.PlayMusic("MenuMusic");
         shopIsOpen = false;
         shop.HideMenu();
-        outfitManager.UpdateOutfits();
+        outfitManager.ResetOutfits();
         StartCoroutine(DelayShowGame());
         //cameraManager.OnReachesTargetEvnet += () => shop.gameObject.SetActive(false);
     }
